@@ -19,14 +19,13 @@ public class InputManager : MonoBehaviour
 
     private float halfScaleValue;
 
-
 	private void Start()
 	{
         screenHeight = Screen.height;
         rowHeight = screenHeight / 6;
         spaceToFinger = 0.5f;
 
-        halfScaleValue = GameObject.Find("1").GetComponent<PieceScript>().halfScaleValue;
+        halfScaleValue = transform.GetChild(0).GetComponent<PieceScript>().halfScaleValue;
 	}
 
 	void Update ()
@@ -106,10 +105,7 @@ public class InputManager : MonoBehaviour
         draggingItem = false;
     }
 
-
-
     //get info
-
     Vector2 CurrentTouchPosition
     {
         get
@@ -117,7 +113,6 @@ public class InputManager : MonoBehaviour
             return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
-
 
     private bool HasInput
     {

@@ -22,8 +22,15 @@ public class GenerateShapes : MonoBehaviour
 
     public GameObject fill;
 
-	private void Start()
+    public SpriteRenderer spriteRenderer;
+
+	public void Generate(int setExtraPoints, int setSubshatterSteps, Color32 setColor)
 	{
+        extraPoints = setExtraPoints;
+        subshatterSteps = setSubshatterSteps;
+
+        spriteRenderer.color = setColor;
+
         generateFragments();
         rowScript.CustomStart();
     }

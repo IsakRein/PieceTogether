@@ -35,9 +35,4 @@ public class RowScript : MonoBehaviour {
             piece.transform.localPosition = new Vector2(xPos, 0f);
         }
     }
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
