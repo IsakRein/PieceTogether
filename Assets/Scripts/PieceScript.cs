@@ -43,8 +43,5 @@ public class PieceScript: MonoBehaviour {
         {
             transform.position = correctPos; 
         }
-
     }
-
-	
 }
