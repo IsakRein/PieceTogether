@@ -35,11 +35,22 @@ public class GenerateShapes : MonoBehaviour
         rowScript.CustomStart();
     }
 
+    public void Generate2()
+    {
+        extraPoints = 2;
+        subshatterSteps = 0;
 
-	/// <summary>
-	/// Creates fragments if necessary and destroys original gameobject
-	/// </summary>
-	public void explode()
+        spriteRenderer.color = new Color32(255, 127, 127, 255);
+
+        generateFragments();
+        rowScript.CustomStart();
+    }
+
+
+    /// <summary>
+    /// Creates fragments if necessary and destroys original gameobject
+    /// </summary>
+    public void explode()
     {
         //if fragments were not created before runtime then create them now
         if (fragments.Count == 0 && allowRuntimeFragmentation)

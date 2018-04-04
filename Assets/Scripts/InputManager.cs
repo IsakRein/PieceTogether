@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
 
     private float halfScaleValue;
 
-	private void Start()
+	public void CustomStart()
 	{
         screenHeight = Screen.height;
         rowHeight = screenHeight / 6;
