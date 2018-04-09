@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShapeScript : MonoBehaviour {
 
     public List<Transform> squares = new List<Transform>();
+    public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
     public float HighestX;
     public float LowestX;
@@ -17,14 +18,24 @@ public class ShapeScript : MonoBehaviour {
     private BoxCollider2D boxCollider2D;
     BoxCollider2D[] BoxColliders;
 
+    Vector3 targetPos;
+
+    private SortOrder sortOrder;
+
+    public int number;
 
     public void CustomStart()
     {
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+        sortOrder = transform.parent.GetComponent<SortOrder>();
+
+        sortOrder.sortOrder.Add(number);
+        sortOrder.shapes.Add(gameObject.GetComponent<ShapeScript>());
 
         foreach (Transform child in transform)
         {
             squares.Add(child);
+            spriteRenderers.Add(child.GetComponent<SpriteRenderer>());
         }
 
         HighestX = squares[0].position.x;
@@ -75,5 +86,27 @@ public class ShapeScript : MonoBehaviour {
             BoxColliders[i].offset = transform.GetChild(i).transform.localPosition;
         }
 
+        targetPos = transform.position;
+    }
+
+    public void SetSort(int sort)
+    {
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.sortingOrder = sort;
+        }
+    }
+
+    public void DraggingItem()
+    {
+        sortOrder.UpdateSort(number);
+    }
+
+    public void DropItem()
+    {
+        if (Mathf.Abs(transform.position.x - targetPos.x) < 0.5f && Mathf.Abs(transform.position.y - targetPos.y) < 0.5f)
+        {
+            transform.position = targetPos;
+        }
     }
 }

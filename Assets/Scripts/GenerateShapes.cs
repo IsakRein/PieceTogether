@@ -202,6 +202,7 @@ public class GenerateShapes : MonoBehaviour {
             GameObject instShape;
             instShape = Instantiate(shapePrefab, ScrollRectBackground);
             instShape.name = (i + 1).ToString();
+            instShape.GetComponent<ShapeScript>().number = i + 1;
         }
 
         ApplyColor();

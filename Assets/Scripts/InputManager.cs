@@ -50,6 +50,8 @@ public class InputManager : MonoBehaviour
                     draggingItem = true;
                     draggedObject = hit.transform.gameObject;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;
+
+                    draggedObject.GetComponent<ShapeScript>().DraggingItem();
                 }
             }
         }
@@ -67,5 +69,7 @@ public class InputManager : MonoBehaviour
     void DropItem()
     {
         draggingItem = false;
+
+        draggedObject.GetComponent<ShapeScript>().DropItem();
     }
 }
