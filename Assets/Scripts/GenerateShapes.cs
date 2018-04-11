@@ -17,6 +17,7 @@ public class GenerateShapes : MonoBehaviour {
 
     public GameObject squarePrefab;
     public GameObject shapePrefab;
+    public GameObject gridSquarePrefab;
 
     public Transform ScrollRectBackground;
 
@@ -67,13 +68,51 @@ public class GenerateShapes : MonoBehaviour {
             squares[i].position = new Vector2(startValueX + (xOrder - 1), startValueY - (yOrder - 1));
         }
 
+        GenerateSizes();
+
         Generate();
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            GameObject instShape;
+            instShape = Instantiate(shapePrefab, ScrollRectBackground);
+            instShape.name = (i + 1).ToString();
+            instShape.GetComponent<ShapeScript>().number = i + 1;
+        }
+
+        ApplyColor();
+       
+        for (int i = 1; i <= amount; i++)
+        {
+            GameObject instGridSquare;
+            instGridSquare = Instantiate(gridSquarePrefab, transform);
+            instGridSquare.name = i.ToString();
+        }
+
+        float startValueX2 = -(0.5f * (width - 1));
+        float startValueY2 = (0.5f * (height - 1));
+
+        for (int i = 1; i <= transform.childCount; i++)
+        {
+            int xOrder;
+
+            if (i % width == 0)
+            {
+                xOrder = width;
+            }
+            else
+            {
+                xOrder = i % width;
+            }
+
+            int yOrder = Mathf.RoundToInt((Mathf.Floor((i - 0.01f) / width)) + 1);
+
+            transform.GetChild(i-1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
+        }
     }
 
     public void Generate()
     {
-        GenerateSizes();
-
         grid.Clear();
 
         for (int i = 0; i <= amount; i++)
@@ -197,15 +236,7 @@ public class GenerateShapes : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < shapeCount; i++)
-        {
-            GameObject instShape;
-            instShape = Instantiate(shapePrefab, ScrollRectBackground);
-            instShape.name = (i + 1).ToString();
-            instShape.GetComponent<ShapeScript>().number = i + 1;
-        }
-
-        ApplyColor();
+        
     }
 
     void GenerateSizes()

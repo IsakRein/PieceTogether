@@ -104,9 +104,27 @@ public class ShapeScript : MonoBehaviour {
 
     public void DropItem()
     {
-        if (Mathf.Abs(transform.position.x - targetPos.x) < 0.5f && Mathf.Abs(transform.position.y - targetPos.y) < 0.5f)
+        float xPos;
+        float yPos;
+
+        if (AverageX == Mathf.RoundToInt(AverageX))
         {
-            transform.position = targetPos;
+            xPos = Mathf.Round(transform.position.x);
         }
+        else
+        {
+            xPos = Mathf.Floor(transform.position.x) + 0.5f;
+        }
+
+        if (AverageY == Mathf.RoundToInt(AverageY))
+        {
+            yPos = Mathf.Round(transform.position.y);
+        }
+        else
+        {
+            yPos = Mathf.Floor(transform.position.y) + 0.5f;
+        }
+
+        transform.position = new Vector2(xPos, yPos);
     }
 }

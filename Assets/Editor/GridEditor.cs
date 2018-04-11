@@ -10,7 +10,7 @@ public class GridEditor : Editor
         DrawDefaultInspector();
 
         GenerateShapes myScript = (GenerateShapes)target;
-        if (GUILayout.Button("Generate"))
+        if (GUILayout.Button("Start"))
         {
             myScript.Generate();
         }

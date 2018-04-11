@@ -246,7 +246,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -393,16 +393,18 @@ MonoBehaviour:
   shapeCount: 10
   minSize: 4
   maxSize: 16
-  width: 10
-  height: 10
+  width: 6
+  height: 8
   squarePrefab: {fileID: 1980891831798346, guid: 47d8c78a0100db947a6f4c54eb81fa35,
     type: 2}
   shapePrefab: {fileID: 1795095761437954, guid: 3761048f35b8a0744bad33b7a839feb7,
     type: 2}
+  gridSquarePrefab: {fileID: 1995876071847892, guid: 1a6e17d43945b95428e6519e6f0e2352,
+    type: 2}
   ScrollRectBackground: {fileID: 853281466}
   sizes: 
   squares: []
-  grid: 
+  grid: ffffffff
   colors:
   - serializedVersion: 2
     rgba: 4281736679
