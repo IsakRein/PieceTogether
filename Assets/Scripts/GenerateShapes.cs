@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenerateShapes : MonoBehaviour {
 
+    public float scaleValue;
+
     public int shapeCount;
     public int minSize;
     public int maxSize;
@@ -26,6 +28,8 @@ public class GenerateShapes : MonoBehaviour {
     public List<Transform> squares = new List<Transform>();
 
     public List<int> grid = new List<int>();
+
+    public SortOrder sortOrder;
 
     public List<Color32> colors = new List<Color32>();
 
@@ -109,6 +113,9 @@ public class GenerateShapes : MonoBehaviour {
 
             transform.GetChild(i-1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
         }
+
+        transform.localScale = new Vector2(scaleValue, scaleValue);
+        sortOrder.CustomStart();
     }
 
     public void Generate()

@@ -22,10 +22,17 @@ public class ShapeScript : MonoBehaviour {
 
     private SortOrder sortOrder;
 
+    private float scaleValue;
+
     public int number;
+
+    public GenerateShapes generateShapes;
 
     public void CustomStart()
     {
+        generateShapes = GameObject.Find("/Grid").GetComponent<GenerateShapes>();
+        scaleValue = generateShapes.scaleValue;
+
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         sortOrder = transform.parent.GetComponent<SortOrder>();
 
@@ -109,20 +116,20 @@ public class ShapeScript : MonoBehaviour {
 
         if (AverageX == Mathf.RoundToInt(AverageX))
         {
-            xPos = Mathf.Round(transform.position.x);
+            xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
         }
         else
         {
-            xPos = Mathf.Floor(transform.position.x) + 0.5f;
+            xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
         }
 
         if (AverageY == Mathf.RoundToInt(AverageY))
         {
-            yPos = Mathf.Round(transform.position.y);
+            yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
         }
         else
         {
-            yPos = Mathf.Floor(transform.position.y) + 0.5f;
+            yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
         }
 
         transform.position = new Vector2(xPos, yPos);

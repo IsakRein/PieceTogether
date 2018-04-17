@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortOrder: 
   shapes: []
+  generateShapes: {fileID: 1758115172}
 --- !u!1 &961879654
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb17050bb6dbdb140b41829d5a1847f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleValue: 3
   shapeCount: 10
   minSize: 4
   maxSize: 16
@@ -405,6 +407,7 @@ MonoBehaviour:
   sizes: 
   squares: []
   grid: ffffffff
+  sortOrder: {fileID: 853281468}
   colors:
   - serializedVersion: 2
     rgba: 4281736679

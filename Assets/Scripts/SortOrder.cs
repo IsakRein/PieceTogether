@@ -6,6 +6,12 @@ public class SortOrder : MonoBehaviour {
 
     public List<int> sortOrder = new List<int>();
     public List<ShapeScript> shapes = new List<ShapeScript>();
+    public GenerateShapes generateShapes;
+
+    public void CustomStart()
+    {
+        transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
+    }
 
     public void UpdateSort(int number)
     {
