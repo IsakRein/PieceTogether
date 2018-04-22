@@ -27,6 +27,12 @@ public class ShapeScript : MonoBehaviour {
     public int number;
 
     public GenerateShapes generateShapes;
+    private GameObject pointer;
+
+    bool draggingItem = false;
+
+    private bool xWhole;
+    private bool yWhole;
 
     public void CustomStart()
     {
@@ -74,6 +80,25 @@ public class ShapeScript : MonoBehaviour {
         AverageX = (HighestX + LowestX) / 2;
         AverageY = (HighestY + LowestY) / 2;
 
+
+        if (AverageX == Mathf.RoundToInt(AverageX))
+        {
+            xWhole = true;
+        }
+        else
+        {
+            xWhole = false;
+        }
+
+        if (AverageY == Mathf.RoundToInt(AverageY))
+        {
+            yWhole = true;
+        }
+        else
+        {
+            yWhole = false;
+        }
+
         transform.position = new Vector2(AverageX, AverageY);
 
         foreach (Transform square in squares)
@@ -83,7 +108,6 @@ public class ShapeScript : MonoBehaviour {
             UnityEditorInternal.ComponentUtility.CopyComponent(square.GetComponent<BoxCollider2D>());
             Destroy(square.GetComponent<BoxCollider2D>());
             UnityEditorInternal.ComponentUtility.PasteComponentAsNew(gameObject);
-
         }
 
         BoxColliders = GetComponents<BoxCollider2D>();
@@ -93,7 +117,51 @@ public class ShapeScript : MonoBehaviour {
             BoxColliders[i].offset = transform.GetChild(i).transform.localPosition;
         }
 
+        int childCount = transform.childCount;
+        pointer = new GameObject("Pointer");
+        pointer.transform.SetParent(transform);
+        pointer.transform.localPosition = new Vector2(0, 0);
+
+        for (int i = 0; i < childCount; i++)
+        {
+            GameObject instChild;
+
+            instChild = Instantiate(transform.GetChild(i).gameObject, pointer.transform);
+            Color color = instChild.GetComponent<SpriteRenderer>().color;
+            color.a = 0.5f;
+            instChild.GetComponent<SpriteRenderer>().color = color;
+        }
+
         targetPos = transform.position;
+    }
+
+    private void Update()
+    {
+        if (draggingItem)
+        {
+            float xPos;
+            float yPos;
+
+            if (xWhole)
+            {
+                xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
+            }
+            else
+            {
+                xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
+            }
+
+            if (yWhole)
+            {
+                yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
+            }
+            else
+            {
+                yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
+            }
+
+            pointer.transform.position = new Vector2(xPos, yPos); 
+        }
     }
 
     public void SetSort(int sort)
@@ -106,15 +174,26 @@ public class ShapeScript : MonoBehaviour {
 
     public void DraggingItem()
     {
-        sortOrder.UpdateSort(number);
+        pointer.SetActive(true);
+        draggingItem = true;
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.sortingOrder = 50;
+        }
     }
 
     public void DropItem()
     {
+        pointer.SetActive(false);
+        draggingItem = false;
+
+        sortOrder.UpdateSort(number);
+
         float xPos;
         float yPos;
 
-        if (AverageX == Mathf.RoundToInt(AverageX))
+        if (xWhole)
         {
             xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
         }
@@ -123,7 +202,7 @@ public class ShapeScript : MonoBehaviour {
             xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
         }
 
-        if (AverageY == Mathf.RoundToInt(AverageY))
+        if (yWhole)
         {
             yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
         }
@@ -133,5 +212,6 @@ public class ShapeScript : MonoBehaviour {
         }
 
         transform.position = new Vector2(xPos, yPos);
+        pointer.transform.position = new Vector2(0, 0);
     }
 }
