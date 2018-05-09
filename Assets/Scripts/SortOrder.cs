@@ -8,6 +8,8 @@ public class SortOrder : MonoBehaviour {
     public List<ShapeScript> shapes = new List<ShapeScript>();
     public GenerateShapes generateShapes;
 
+    public static List<int> objects = new List<int>();
+
     public void CustomStart()
     {
         transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);

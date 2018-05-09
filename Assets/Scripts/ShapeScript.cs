@@ -15,6 +15,9 @@ public class ShapeScript : MonoBehaviour {
     public float AverageX;
     public float AverageY;
 
+    private float lastPointedX;
+    private float lastPointedY;
+
     private BoxCollider2D boxCollider2D;
     BoxCollider2D[] BoxColliders;
 
@@ -159,6 +162,14 @@ public class ShapeScript : MonoBehaviour {
             {
                 yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
             }
+
+            if (lastPointedX != xPos || lastPointedY != yPos)
+            {
+                Debug.Log("New");
+            }
+
+            lastPointedX = xPos;
+            lastPointedY = yPos;
 
             pointer.transform.position = new Vector2(xPos, yPos); 
         }
