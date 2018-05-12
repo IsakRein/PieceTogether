@@ -48,6 +48,10 @@ public class ShapeScript : MonoBehaviour {
 
 	private Vector2 lastSquareNavPosition;
 
+    public Transform objects;
+
+    public Transform nav;
+
     public void CustomStart()
     {
         generateShapes = GameObject.Find("/Grid").GetComponent<GenerateShapes>();
@@ -219,8 +223,6 @@ public class ShapeScript : MonoBehaviour {
 
 			pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
 
-            
-
 			if (squares[squares.Count-1].position.y < -12.5f)
 			{
 				float percentage = (((squares[squares.Count - 1].position.y * (-1f)) - 12.5f) / 3.5f);
@@ -248,10 +250,8 @@ public class ShapeScript : MonoBehaviour {
 
 				dropInNav = false;
 
-				pointer.SetActive(true);
-                
+				pointer.SetActive(true);               
 			}
-
 		}
     }
 
@@ -283,13 +283,17 @@ public class ShapeScript : MonoBehaviour {
 		if (dropInNav) {
 			transform.localPosition = navPosition;
 			transform.localScale = new Vector2(scaleInNav, scaleInNav);
-		}
+
+            sortOrder.positions[number - 1] = null;
+        }
 
 		else {
 			transform.position = new Vector2(lastPointedX, lastPointedY);
             pointer.transform.position = new Vector2(0, 0);
 
             squarePositions.Clear();
+
+            transform.SetParent(objects);
 
             for (int i = 0; i < transform.childCount - 1; i++)
             {
