@@ -27,11 +27,18 @@ public class GenerateShapes : MonoBehaviour {
 
     public List<Transform> squares = new List<Transform>();
 
+	public List<Transform> shapes = new List<Transform>();
+
     public List<int> grid = new List<int>();
 
     public SortOrder sortOrder;
 
+	public Transform navParent;
+
+    public List<Transform> navs = new List<Transform>();
+
     public List<Color32> colors = new List<Color32>();
+   
 
     private void Start()
     {
@@ -82,7 +89,9 @@ public class GenerateShapes : MonoBehaviour {
             instShape = Instantiate(shapePrefab, ScrollRectBackground);
             instShape.name = (i + 1).ToString();
             instShape.GetComponent<ShapeScript>().number = i + 1;
-        }
+
+			shapes.Add(instShape.transform);
+		}
 
         ApplyColor();
        
@@ -115,7 +124,10 @@ public class GenerateShapes : MonoBehaviour {
         }
 
         transform.localScale = new Vector2(scaleValue, scaleValue);
-        sortOrder.CustomStart();
+
+		sortOrder.CustomStart();
+
+		Nav();               
     }
 
     public void Generate()
@@ -264,6 +276,7 @@ public class GenerateShapes : MonoBehaviour {
                 {
                     sizes.Add(Random.Range(minSize, maxSize + 1));
                 }
+
                 CalculateSum();
             }
 
@@ -304,7 +317,7 @@ public class GenerateShapes : MonoBehaviour {
             {
                 squares[i].GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             }
-
+            
             else
             {
                 squares[i].GetComponent<SpriteRenderer>().color = colors[grid[i]];
@@ -319,6 +332,56 @@ public class GenerateShapes : MonoBehaviour {
         }
     }
 
+	void Nav() 
+	{
+		int NavCount = Mathf.CeilToInt(((float)shapeCount) / 3.0f);
+       
+		for (int i = 1; i <= NavCount; i++)
+		{
+			new GameObject("" + i).transform.SetParent(navParent);
+		}
+
+		for (int i = 0; i < navParent.childCount; i++)
+		{
+			navs.Add(navParent.GetChild(i));
+
+			float x = 24 * i;
+
+			navs[i].position = new Vector2(x, 0);
+		}
+
+		for (int i = 0; i < shapes.Count; i++) 
+		{
+			int order = i + 1;
+
+			int parent = Mathf.CeilToInt(((float)order) / 3.0f);
+			shapes[i].SetParent(navs[parent - 1]);
+
+			float x;
+
+			if (order % 3 == 1) 
+			{
+				x = -5.7f;
+			}
+
+			else if (order % 3 == 2)
+            {
+				x = 0;
+            }
+
+			else 
+			{
+				x = 5.7f;          
+			}
+            
+			shapes[i].localPosition = new Vector2(x, -16f);
+
+			shapes[i].GetComponent<ShapeScript>().PosInNav();
+
+		}
+	}
+    
+    
     bool UpAvaliable(int square)
     {
         if ((square > width) && grid[(square - width)] == -1)

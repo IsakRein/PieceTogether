@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShapeScript : MonoBehaviour {
-
-    public List<Transform> squares = new List<Transform>();
+	private const string x = "x";
+	public List<Transform> squares = new List<Transform>();
     public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
     public float HighestX;
@@ -36,6 +37,16 @@ public class ShapeScript : MonoBehaviour {
 
     private bool xWhole;
     private bool yWhole;
+
+	public List<Vector2> squarePositions = new List<Vector2>();
+
+	private float scaleInNav;
+
+	private bool dropInNav;
+
+	private Vector2 navPosition;
+
+	private Vector2 lastSquareNavPosition;
 
     public void CustomStart()
     {
@@ -82,7 +93,6 @@ public class ShapeScript : MonoBehaviour {
 
         AverageX = (HighestX + LowestX) / 2;
         AverageY = (HighestY + LowestY) / 2;
-
 
         if (AverageX == Mathf.RoundToInt(AverageX))
         {
@@ -138,41 +148,111 @@ public class ShapeScript : MonoBehaviour {
         targetPos = transform.position;
     }
 
-    private void Update()
+	private void Update()
     {
-        if (draggingItem)
-        {
-            float xPos;
-            float yPos;
+		if (draggingItem)
+		{
+			float xPos;
+			float yPos;
 
-            if (xWhole)
-            {
-                xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
-            }
-            else
-            {
-                xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
-            }
+			if (xWhole)
+			{
+				xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
+			}
+			else
+			{
+				xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
+			}
 
-            if (yWhole)
-            {
-                yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
-            }
-            else
-            {
-                yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
-            }
+			if (yWhole)
+			{
+				yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
+			}
+			else
+			{
+				yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
+			}
 
-            if (lastPointedX != xPos || lastPointedY != yPos)
-            {
-                Debug.Log("New");
-            }
+			bool objectsOverlapping = false;
 
-            lastPointedX = xPos;
-            lastPointedY = yPos;
+			if (lastPointedX != xPos || lastPointedY != yPos)
+			{
+				for (int i = 0; i < transform.childCount - 1; i++)
+				{
+					float x = (transform.GetChild(i).localPosition.x + (xPos / scaleValue));
+					float y = (transform.GetChild(i).localPosition.y + (yPos / scaleValue));
 
-            pointer.transform.position = new Vector2(xPos, yPos); 
-        }
+					if (y > 4.5f || y < -4.5f)
+					{
+						objectsOverlapping = true;
+					}
+
+					else if (x > 4.5f || x < -4.5f)
+					{
+						objectsOverlapping = true;
+					}
+
+					else
+					{
+						for (int j = 0; j < sortOrder.positions.Count; j++)
+						{
+							if (sortOrder.positions[j] != null && j != number - 1)
+							{
+								foreach (Vector2 vector in sortOrder.positions[j])
+								{
+									if (vector.x == x && vector.y == y)
+									{
+										objectsOverlapping = true;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				if (objectsOverlapping == false)
+				{
+					lastPointedX = xPos;
+					lastPointedY = yPos;
+				}
+			}
+
+			pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
+
+            
+
+			if (squares[squares.Count-1].position.y < -12.5f)
+			{
+				float percentage = (((squares[squares.Count - 1].position.y * (-1f)) - 12.5f) / 3.5f);
+
+				float scale;
+				if (squares[squares.Count - 1].position.y > -16f)
+				{
+					scale = scaleValue - (percentage * (scaleValue - scaleInNav));
+				}
+
+				else
+				{
+					scale = scaleInNav;
+				}
+
+				transform.localScale = new Vector2(scale, scale);
+
+				dropInNav = true;
+
+				pointer.SetActive(false);
+			}
+
+			else {
+				transform.localScale = new Vector2(scaleValue, scaleValue);
+
+				dropInNav = false;
+
+				pointer.SetActive(true);
+                
+			}
+
+		}
     }
 
     public void SetSort(int sort)
@@ -185,7 +265,6 @@ public class ShapeScript : MonoBehaviour {
 
     public void DraggingItem()
     {
-        pointer.SetActive(true);
         draggingItem = true;
 
         foreach (SpriteRenderer spriteRenderer in spriteRenderers)
@@ -200,29 +279,46 @@ public class ShapeScript : MonoBehaviour {
         draggingItem = false;
 
         sortOrder.UpdateSort(number);
+        
+		if (dropInNav) {
+			transform.localPosition = navPosition;
+			transform.localScale = new Vector2(scaleInNav, scaleInNav);
+		}
 
-        float xPos;
-        float yPos;
+		else {
+			transform.position = new Vector2(lastPointedX, lastPointedY);
+            pointer.transform.position = new Vector2(0, 0);
 
-        if (xWhole)
-        {
-            xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
-        }
-        else
-        {
-            xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
-        }
+            squarePositions.Clear();
 
-        if (yWhole)
-        {
-            yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
-        }
-        else
-        {
-            yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
-        }
+            for (int i = 0; i < transform.childCount - 1; i++)
+            {
+                float x = transform.GetChild(i).localPosition.x + (transform.position.x / scaleValue);
+                float y = transform.GetChild(i).localPosition.y + (transform.position.y / scaleValue);
 
-        transform.position = new Vector2(xPos, yPos);
-        pointer.transform.position = new Vector2(0, 0);
+                squarePositions.Add(new Vector2(x, y));
+            }
+
+            sortOrder.positions[number - 1] = squarePositions;
+		}      
     }
+
+	public void PosInNav() {
+		float largestDifference;
+
+		navPosition = transform.localPosition;
+		lastSquareNavPosition = squares[squares.Count - 1].position;
+
+		if (HighestX-LowestX > HighestY-LowestY) {
+			largestDifference = HighestX - LowestX;
+		}
+        
+		else {
+			largestDifference = HighestY - LowestY;
+		}
+
+		scaleInNav = 3.2f / (float)largestDifference;
+
+		transform.localScale = new Vector2(scaleInNav, scaleInNav);    
+	}
 }

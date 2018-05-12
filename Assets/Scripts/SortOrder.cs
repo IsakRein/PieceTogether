@@ -8,11 +8,20 @@ public class SortOrder : MonoBehaviour {
     public List<ShapeScript> shapes = new List<ShapeScript>();
     public GenerateShapes generateShapes;
 
-    public static List<int> objects = new List<int>();
+	public List<List<Vector2>> positions = new List<List<Vector2>>();
 
-    public void CustomStart()
+
+	private void Start()
+	{
+		for (int i = 0; i < generateShapes.shapeCount; i++)
+		{
+			positions.Add(null);
+		}
+	}
+
+	public void CustomStart()
     {
-        transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
+		transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
     }
 
     public void UpdateSort(int number)
@@ -23,7 +32,7 @@ public class SortOrder : MonoBehaviour {
         foreach (ShapeScript shape in shapes)
         {
             int indexNumber = sortOrder.Count - sortOrder.IndexOf(shape.number);
-
+           
             shape.SetSort(indexNumber);
         }
     }
