@@ -52,6 +52,12 @@ public class ShapeScript : MonoBehaviour {
 
     public Transform nav;
 
+    public float lastScale;
+
+    public float height;
+
+    public float navEnd;
+
     public void CustomStart()
     {
         generateShapes = GameObject.Find("/Grid").GetComponent<GenerateShapes>();
@@ -150,9 +156,10 @@ public class ShapeScript : MonoBehaviour {
         }
 
         targetPos = transform.position;
+
     }
 
-	private void Update()
+    private void Update()
     {
 		if (draggingItem)
 		{
@@ -216,27 +223,30 @@ public class ShapeScript : MonoBehaviour {
 
 				if (objectsOverlapping == false)
 				{
-					lastPointedX = xPos;
+                    pointer.SetActive(true);
+
+                    lastPointedX = xPos;
 					lastPointedY = yPos;
 				}
 			}
 
 			pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
 
-			if (squares[squares.Count-1].position.y < -12.5f)
+			if (transform.position.y < - navEnd)
 			{
-				float percentage = (((squares[squares.Count - 1].position.y * (-1f)) - 12.5f) / 3.5f);
+				float percentage = (((transform.position.y * (-1f)) - navEnd) / 3.5f);
 
-				float scale;
-				if (squares[squares.Count - 1].position.y > -16f)
-				{
-					scale = scaleValue - (percentage * (scaleValue - scaleInNav));
-				}
+                float scale;
+                if (transform.position.y > -16f)
+                {
+                    scale = scaleValue - (percentage * (scaleValue - scaleInNav));
+                }
+                else
+                {
+                    scale = scaleInNav;
+                }
 
-				else
-				{
-					scale = scaleInNav;
-				}
+                lastScale = scale;
 
 				transform.localScale = new Vector2(scale, scale);
 
@@ -248,9 +258,10 @@ public class ShapeScript : MonoBehaviour {
 			else {
 				transform.localScale = new Vector2(scaleValue, scaleValue);
 
-				dropInNav = false;
+                pointer.SetActive(true);
 
-				pointer.SetActive(true);               
+                dropInNav = false;
+
 			}
 		}
     }
@@ -313,7 +324,11 @@ public class ShapeScript : MonoBehaviour {
 		navPosition = transform.localPosition;
 		lastSquareNavPosition = squares[squares.Count - 1].position;
 
-		if (HighestX-LowestX > HighestY-LowestY) {
+        height = HighestY - LowestY + 1;
+
+        navEnd = 12.5f - (height * 0.85f);
+
+        if (HighestX-LowestX > HighestY-LowestY) {
 			largestDifference = HighestX - LowestX;
 		}
         
@@ -321,8 +336,13 @@ public class ShapeScript : MonoBehaviour {
 			largestDifference = HighestY - LowestY;
 		}
 
-		scaleInNav = 3.2f / (float)largestDifference;
-
+		scaleInNav = 3.5f / (float)largestDifference;
+        /*
+        if (scaleInNav > 1.2f)
+        {
+            scaleInNav = 1.2f;
+        }
+        */
 		transform.localScale = new Vector2(scaleInNav, scaleInNav);    
 	}
 }

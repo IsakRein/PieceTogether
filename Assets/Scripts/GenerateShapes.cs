@@ -350,7 +350,15 @@ public class GenerateShapes : MonoBehaviour {
 			navs[i].position = new Vector2(x, 0);
 		}
 
-		for (int i = 0; i < shapes.Count; i++) 
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            Transform temp = shapes[i];
+            int randomIndex = Random.Range(i, shapes.Count);
+            shapes[i] = shapes[randomIndex];
+            shapes[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < shapes.Count; i++) 
 		{
 			int order = i + 1;
 
