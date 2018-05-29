@@ -234,7 +234,7 @@ public class ShapeScript : MonoBehaviour {
 
 			if (transform.position.y < - navEnd)
 			{
-				float percentage = (((transform.position.y * (-1f)) - navEnd) / 3.5f);
+				float percentage = (((transform.position.y * (-1f)) - navEnd) / (16f-navEnd));
 
                 float scale;
                 if (transform.position.y > -16f)
@@ -337,12 +337,12 @@ public class ShapeScript : MonoBehaviour {
 		}
 
 		scaleInNav = 3.5f / (float)largestDifference;
-        /*
+        
         if (scaleInNav > 1.2f)
         {
             scaleInNav = 1.2f;
         }
-        */
+        
 		transform.localScale = new Vector2(scaleInNav, scaleInNav);    
 	}
 }
