@@ -261,7 +261,6 @@ public class ShapeScript : MonoBehaviour {
                 pointer.SetActive(true);
 
                 dropInNav = false;
-
 			}
 		}
     }
