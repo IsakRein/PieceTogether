@@ -928,7 +928,7 @@ RectTransform:
   m_GameObject: {fileID: 1146112481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -4478.9995}
-  m_LocalScale: {x: 5, y: 4.5, z: 45.027523}
+  m_LocalScale: {x: 5, y: 5, z: 45.027523}
   m_Children: []
   m_Father: {fileID: 31500215}
   m_RootOrder: 0
@@ -959,8 +959,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Level 123
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2a32efe7db12c44d7885d6c0097ed194, type: 2}
-  m_sharedMaterial: {fileID: 21899972602872266, guid: 2a32efe7db12c44d7885d6c0097ed194,
+  m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
+  m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 43.6
+  m_fontSize: 43.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1222,11 +1222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleValue: 2
-  shapeCount: 9
-  minSize: 2
-  maxSize: 9
-  width: 9
-  height: 9
+  shapeCount: 10
+  minSize: 5
+  maxSize: 30
+  width: 10
+  height: 10
   squarePrefab: {fileID: 1980891831798346, guid: 47d8c78a0100db947a6f4c54eb81fa35,
     type: 2}
   shapePrefab: {fileID: 1795095761437954, guid: 3761048f35b8a0744bad33b7a839feb7,
