@@ -38,6 +38,7 @@ public class GenerateShapes : MonoBehaviour {
     public List<Transform> navs = new List<Transform>();
 
     public List<Color32> colors = new List<Color32>();
+
    
 
     private void Start()

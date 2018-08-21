@@ -859,7 +859,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 21.041096
+  orthographic size: 21.333334
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1264,8 +1264,6 @@ MonoBehaviour:
     rgba: 4288775627
   - serializedVersion: 2
     rgba: 4291534981
-  - serializedVersion: 2
-    rgba: 4291528112
 --- !u!4 &1758115173
 Transform:
   m_ObjectHideFlags: 0
