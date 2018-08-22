@@ -5,6 +5,15 @@ TextureImporter:
     21300000: Button_Settings
     21300002: Button_Info
     21300004: Button_Store
+    21300006: Arrow
+    21300008: 1. Settings
+    21300010: 1. Info
+    21300012: 1. Shop
+    21300014: Arrow
+    21300016: FilledNavArrow
+    21300018: NavArrow
+    21300020: FilledNavCircle
+    21300022: NavCircle
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -107,12 +116,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_Settings
+      name: 1. Settings
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
+        y: 272
+        width: 257
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -121,18 +130,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cacc167d7f984e9e87a6b48f09b463a
+      spriteID: bdec9b486b0b64b7580a94ed84e3e900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_Info
+      name: 1. Info
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
+        x: 270
+        y: 272
+        width: 258
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -141,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7476fe0b1df1476fbbcd28a2115a09a
+      spriteID: 969c1086e6ae34521a367821bf23f232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_Store
+      name: 1. Shop
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
+        x: 541
+        y: 272
+        width: 258
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -161,7 +170,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6604cffd710b40abb10a777f2b8b0e9
+      spriteID: 6b601669b368245d18a5c17e6094b82a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 271
+        width: 256
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f237ea58eea349d2b7dc7637438f0a8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FilledNavArrow
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 123
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3639ab76e3df54f1ab2b56d9590ebfaa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NavArrow
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1
+        width: 123
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa02a9c48eca745e98b101e82849f87b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FilledNavCircle
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 50
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657d830fef14b4eb4b5e36ee16be839b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NavCircle
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 51
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 730c39827a3504b6ea225319ca9fbf41
       vertices: []
       indices: 
       edges: []

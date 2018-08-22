@@ -84,6 +84,8 @@ public class GenerateShapes : MonoBehaviour {
 
         Generate();
 
+
+
         for (int i = 0; i < shapeCount; i++)
         {
             GameObject instShape;
@@ -95,15 +97,15 @@ public class GenerateShapes : MonoBehaviour {
 		}
 
         ApplyColor();
-       
+
         for (int i = 1; i <= amount; i++)
         {
             GameObject instGridSquare;
             instGridSquare = Instantiate(gridSquarePrefab, transform);
             instGridSquare.name = i.ToString();
         }
-
-        float startValueX2 = -(0.5f * (width - 1));
+      
+        float startValueX2 = - (0.5f * (width - 1));
         float startValueY2 = (0.5f * (height - 1));
 
         for (int i = 1; i <= transform.childCount; i++)
@@ -125,10 +127,12 @@ public class GenerateShapes : MonoBehaviour {
         }
 
         transform.localScale = new Vector2(scaleValue, scaleValue);
+      
+        sortOrder.CustomStart();
 
-		sortOrder.CustomStart();
-
-		Nav();               
+        /*
+		Nav();     
+		*/
     }
 
     public void Generate()
@@ -255,8 +259,6 @@ public class GenerateShapes : MonoBehaviour {
                 }
             }
         }
-
-        
     }
 
     void GenerateSizes()

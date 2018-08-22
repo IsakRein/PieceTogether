@@ -1221,12 +1221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb17050bb6dbdb140b41829d5a1847f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleValue: 2
-  shapeCount: 10
-  minSize: 5
-  maxSize: 30
-  width: 10
-  height: 10
+  scaleValue: 3
+  shapeCount: 4
+  minSize: 2
+  maxSize: 6
+  width: 4
+  height: 4
   squarePrefab: {fileID: 1980891831798346, guid: 47d8c78a0100db947a6f4c54eb81fa35,
     type: 2}
   shapePrefab: {fileID: 1795095761437954, guid: 3761048f35b8a0744bad33b7a839feb7,
