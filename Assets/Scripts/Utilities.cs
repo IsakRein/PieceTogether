@@ -7,11 +7,13 @@ public static class Utilities {
 
     public static List<string> previousScenes = new List<string>();
 
+    public static string currentPack;
+    public static int currentLevel;
+
     public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
         previousScenes.Add(SceneManager.GetActiveScene().name);
-        Debug.Log(previousScenes[previousScenes.Count - 1]);
     }
 
     public static void LoadPreviousScene()

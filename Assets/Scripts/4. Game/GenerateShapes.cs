@@ -162,6 +162,14 @@ public class GenerateShapes : MonoBehaviour {
         Nav();
     }
 
+    public void SaveToFile()
+    {
+             
+    }
+
+
+
+
     private void CreateSquares() {
 
         amount = width * height;
