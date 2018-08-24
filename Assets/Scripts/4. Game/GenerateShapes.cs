@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenerateShapes : MonoBehaviour {
 
+    public string game;
+
     public float scaleValue;
 
     public int shapeCount;
@@ -22,6 +24,7 @@ public class GenerateShapes : MonoBehaviour {
     public GameObject gridSquarePrefab;
 
     public Transform ScrollRectBackground;
+    public GameObject objects;
 
     public List<int> sizes = new List<int>();
 
@@ -33,16 +36,134 @@ public class GenerateShapes : MonoBehaviour {
 
     public SortOrder sortOrder;
 
+    public Transform gridParent;
+
 	public Transform navParent;
 
     public List<Transform> navs = new List<Transform>();
 
     public List<Color32> colors = new List<Color32>();
 
-   
-
     private void Start()
     {
+            //GeneratingStart();
+    }
+
+    public void GeneratingStart()
+    {
+        CreateSquares();
+
+        GenerateSizes();
+
+        Generate();
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            GameObject instShape;
+            instShape = Instantiate(shapePrefab, ScrollRectBackground);
+            instShape.name = (i + 1).ToString();
+            instShape.GetComponent<ShapeScript>().number = i + 1;
+
+			shapes.Add(instShape.transform);
+		}
+       
+        CreateGrid();
+
+        ApplyColor();
+
+        transform.localScale = new Vector2(scaleValue, scaleValue);
+      
+        sortOrder.CustomStart();
+
+        CreateGameString();
+
+		Nav();    
+    }
+
+    public void CreateGameString()
+    {
+        game = "" + width + "," + height + "," + scaleValue;
+
+        string squares = "";
+
+        foreach (int square in grid)
+        {
+            squares = squares + "," + square;
+        }
+        game = game + squares;
+    }
+
+    public void LoadGameString()
+    {
+        string[] gameStringList = game.Split(',');
+
+        width = int.Parse(gameStringList[0]);
+        height = int.Parse(gameStringList[1]);
+        scaleValue = int.Parse(gameStringList[2]);
+
+        grid.Clear();
+
+        transform.localScale = new Vector2(1, 1);
+
+        for (int i = 3; i < gameStringList.Length; i++)
+        {
+            grid.Add(int.Parse(gameStringList[i]));
+        }
+
+        List<Transform> childrenToDestroy = new List<Transform>();
+
+        foreach (Transform child in objects.transform)
+        {
+            childrenToDestroy.Add(child);
+        }
+
+        foreach (Transform child in gridParent)
+        {
+            childrenToDestroy.Add(child);
+        }
+
+        foreach (Transform child in transform)
+        {
+            childrenToDestroy.Add(child);
+        }
+
+        foreach (Transform child in childrenToDestroy)
+        {
+            child.transform.parent = null;
+            Destroy(child.gameObject);
+        }
+        //temp
+
+        squares.Clear();
+        shapes.Clear();
+
+        CreateSquares();
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            GameObject instShape;
+            instShape = Instantiate(shapePrefab, ScrollRectBackground);
+            instShape.name = (i + 1).ToString();
+            instShape.GetComponent<ShapeScript>().number = i + 1;
+
+            shapes.Add(instShape.transform);
+        }
+
+        CreateGrid();
+
+        ApplyColor();
+
+        objects.transform.localScale = new Vector2(scaleValue, scaleValue);
+
+        sortOrder.CustomStart();
+
+        CreateGameString();
+
+        Nav();
+    }
+
+    private void CreateSquares() {
+
         amount = width * height;
 
         for (int i = 1; i <= amount; i++)
@@ -79,36 +200,22 @@ public class GenerateShapes : MonoBehaviour {
 
             squares[i].position = new Vector2(startValueX + (xOrder - 1), startValueY - (yOrder - 1));
         }
+    }
 
-        GenerateSizes();
-
-        Generate();
-
-
-
-        for (int i = 0; i < shapeCount; i++)
-        {
-            GameObject instShape;
-            instShape = Instantiate(shapePrefab, ScrollRectBackground);
-            instShape.name = (i + 1).ToString();
-            instShape.GetComponent<ShapeScript>().number = i + 1;
-
-			shapes.Add(instShape.transform);
-		}
-
-        ApplyColor();
+    private void CreateGrid() {
+        gridParent.transform.localScale = new Vector2(1, 1);
 
         for (int i = 1; i <= amount; i++)
         {
             GameObject instGridSquare;
-            instGridSquare = Instantiate(gridSquarePrefab, transform);
+            instGridSquare = Instantiate(gridSquarePrefab, gridParent);
             instGridSquare.name = i.ToString();
         }
-      
-        float startValueX2 = - (0.5f * (width - 1));
+
+        float startValueX2 = -(0.5f * (width - 1));
         float startValueY2 = (0.5f * (height - 1));
 
-        for (int i = 1; i <= transform.childCount; i++)
+        for (int i = 1; i <= gridParent.childCount; i++)
         {
             int xOrder;
 
@@ -123,16 +230,10 @@ public class GenerateShapes : MonoBehaviour {
 
             int yOrder = Mathf.RoundToInt((Mathf.Floor((i - 0.01f) / width)) + 1);
 
-            transform.GetChild(i-1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
+            gridParent.GetChild(i - 1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
         }
 
-        transform.localScale = new Vector2(scaleValue, scaleValue);
-      
-        sortOrder.CustomStart();
-
-        /*
-		Nav();     
-		*/
+        gridParent.transform.localScale = new Vector2(scaleValue, scaleValue);
     }
 
     public void Generate()
@@ -261,7 +362,7 @@ public class GenerateShapes : MonoBehaviour {
         }
     }
 
-    void GenerateSizes()
+    private void GenerateSizes()
     {
         sizes.Clear();
 
@@ -294,7 +395,9 @@ public class GenerateShapes : MonoBehaviour {
         CalculateSum();
     }
 
-    void CalculateSum()
+
+
+    private void CalculateSum()
     {
         sum = 0;
         for (int j = 0; j < sizes.Count; j++)
@@ -304,7 +407,7 @@ public class GenerateShapes : MonoBehaviour {
         sumLeft = amount - sum;
     }
 
-    void ApplyColor()
+    private void ApplyColor()
     {
         for (int i = 0; i < colors.Count; i++)
         {
@@ -335,7 +438,7 @@ public class GenerateShapes : MonoBehaviour {
         }
     }
 
-	void Nav() 
+    private void Nav() 
 	{
 		int NavCount = Mathf.CeilToInt(((float)shapeCount) / 3.0f);
        
@@ -391,8 +494,7 @@ public class GenerateShapes : MonoBehaviour {
 
 		}
 	}
-    
-    
+
     bool UpAvaliable(int square)
     {
         if ((square > width) && grid[(square - width)] == -1)
