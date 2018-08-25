@@ -10,6 +10,8 @@
 /// - fixed current page made it independent from pivot
 /// - replaced pagination with delegate function
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 namespace UnityEngine.UI.Extensions
@@ -475,16 +477,6 @@ namespace UnityEngine.UI.Extensions
         private void PageChanged(int currentPage)
         {
             _startingPage = currentPage;
-
-            if (NextButton)
-            {
-                NextButton.interactable = currentPage < _pages - 1;
-            }
-
-            if (PrevButton)
-            {
-                PrevButton.interactable = currentPage > 0;
-            }
 
             if (onPageChange != null)
             {
