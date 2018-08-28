@@ -58,7 +58,7 @@ public class GenerateLevelUI : MonoBehaviour {
         backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(width * 6f, 730f);
 
         for (int i = 1; i <= 5; i++) {
-            GameObject page;
+            GameObject page;    
             page = new GameObject("Page " + i);
             page.transform.SetParent(gameObject.transform);
             page.AddComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
@@ -122,7 +122,7 @@ public class GenerateLevelUI : MonoBehaviour {
                 leftButton.GetComponent<Image>().sprite = pressableButton;
             }
 
-            if (currentPage == 4)
+            if (currentPage >= 4)
             {
                 rightButton.interactable = false;
                 rightButton.GetComponent<Image>().sprite = notPressableButton;

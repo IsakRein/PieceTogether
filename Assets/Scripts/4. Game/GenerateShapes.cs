@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GenerateShapes : MonoBehaviour {
 
+    public List<string> levels = new List<string>();
+
+    [Space]
+
     public string game;
 
     public float scaleValue;
@@ -18,6 +22,8 @@ public class GenerateShapes : MonoBehaviour {
 
     private int sum;
     private int sumLeft;
+
+    public LevelLoader levelLoader;
 
     public GameObject squarePrefab;
     public GameObject shapePrefab;
@@ -46,15 +52,108 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
-            //GeneratingStart();
+        /*
+        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+        switch (Utilities.currentPack)
+        {   
+            case "Beginner":
+                game = levelLoader.beginner[Utilities.currentLevel]; 
+                break;
+            case "Easy":
+                game = levelLoader.easy[Utilities.currentLevel];
+                break;
+            case "Normal":
+                game = levelLoader.normal[Utilities.currentLevel];
+                break;
+            case "Hard":
+                game = levelLoader.hard[Utilities.currentLevel];
+                break;
+            case "Expert 1":
+                game = levelLoader.expert1[Utilities.currentLevel];
+                break;
+            case "Expert 2":
+                game = levelLoader.expert2[Utilities.currentLevel];
+                break;
+            case "Expert 3":
+                game = levelLoader.expert3[Utilities.currentLevel];
+                break;
+            case "Expert 4":
+                game = levelLoader.expert4[Utilities.currentLevel];
+                break;
+        }
+
+        LoadGameString();
+        */
+    }
+
+    public void GenerateMultipleLevels() 
+    {
+        for (int i = 0; i < 150; i++)
+        {
+            width = Random.Range(4, 7);
+            height = Random.Range(4, 7);
+
+            float shapeCountFloat = Mathf.Sqrt((float)(width * height));
+
+            shapeCount = (int)Mathf.Round(shapeCountFloat) + Random.Range(0, 2);
+
+            if (shapeCount > 11){
+                shapeCount = 11;
+            }
+
+
+            if (width<height) {
+                minSize = Mathf.FloorToInt(width)/2 + Random.Range(-1, 1);
+
+
+
+                maxSize = 2 * height + Random.Range(-2, 2);
+
+
+            }
+            else {
+                minSize = Mathf.FloorToInt(height)/2 + Random.Range(-1, 1);
+                maxSize = 2 * width + Random.Range(-2, 0);
+            }
+
+//for small games
+            if (minSize < 2)
+            {
+                minSize = 2;
+            }
+
+            scaleValue = 1.75f;
+
+            amount = width * height;
+
+            GenerateSizes();
+            Generate();
+            CreateGameString();
+            
+            levels.Add(game);
+
+        }
+    }
+
+    public void SaveToLevelLoader() {
+        switch (Utilities.currentPack)
+        {
+            case "Beginner":
+                levelLoader.beginner = levels;
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void GeneratingStart()
     {
+        amount = width * height;
+
         CreateSquares();
-
         GenerateSizes();
-
         Generate();
 
         for (int i = 0; i < shapeCount; i++)
@@ -66,7 +165,7 @@ public class GenerateShapes : MonoBehaviour {
 
 			shapes.Add(instShape.transform);
 		}
-       
+        
         CreateGrid();
 
         ApplyColor();
@@ -77,7 +176,7 @@ public class GenerateShapes : MonoBehaviour {
 
         CreateGameString();
 
-		Nav();    
+        Nav();    
     }
 
     public void CreateGameString()
@@ -99,7 +198,7 @@ public class GenerateShapes : MonoBehaviour {
 
         width = int.Parse(gameStringList[0]);
         height = int.Parse(gameStringList[1]);
-        scaleValue = int.Parse(gameStringList[2]);
+        scaleValue = float.Parse(gameStringList[2]);
 
         grid.Clear();
 
@@ -132,7 +231,6 @@ public class GenerateShapes : MonoBehaviour {
             child.transform.parent = null;
             Destroy(child.gameObject);
         }
-        //temp
 
         squares.Clear();
         shapes.Clear();
@@ -161,14 +259,6 @@ public class GenerateShapes : MonoBehaviour {
 
         Nav();
     }
-
-    public void SaveToFile()
-    {
-             
-    }
-
-
-
 
     private void CreateSquares() {
 
@@ -247,7 +337,7 @@ public class GenerateShapes : MonoBehaviour {
     public void Generate()
     {
         grid.Clear();
-
+        
         for (int i = 0; i <= amount; i++)
         {
             grid.Add(-1);
@@ -382,7 +472,7 @@ public class GenerateShapes : MonoBehaviour {
             {
                 if (i == shapeCount - 1)
                 {
-                    sizes.Add(sumLeft);
+                     sizes.Add(sumLeft);
                 }
                 else
                 {
@@ -402,8 +492,6 @@ public class GenerateShapes : MonoBehaviour {
 
         CalculateSum();
     }
-
-
 
     private void CalculateSum()
     {
