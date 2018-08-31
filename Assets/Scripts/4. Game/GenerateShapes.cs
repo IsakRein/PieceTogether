@@ -52,9 +52,8 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
+        GeneratingStart();
         /*
-        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
-
         switch (Utilities.currentPack)
         {   
             case "Beginner":
@@ -81,10 +80,13 @@ public class GenerateShapes : MonoBehaviour {
             case "Expert 4":
                 game = levelLoader.expert4[Utilities.currentLevel];
                 break;
+            default:
+                Debug.Log("Didn't load any level");
+                break;
         }
 
-        LoadGameString();
-        */
+        LoadGameString();*/
+
     }
 
     public void GenerateMultipleLevels() 
@@ -123,7 +125,7 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 1.75f;
+            scaleValue = 3f;
 
             amount = width * height;
 
@@ -181,7 +183,7 @@ public class GenerateShapes : MonoBehaviour {
 
     public void CreateGameString()
     {
-        game = "" + width + "," + height + "," + scaleValue;
+        game = "" + width + "," + height + "," + scaleValue + "," + shapeCount;
 
         string squares = "";
 
@@ -198,13 +200,16 @@ public class GenerateShapes : MonoBehaviour {
 
         width = int.Parse(gameStringList[0]);
         height = int.Parse(gameStringList[1]);
+        amount = width * height;
+
         scaleValue = float.Parse(gameStringList[2]);
+        shapeCount = int.Parse(gameStringList[3]);
 
         grid.Clear();
 
         transform.localScale = new Vector2(1, 1);
 
-        for (int i = 3; i < gameStringList.Length; i++)
+        for (int i = 4; i < gameStringList.Length; i++)
         {
             grid.Add(int.Parse(gameStringList[i]));
         }

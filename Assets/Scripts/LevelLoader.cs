@@ -12,25 +12,4 @@ public class LevelLoader : MonoBehaviour
     public List<string> expert2 = new List<string>();
     public List<string> expert3 = new List<string>();
     public List<string> expert4 = new List<string>();
-
-    public static LevelLoader instance = null;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-
-        }
-
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
-
-    }
-
-
 }
