@@ -221,7 +221,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
+  m_Sprite: {fileID: 21300028, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -422,7 +422,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300010, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
+  m_Sprite: {fileID: 21300026, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 130.4
+  m_fontSize: 138.05
   m_fontSizeBase: 87.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1002,6 +1002,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
+        type: 2}
+      propertyPath: orthographic size
+      value: 8.1595745
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c5976fe58bbb4afaa2a2f288b680abf, type: 2}
   m_IsPrefabParent: 0
@@ -1113,7 +1118,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300008, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

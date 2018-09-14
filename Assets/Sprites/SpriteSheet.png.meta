@@ -14,6 +14,33 @@ TextureImporter:
     21300018: NavArrow
     21300020: FilledNavCircle
     21300022: NavCircle
+    21300024: Dark_Settings
+    21300026: Dark_Info
+    21300028: Dark_Store
+    21300030: Dark_Pause
+    21300032: Dark_Reset
+    21300034: Back
+    21300036: Exit_Thick
+    21300038: Exit_Thin
+    21300040: GoBack_Filled
+    21300042: GoBack_Hollow
+    21300044: Circle_Filled
+    21300046: Circle_Hollow
+    21300048: Hint
+    21300050: HintCount
+    21300052: HintLight
+    21300054: Skip
+    21300056: SkipCount
+    21300058: SkipGreen
+    21300060: Language
+    21300062: Leaderboards
+    21300064: Star
+    21300066: SoundOff
+    21300068: SoundOn
+    21300070: VibrationOn
+    21300072: SpriteSheet_31
+    21300074: VibrationOff
+    21300076: Arrow2
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -116,72 +143,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1. Settings
+      name: Dark_Settings
       rect:
         serializedVersion: 2
         x: 0
-        y: 272
+        y: 1466
         width: 257
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdec9b486b0b64b7580a94ed84e3e900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1. Info
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 272
-        width: 258
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 969c1086e6ae34521a367821bf23f232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1. Shop
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 272
-        width: 258
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b601669b368245d18a5c17e6094b82a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arrow
-      rect:
-        serializedVersion: 2
-        x: 813
-        y: 271
-        width: 256
         height: 257
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -190,17 +157,157 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f237ea58eea349d2b7dc7637438f0a8
+      spriteID: de98af22ad8f247e793dcd1e450fe510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FilledNavArrow
+      name: Dark_Info
       rect:
         serializedVersion: 2
-        x: 8
-        y: 1
+        x: 271
+        y: 1466
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddd17e9cee4524772ae1a00a47feefd9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Store
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 1466
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b0335fc596b34013a4986c0770e2ed2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Pause
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1466
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890945050a3454d0d9812b04b9c6f29d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Reset
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 1465
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb6fbaf06ba7436495534cc5ce9f40e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1170
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 074c44d3efa114919af597fa680bb5ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exit_Thick
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 1173
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b31c54a7aef4f639e0f83437537b9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exit_Thin
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 1189
+        width: 215
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b51825fa80e884f84bcb18b07df9a195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoBack_Filled
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1176
         width: 123
         height: 244
       alignment: 0
@@ -210,19 +317,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3639ab76e3df54f1ab2b56d9590ebfaa
+      spriteID: fecff25df4f394eeb9e55fe795ec0501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NavArrow
+      name: GoBack_Hollow
       rect:
         serializedVersion: 2
-        x: 143
-        y: 1
+        x: 1014
+        y: 1176
         width: 123
-        height: 244
+        height: 245
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,17 +337,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa02a9c48eca745e98b101e82849f87b
+      spriteID: 083df976ec0034c959013fd357a88700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FilledNavCircle
+      name: Circle_Filled
       rect:
         serializedVersion: 2
-        x: 320
-        y: 50
+        x: 1191
+        y: 1220
         width: 157
         height: 157
       alignment: 0
@@ -250,17 +357,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 657d830fef14b4eb4b5e36ee16be839b
+      spriteID: 3a8a52cddf2e04702b0a8386c0a1e456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NavCircle
+      name: Circle_Hollow
       rect:
         serializedVersion: 2
-        x: 483
-        y: 51
+        x: 1354
+        y: 1220
         width: 157
         height: 157
       alignment: 0
@@ -270,7 +377,287 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 730c39827a3504b6ea225319ca9fbf41
+      spriteID: 6b1cb6df5ad1e48608986dcd49de429d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hint
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 850
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df3487fb0c4d4b80af37fc68b75fa78
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HintCount
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 832
+        width: 257
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95cde2a16aae9490eaad4cd3ef5d02da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HintLight
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 849
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11735c4274c8e4bb8a8c85c78d0ecaa4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skip
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 853
+        width: 257
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d04e41690784125bab7622e454039d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkipCount
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 836
+        width: 257
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba785345dd8c0438fa2efa7feac6a272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkipGreen
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 851
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce08a60aa2494ba2887f704f61378cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Language
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 537
+        width: 518
+        height: 260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af80c03771754a7282986121fc987a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaderboards
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 537
+        width: 292
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6919004bcbe4af99016c807bc80c8a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Star
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 538
+        width: 282
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8bae43e530045bc896549d03eb7272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOff
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 220
+        width: 255
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f5f1c8c0761409195585f10e07591d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOn
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 222
+        width: 255
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34349c1d7e47643bc8ece2ea4b1d3e42
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VibrationOn
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 220
+        width: 326
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d005a92946ff4215bf95ce21cb9cf14
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VibrationOff
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 216
+        width: 169
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3988205546a147fe9b0bd15d5490b4c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow2
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 500
+        width: 331
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5956ba2f43949d395a6e3d63fc59e8
       vertices: []
       indices: 
       edges: []

@@ -48,9 +48,9 @@ public class GenerateBackgroundShapes : MonoBehaviour
                      
         shape.transform.localScale = new Vector2(1f, 1f);
         shape.AddComponent<BackgroundShapeScript>();
-            
-        squares.Clear();
 
+        squares.Clear();
+        
         NewSquare(0, 0, color, shape.transform);
 
         for (int i = 0; i < size - 1; i++)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GenerateShapes : MonoBehaviour {
 
@@ -32,6 +33,8 @@ public class GenerateShapes : MonoBehaviour {
     public Transform ScrollRectBackground;
     public GameObject objects;
 
+    public TextMeshProUGUI levelText;
+
     public List<int> sizes = new List<int>();
 
     public List<Transform> squares = new List<Transform>();
@@ -52,8 +55,7 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
-        GeneratingStart();
-        /*
+
         switch (Utilities.currentPack)
         {   
             case "Beginner":
@@ -81,11 +83,15 @@ public class GenerateShapes : MonoBehaviour {
                 game = levelLoader.expert4[Utilities.currentLevel];
                 break;
             default:
-                Debug.Log("Didn't load any level");
+                Utilities.currentPack = "Beginner";
+                Utilities.currentLevel = 0;
+                game = levelLoader.beginner[0];
                 break;
         }
 
-        LoadGameString();*/
+        levelText.SetText("" + Utilities.currentLevel);
+
+        LoadGameString();
 
     }
 
@@ -125,7 +131,7 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 3f;
+            scaleValue = 1.5f;
 
             amount = width * height;
 
@@ -144,8 +150,26 @@ public class GenerateShapes : MonoBehaviour {
             case "Beginner":
                 levelLoader.beginner = levels;
                 break;
-
-            default:
+            case "Easy":
+                levelLoader.easy = levels;
+                break;
+            case "Normal":
+                levelLoader.normal = levels;
+                break;
+            case "Hard":
+                levelLoader.hard = levels;
+                break;
+            case "Expert 1":
+                levelLoader.expert1 = levels;
+                break;
+            case "Expert 2":
+                levelLoader.expert2 = levels;
+                break;
+            case "Expert 3":
+                levelLoader.expert3 = levels;
+                break;
+            case "Expert 4":
+                levelLoader.expert4 = levels;
                 break;
         }
     }
@@ -337,6 +361,7 @@ public class GenerateShapes : MonoBehaviour {
         }
 
         gridParent.transform.localScale = new Vector2(scaleValue, scaleValue);
+        gridParent.transform.localPosition = new Vector2(0, 1f);
     }
 
     public void Generate()
