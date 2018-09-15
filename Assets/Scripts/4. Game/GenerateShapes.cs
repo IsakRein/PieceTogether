@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;   
 
 public class GenerateShapes : MonoBehaviour {
 
@@ -55,7 +56,6 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
-
         switch (Utilities.currentPack)
         {   
             case "Beginner":
@@ -131,7 +131,7 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 1.5f;
+            scaleValue = 1.25f;
 
             amount = width * height;
 
@@ -202,7 +202,7 @@ public class GenerateShapes : MonoBehaviour {
 
         CreateGameString();
 
-        Nav();    
+        Nav2();    
     }
 
     public void CreateGameString()
@@ -275,18 +275,20 @@ public class GenerateShapes : MonoBehaviour {
 
             shapes.Add(instShape.transform);
         }
-
+       
         CreateGrid();
 
         ApplyColor();
 
         objects.transform.localScale = new Vector2(scaleValue, scaleValue);
+        objects.transform.localPosition = new Vector2(0, 1f);
 
         sortOrder.CustomStart();
 
         CreateGameString();
 
-        Nav();
+        Nav2();
+       //Nav();
     }
 
     private void CreateSquares() {
@@ -620,6 +622,36 @@ public class GenerateShapes : MonoBehaviour {
 
 		}
 	}
+
+    private void Nav2()
+    {
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            Transform temp = shapes[i];
+            int randomIndex = Random.Range(i, shapes.Count);
+            shapes[i] = shapes[randomIndex];
+            shapes[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            shapes[i].SetParent(navParent.GetChild(0));
+
+            float x = (2f * i) - 3f;
+
+            shapes[i].localPosition = new Vector2(x, -7f);
+
+            shapes[i].GetComponent<ShapeScript>().PosInNav();
+        }
+
+        GameObject backgroundScroll;
+        backgroundScroll = new GameObject("Background Scroll");
+        backgroundScroll.transform.SetParent(navParent.GetChild(0));
+        backgroundScroll.AddComponent<Image>().color = new Color(0, 1, 1);
+        backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount*2f, 3f);
+        backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2((shapeCount-1f)-3f, -7f);
+    }
 
     bool UpAvaliable(int square)
     {

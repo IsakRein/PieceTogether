@@ -60,7 +60,7 @@ public class ShapeScript : MonoBehaviour {
 
     public void CustomStart()
     {
-        generateShapes = GameObject.Find("/Grid").GetComponent<GenerateShapes>();
+        generateShapes = GameObject.Find("/Generator").GetComponent<GenerateShapes>();
         scaleValue = generateShapes.scaleValue;
 
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
@@ -335,11 +335,11 @@ public class ShapeScript : MonoBehaviour {
 			largestDifference = HighestY - LowestY;
 		}
 
-		scaleInNav = 3.5f / (float)largestDifference;
+		scaleInNav = 1f / (float)largestDifference;
         
-        if (scaleInNav > 1.2f)
+        if (scaleInNav > 0.6f)
         {
-            scaleInNav = 1.2f;
+            scaleInNav = 0.6f;
         }
         
 		transform.localScale = new Vector2(scaleInNav, scaleInNav);    
