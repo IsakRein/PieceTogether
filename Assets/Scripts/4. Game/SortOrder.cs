@@ -13,7 +13,7 @@ public class SortOrder : MonoBehaviour {
 
 	private void Start()
 	{
-		for (int i = 0; i < generateShapes.shapeCount; i++)
+		for (int i = 0; i <= generateShapes.shapeCount; i++)
 		{
 			positions.Add(null);
 		}

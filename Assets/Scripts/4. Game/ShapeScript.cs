@@ -16,8 +16,8 @@ public class ShapeScript : MonoBehaviour {
     public float AverageX;
     public float AverageY;
 
-    private float lastPointedX;
-    private float lastPointedY;
+    public float lastPointedX;
+    public float lastPointedY;
 
     private BoxCollider2D boxCollider2D;
     BoxCollider2D[] BoxColliders;
@@ -34,32 +34,31 @@ public class ShapeScript : MonoBehaviour {
     private GameObject pointer;
 
     bool draggingItem = false;
-
     private bool xWhole;
     private bool yWhole;
-
 	public List<Vector2> squarePositions = new List<Vector2>();
-
 	private float scaleInNav;
-
 	private bool dropInNav;
-
 	private Vector2 navPosition;
-
 	private Vector2 lastSquareNavPosition;
-
     public Transform objects;
-
     public Transform nav;
-
     public float lastScale;
-
     public float height;
-
     public float navEnd;
+
+    private bool pointerHasPos;
+    private float screenWidth;
+    public bool isInNav = true;
+
+    public Transform content;
 
     public void CustomStart()
     {
+        isInNav = true;
+
+        content = GameObject.Find("/UI/Nav/Content").transform;
+
         generateShapes = GameObject.Find("/Generator").GetComponent<GenerateShapes>();
         scaleValue = generateShapes.scaleValue;
 
@@ -79,6 +78,8 @@ public class ShapeScript : MonoBehaviour {
         LowestX = squares[0].position.x;
         HighestY = squares[0].position.y;
         LowestY = squares[0].position.y;
+
+        screenWidth = Camera.main.orthographicSize * 2 * Screen.width / Screen.height;
 
         foreach (Transform square in squares)
         {
@@ -128,9 +129,8 @@ public class ShapeScript : MonoBehaviour {
         {
             square.position = new Vector2(square.position.x-transform.position.x, square.position.y-transform.position.y);
 
-            UnityEditorInternal.ComponentUtility.CopyComponent(square.GetComponent<BoxCollider2D>());
+            gameObject.AddComponent<BoxCollider2D>().offset = square.GetComponent<BoxCollider2D>().offset;
             Destroy(square.GetComponent<BoxCollider2D>());
-            UnityEditorInternal.ComponentUtility.PasteComponentAsNew(gameObject);
         }
 
         BoxColliders = GetComponents<BoxCollider2D>();
@@ -184,6 +184,8 @@ public class ShapeScript : MonoBehaviour {
 				yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
 			}
 
+            yPos -= scaleValue - 0.6f;
+
 			bool objectsOverlapping = false;
 
 			if (lastPointedX != xPos || lastPointedY != yPos)
@@ -193,12 +195,12 @@ public class ShapeScript : MonoBehaviour {
 					float x = (transform.GetChild(i).localPosition.x + (xPos / scaleValue));
 					float y = (transform.GetChild(i).localPosition.y + (yPos / scaleValue));
 
-					if (y > 4.5f || y < -4.5f)
+					if (y > 7.5f || y < -5.5f)
 					{
 						objectsOverlapping = true;
 					}
 
-					else if (x > 4.5f || x < -4.5f)
+					else if (x > screenWidth || x < -screenWidth)
 					{
 						objectsOverlapping = true;
 					}
@@ -223,21 +225,26 @@ public class ShapeScript : MonoBehaviour {
 
 				if (objectsOverlapping == false)
 				{
-                    pointer.SetActive(true);
-
                     lastPointedX = xPos;
-					lastPointedY = yPos;
+                    lastPointedY = yPos;
 				}
 			}
 
-			pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
+            if (lastPointedX != 0 || lastPointedY != 0)
+            {
+                pointerHasPos = true;
+            }
 
-			if (transform.position.y < - navEnd)
+
+
+            pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
+
+			if (transform.localPosition.y < - navEnd)
 			{
-				float percentage = (((transform.position.y * (-1f)) - navEnd) / (16f-navEnd));
+                float percentage = (((-transform.localPosition.y) - navEnd) / (4f-navEnd));
 
                 float scale;
-                if (transform.position.y > -16f)
+                if (transform.position.y > -4f)
                 {
                     scale = scaleValue - (percentage * (scaleValue - scaleInNav));
                 }
@@ -253,16 +260,29 @@ public class ShapeScript : MonoBehaviour {
 				dropInNav = true;
 
 				pointer.SetActive(false);
-			}
+
+                pointerHasPos = false;
+
+                lastPointedX = 0;
+                lastPointedY = 0;
+
+                isInNav = true;
+
+            }
 
 			else {
 				transform.localScale = new Vector2(scaleValue, scaleValue);
 
-                pointer.SetActive(true);
+                if (pointerHasPos)
+                {
+                    pointer.SetActive(true);
+                }
 
                 dropInNav = false;
-			}
-		}
+
+                isInNav = false;
+            }
+        }
     }
 
     public void SetSort(int sort)
@@ -291,8 +311,12 @@ public class ShapeScript : MonoBehaviour {
         sortOrder.UpdateSort(number);
         
 		if (dropInNav) {
-			transform.localPosition = navPosition;
 			transform.localScale = new Vector2(scaleInNav, scaleInNav);
+            transform.SetParent(content.transform);
+
+            if (!content.GetComponent<Nav>().objectsInNav.Contains(transform)) {
+                content.GetComponent<Nav>().objectsInNav.Add(transform);
+            }
 
             sortOrder.positions[number - 1] = null;
         }
@@ -305,6 +329,8 @@ public class ShapeScript : MonoBehaviour {
 
             transform.SetParent(objects);
 
+            content.GetComponent<Nav>().objectsInNav.Remove(transform);
+
             for (int i = 0; i < transform.childCount - 1; i++)
             {
                 float x = transform.GetChild(i).localPosition.x + (transform.position.x / scaleValue);
@@ -313,19 +339,19 @@ public class ShapeScript : MonoBehaviour {
                 squarePositions.Add(new Vector2(x, y));
             }
 
-            sortOrder.positions[number - 1] = squarePositions;
-		}      
+            sortOrder.positions[number-1] = squarePositions;
+		}
+
+        content.GetComponent<Nav>().PosChildren();
     }
 
-	public void PosInNav() {
+    public void PosInNav() {
 		float largestDifference;
 
 		navPosition = transform.localPosition;
 		lastSquareNavPosition = squares[squares.Count - 1].position;
 
-        height = HighestY - LowestY + 1;
-
-        navEnd = 12.5f - (height * 0.85f);
+        navEnd = 3f;
 
         if (HighestX-LowestX > HighestY-LowestY) {
 			largestDifference = HighestX - LowestX;
@@ -335,11 +361,11 @@ public class ShapeScript : MonoBehaviour {
 			largestDifference = HighestY - LowestY;
 		}
 
-		scaleInNav = 1f / (float)largestDifference;
+		scaleInNav = 0.5f / (float)largestDifference;
         
-        if (scaleInNav > 0.6f)
+        if (scaleInNav > 0.3f)
         {
-            scaleInNav = 0.6f;
+            scaleInNav = 0.3f;
         }
         
 		transform.localScale = new Vector2(scaleInNav, scaleInNav);    

@@ -32,6 +32,7 @@ public class GenerateShapes : MonoBehaviour {
     public GameObject gridSquarePrefab;
 
     public Transform ScrollRectBackground;
+    public Transform navFollower;
     public GameObject objects;
 
     public TextMeshProUGUI levelText;
@@ -49,6 +50,7 @@ public class GenerateShapes : MonoBehaviour {
     public Transform gridParent;
 
 	public Transform navParent;
+    public Transform content;
 
     public List<Transform> navs = new List<Transform>();
 
@@ -56,6 +58,7 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
+
         switch (Utilities.currentPack)
         {   
             case "Beginner":
@@ -92,7 +95,6 @@ public class GenerateShapes : MonoBehaviour {
         levelText.SetText("" + Utilities.currentLevel);
 
         LoadGameString();
-
     }
 
     public void GenerateMultipleLevels() 
@@ -131,12 +133,55 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 1.25f;
+            scaleValue = 0.6f;
 
             amount = width * height;
 
             GenerateSizes();
             Generate();
+
+            int highestColor = 0;
+            List<int> takenColors = new List<int>();
+
+            for (int j = 0; j < colors.Count; j++)
+            {
+                takenColors.Add(j);
+            }
+
+            for (int j = 0; j < grid.Count; j++)
+            {
+                if (grid[j] > highestColor) {
+                    highestColor = grid[j];
+                }
+            }
+            Debug.Log(highestColor);
+
+            for (int j = 0; j <= highestColor; j++)
+            {
+                for (int k = 0; k < grid.Count; k++)
+                {
+                    if (grid[k] == j)
+                    {
+                        grid[k] = colors.Count + j;
+                    }
+                }
+            }
+
+            for (int j = 0; j <= highestColor; j++)
+            {
+                int newColor = takenColors[Random.Range(0, takenColors.Count)];
+                Debug.Log(newColor);
+                takenColors.Remove(newColor);
+
+                for (int k = 0; k < grid.Count; k++)
+                {
+                    if (grid[k] == j + colors.Count) {
+                        grid[k] = newColor;
+                    }
+                }
+            }
+
+
             CreateGameString();
             
             levels.Add(game);
@@ -266,6 +311,9 @@ public class GenerateShapes : MonoBehaviour {
 
         CreateSquares();
 
+        CreateGrid();
+
+
         for (int i = 0; i < shapeCount; i++)
         {
             GameObject instShape;
@@ -275,8 +323,7 @@ public class GenerateShapes : MonoBehaviour {
 
             shapes.Add(instShape.transform);
         }
-       
-        CreateGrid();
+
 
         ApplyColor();
 
@@ -363,7 +410,7 @@ public class GenerateShapes : MonoBehaviour {
         }
 
         gridParent.transform.localScale = new Vector2(scaleValue, scaleValue);
-        gridParent.transform.localPosition = new Vector2(0, 1f);
+        gridParent.transform.localPosition = new Vector2(0, 0.6f);
     }
 
     public void Generate()
@@ -537,27 +584,31 @@ public class GenerateShapes : MonoBehaviour {
 
     private void ApplyColor()
     {
-        for (int i = 0; i < colors.Count; i++)
-        {
-            Color32 temp = colors[i];
-            int randomIndex = Random.Range(i, colors.Count);
-            colors[i] = colors[randomIndex];
-            colors[randomIndex] = temp;
-        }
-
         for (int i = 1; i <= amount; i++)
         {
             if (grid[i] == -1)
             {
                 squares[i].GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             }
-            
+
             else
             {
                 squares[i].GetComponent<SpriteRenderer>().color = colors[grid[i]];
             }
 
-            squares[i].SetParent(ScrollRectBackground.GetChild(grid[i]));
+            foreach (Transform child in ScrollRectBackground)
+            {
+                if (child.childCount == 0) {
+                    squares[i].SetParent(child);
+                    child.name = grid[i].ToString();
+                    break;
+                }
+                else if (child.name == grid[i].ToString())
+                {
+                    squares[i].SetParent(child);
+                    break;
+                }
+            }
         }
 
         foreach (Transform child in ScrollRectBackground)
@@ -636,21 +687,37 @@ public class GenerateShapes : MonoBehaviour {
         for (int i = 0; i < shapes.Count; i++)
         {
             shapes[i].SetParent(navParent.GetChild(0));
-
-            float x = (2f * i) - 3f;
-
-            shapes[i].localPosition = new Vector2(x, -7f);
-
             shapes[i].GetComponent<ShapeScript>().PosInNav();
         }
-
+       
         GameObject backgroundScroll;
         backgroundScroll = new GameObject("Background Scroll");
         backgroundScroll.transform.SetParent(navParent.GetChild(0));
-        backgroundScroll.AddComponent<Image>().color = new Color(0, 1, 1);
+        backgroundScroll.AddComponent<Image>().color = new Color(1, 1, 1, 0);
         backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount*2f, 3f);
-        backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2((shapeCount-1f)-3f, -7f);
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount + 0.5f, 2f);
+        backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
+
+        RectTransform rect = backgroundScroll.GetComponent<RectTransform>();
+
+        content.GetComponent<Nav>().rect = rect;
+       
+        //position
+        if (shapes.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) {
+            navParent.GetComponent<ScrollRect>().enabled = true;
+            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x))), 0);
+        }
+        else {
+            navParent.GetComponent<ScrollRect>().enabled = false;
+            content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+        }
+       
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            float x = i - (shapeCount - 1f) / 2f;
+            shapes[i].localPosition = new Vector2(x, -4f);
+            content.GetComponent<Nav>().objectsInNav.Add(shapes[i]);
+        }
     }
 
     bool UpAvaliable(int square)

@@ -20,6 +20,10 @@ public class GenerateBackgroundShapes : MonoBehaviour
 
     public List<Color32> colors = new List<Color32>();
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     private void Update()
     {

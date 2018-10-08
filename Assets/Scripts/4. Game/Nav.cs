@@ -4,82 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Nav : MonoBehaviour {
+    public Transform navParent;
+    public Transform container;
+    public RectTransform rect;
 
-    public Transform navCircles;
-    public Image leftArrow;
-    public Image rightArrow;
+    public List<Transform> objectsInNav = new List<Transform>();
 
-    public Sprite filledArrow;
-    public Sprite hollowArrow;
+    public void PosChildren() {
+        rect.sizeDelta = new Vector2(objectsInNav.Count + 0.5f, 2f);
+        rect.localPosition = new Vector2(0f, -4f);
 
-    public Sprite filledCircle;
-    public Sprite hollowCircle;
-
-    public int currentNav;
-    public int navCount;
-
-    public Transform objects;
-
-
-    private void Start()
-    {
-        RefreshSprites();
-    }
-
-    public void NavLeft()
-    {
-        if (currentNav != 1)
+        if (objectsInNav.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height))
         {
-            currentNav = currentNav - 1;
-            float x = transform.position.x + 24f;
-            transform.position = new Vector2(x, 0);
-        }
-
-        RefreshSprites();
-    }
-
-    public void NavRight()
-    {
-        if (currentNav != navCount)
-        {
-            currentNav = currentNav + 1;
-            float x = transform.position.x - 24f;
-            transform.position = new Vector2(x, 0);
-        }
-
-        RefreshSprites();
-    }
-
-    void RefreshSprites()
-    {
-        if (currentNav == 1)
-        {
-            leftArrow.sprite = hollowArrow;
+            navParent.GetComponent<ScrollRect>().enabled = true;
+            container.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x))), 0);
         }
         else
         {
-            leftArrow.sprite = filledArrow;
+            navParent.GetComponent<ScrollRect>().enabled = false;
+            container.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         }
 
-        if (currentNav == navCount)
+        for (int i = 0; i < objectsInNav.Count; i++)
         {
-            rightArrow.sprite = hollowArrow;
-        }
-        else
-        {
-            rightArrow.sprite = filledArrow;
+            float x = i - (objectsInNav.Count - 1f) / 2f;
+            objectsInNav[i].localPosition = new Vector2(x, -4f);
+
+            if (objectsInNav[i].name != "Background Scroll")
+            {
+                objectsInNav[i].GetComponent<ShapeScript>().PosInNav();
+            }
         }
 
-        for (int i = 0; i < navCircles.childCount; i++)
-        {
-            if (i + 1 == currentNav)
-            {
-                navCircles.GetChild(i).GetComponent<SpriteRenderer>().sprite = filledCircle;
-            }
-            else
-            {
-                navCircles.GetChild(i).GetComponent<SpriteRenderer>().sprite = hollowCircle;
-            }
-        }
+
     }
 }
