@@ -195,7 +195,8 @@ public class ShapeScript : MonoBehaviour {
 					float x = (transform.GetChild(i).localPosition.x + (xPos / scaleValue));
 					float y = (transform.GetChild(i).localPosition.y + (yPos / scaleValue));
 
-					if (y > 7.5f || y < -5.5f)
+                    //if (y > 7.5f || y < -5.5f)
+                    if (y > 6f || y < -4.5f)
 					{
 						objectsOverlapping = true;
 					}
@@ -207,20 +208,20 @@ public class ShapeScript : MonoBehaviour {
 
 					else
 					{
-						for (int j = 0; j < sortOrder.positions.Count; j++)
+                        for (int j = 0; j < sortOrder.positions.shapesPos.Count; j++)
 						{
-							if (sortOrder.positions[j] != null && j != number - 1)
+                            if (sortOrder.positions.shapesPos[j] != null && j != number - 1)
 							{
-								foreach (Vector2 vector in sortOrder.positions[j])
+                                foreach (Vector2 vector in sortOrder.positions.shapesPos[j].squaresPos)
 								{
 									if (vector.x == x && vector.y == y)
 									{
 										objectsOverlapping = true;
 									}
-								}
-							}
+                                }
+                            }
 						}
-					}
+                    }
 				}
 
 				if (objectsOverlapping == false)
@@ -235,12 +236,10 @@ public class ShapeScript : MonoBehaviour {
                 pointerHasPos = true;
             }
 
-
-
             pointer.transform.position = new Vector2(lastPointedX, lastPointedY);
 
 			if (transform.localPosition.y < - navEnd)
-			{
+            {
                 float percentage = (((-transform.localPosition.y) - navEnd) / (4f-navEnd));
 
                 float scale;
@@ -267,7 +266,6 @@ public class ShapeScript : MonoBehaviour {
                 lastPointedY = 0;
 
                 isInNav = true;
-
             }
 
 			else {
@@ -276,11 +274,9 @@ public class ShapeScript : MonoBehaviour {
                 if (pointerHasPos)
                 {
                     pointer.SetActive(true);
+                    dropInNav = false;
+                    isInNav = false;
                 }
-
-                dropInNav = false;
-
-                isInNav = false;
             }
         }
     }
@@ -303,7 +299,7 @@ public class ShapeScript : MonoBehaviour {
         }
     }
 
-    public void DropItem()
+    public void DropItem()  
     {
         pointer.SetActive(false);
         draggingItem = false;
@@ -314,11 +310,24 @@ public class ShapeScript : MonoBehaviour {
 			transform.localScale = new Vector2(scaleInNav, scaleInNav);
             transform.SetParent(content.transform);
 
-            if (!content.GetComponent<Nav>().objectsInNav.Contains(transform)) {
-                content.GetComponent<Nav>().objectsInNav.Add(transform);
+            for (int i = 0; i < content.childCount; i++)
+            {
+                Transform child = content.transform.GetChild(i);
+
+                if (child.name != "Background Scroll" && child != transform) {
+                    if (child.transform.position.x > transform.position.x) {
+                        transform.SetSiblingIndex(i);
+
+                        if (!content.GetComponent<Nav>().objectsInNav.Contains(transform))
+                        {
+                            content.GetComponent<Nav>().objectsInNav.Insert(i, transform);
+                        }
+                        break;
+                    }
+                }
             }
 
-            sortOrder.positions[number - 1] = null;
+            sortOrder.positions.shapesPos[number - 1].squaresPos.Clear();
         }
 
 		else {
@@ -338,9 +347,11 @@ public class ShapeScript : MonoBehaviour {
 
                 squarePositions.Add(new Vector2(x, y));
             }
-
-            sortOrder.positions[number-1] = squarePositions;
+            
+            sortOrder.positions.shapesPos[number - 1].squaresPos = squarePositions;
 		}
+
+        sortOrder.UpdatePositions();
 
         content.GetComponent<Nav>().PosChildren();
     }

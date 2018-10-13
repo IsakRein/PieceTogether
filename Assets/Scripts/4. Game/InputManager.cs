@@ -9,8 +9,8 @@ public class InputManager : MonoBehaviour
     private Vector2 touchOffset;
 
     private Vector2 firstPosition;
-    private bool firstSwipeHasBeenDone = false;
-    public bool movingEnabled;
+    public bool firstSwipeHasBeenDone = false;
+    public bool movingEnabled = false;
 
     public ScrollRect scrollRect;
 
@@ -63,33 +63,47 @@ public class InputManager : MonoBehaviour
                     {
                         if (draggedObject.GetComponent<ShapeScript>().isInNav)
                         {
-                            if (xDif < 3f * yDif)
+                            if (nav.objectsInNav.Count >= Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) 
+                            {
+                                if (xDif < 3f * yDif)
+                                {
+                                    movingEnabled = true;
+                                    draggedObject.GetComponent<ShapeScript>().DraggingItem();
+                                    scrollRect.enabled = false;
+                                }
+                                else
+                                {
+                                    movingEnabled = false;
+                                }
+                            }
+                            else
                             {
                                 movingEnabled = true;
                                 draggedObject.GetComponent<ShapeScript>().DraggingItem();
                                 scrollRect.enabled = false;
                             }
-                            else
-                            {
-                                movingEnabled = false;
-                            }
                         }
 
                         firstSwipeHasBeenDone = true;
                     }
+
+                    else 
+                    {
+                        movingEnabled = false;
+                    }
                 }
+
                 else {
                     movingEnabled = true;
                     draggedObject.GetComponent<ShapeScript>().DraggingItem();
                     scrollRect.enabled = false;
                 }
             }
-
+           
             if (movingEnabled)
             {
                 draggedObject.transform.position = inputPosition + touchOffset;
             }
-
         }
 
         else

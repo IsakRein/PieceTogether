@@ -22,7 +22,11 @@ public static class Utilities {
     public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
-        previousScenes.Add(SceneManager.GetActiveScene().name);
+
+        if (scene != SceneManager.GetActiveScene().name)
+        {
+            previousScenes.Add(SceneManager.GetActiveScene().name);
+        }
     }
 
     public static void LoadPreviousScene()

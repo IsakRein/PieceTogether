@@ -58,7 +58,6 @@ public class GenerateShapes : MonoBehaviour {
 
     private void Start()
     {
-
         switch (Utilities.currentPack)
         {   
             case "Beginner":
@@ -133,7 +132,7 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 0.6f;
+            scaleValue = 0.7f;
 
             amount = width * height;
 
@@ -154,7 +153,6 @@ public class GenerateShapes : MonoBehaviour {
                     highestColor = grid[j];
                 }
             }
-            Debug.Log(highestColor);
 
             for (int j = 0; j <= highestColor; j++)
             {
@@ -170,7 +168,6 @@ public class GenerateShapes : MonoBehaviour {
             for (int j = 0; j <= highestColor; j++)
             {
                 int newColor = takenColors[Random.Range(0, takenColors.Count)];
-                Debug.Log(newColor);
                 takenColors.Remove(newColor);
 
                 for (int k = 0; k < grid.Count; k++)
@@ -273,7 +270,7 @@ public class GenerateShapes : MonoBehaviour {
 
         scaleValue = float.Parse(gameStringList[2]);
         shapeCount = int.Parse(gameStringList[3]);
-
+        
         grid.Clear();
 
         transform.localScale = new Vector2(1, 1);
@@ -407,6 +404,7 @@ public class GenerateShapes : MonoBehaviour {
             int yOrder = Mathf.RoundToInt((Mathf.Floor((i - 0.01f) / width)) + 1);
 
             gridParent.GetChild(i - 1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
+            sortOrder.finishedLevel.Add(new Vector2(gridParent.GetChild(i - 1).position.x, gridParent.GetChild(i - 1).position.y + 1f));
         }
 
         gridParent.transform.localScale = new Vector2(scaleValue, scaleValue);

@@ -14,17 +14,6 @@ public class Nav : MonoBehaviour {
         rect.sizeDelta = new Vector2(objectsInNav.Count + 0.5f, 2f);
         rect.localPosition = new Vector2(0f, -4f);
 
-        if (objectsInNav.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height))
-        {
-            navParent.GetComponent<ScrollRect>().enabled = true;
-            container.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x))), 0);
-        }
-        else
-        {
-            navParent.GetComponent<ScrollRect>().enabled = false;
-            container.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-        }
-
         for (int i = 0; i < objectsInNav.Count; i++)
         {
             float x = i - (objectsInNav.Count - 1f) / 2f;
@@ -36,6 +25,31 @@ public class Nav : MonoBehaviour {
             }
         }
 
+        if (objectsInNav.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height))
+        {
+            navParent.GetComponent<ScrollRect>().enabled = true;
 
+            float totalOffset = -((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x)));
+            float prevLeftOffset = container.GetComponent<RectTransform>().offsetMin.x;
+            float prevRightOffset = container.GetComponent<RectTransform>().offsetMax.x;
+            float prevTotalOffset = prevLeftOffset + prevRightOffset;
+
+            if (prevTotalOffset == 0)
+            {
+                container.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+                container.GetComponent<RectTransform>().offsetMax = new Vector2(totalOffset, 0);
+            }
+            else 
+            {
+                container.GetComponent<RectTransform>().offsetMin = new Vector2(-totalOffset * prevLeftOffset / prevTotalOffset, 0);
+                container.GetComponent<RectTransform>().offsetMax = new Vector2(totalOffset * prevRightOffset / prevTotalOffset, 0);
+            }
+        }
+        else
+        {
+            navParent.GetComponent<ScrollRect>().enabled = false;
+            container.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+            container.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+        }
     }
 }
