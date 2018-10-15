@@ -228,6 +228,8 @@ public class ShapeScript : MonoBehaviour {
 				{
                     lastPointedX = xPos;
                     lastPointedY = yPos;
+
+                    Utilities.Vibrate();
 				}
 			}
 
@@ -345,7 +347,7 @@ public class ShapeScript : MonoBehaviour {
                 float x = transform.GetChild(i).localPosition.x + (transform.position.x / scaleValue);
                 float y = transform.GetChild(i).localPosition.y + (transform.position.y / scaleValue);
 
-                squarePositions.Add(new Vector2(x, y));
+                squarePositions.Add(new Vector2(Mathf.Round(x * 10f) / 10f, Mathf.Round(y * 10f) / 10f));
             }
             
             sortOrder.positions.shapesPos[number - 1].squaresPos = squarePositions;

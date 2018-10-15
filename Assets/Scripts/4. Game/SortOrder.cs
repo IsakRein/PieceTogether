@@ -24,6 +24,8 @@ public class SortOrder : MonoBehaviour {
     public List<Vector2> positionsInOne = new List<Vector2>();
 
     public List<Vector2> finishedLevel = new List<Vector2>();
+    
+    public PopUp popUp;
 
     public void CustomStart()
     {
@@ -82,8 +84,13 @@ public class SortOrder : MonoBehaviour {
         if (amountOfSim == finishedLevel.Count) {
             //trigger animations etc
 
-            Utilities.currentLevel += 1;
-            Utilities.LoadScene("4. Game");
+            popUp.InitPopUp("Level Won");
+
+            Debug.Log("Level won!");
+        }
+
+        else {
+            Debug.Log(amountOfSim);
         }
     }
 }

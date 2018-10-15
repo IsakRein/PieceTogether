@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class Utilities {
-
+public static class Utilities
+{
     public static List<string> previousScenes = new List<string>();
 
     public static string currentPack;
@@ -18,6 +18,15 @@ public static class Utilities {
     public static int expert2LastDone;
     public static int expert3LastDone;
     public static int expert4LastDone;
+
+#if UNITY_IOS && !UNITY_EDITOR
+    static int platform = 0;
+#elif UNITY_ANDROID && !UNITY_EDITOR
+    static int platform = 1;
+#else
+    static int platform = 2;
+#endif
+
 
     public static void LoadScene(string scene)
     {
@@ -41,5 +50,18 @@ public static class Utilities {
 
     public static void LoadLastLevel() {
 
+    }
+
+
+    public static void Vibrate() 
+    {
+        if (platform == 0)
+        {
+            iOSHapticFeedback.Instance.Trigger(iOSHapticFeedback.iOSFeedbackType.ImpactMedium);
+        }
+        else if (platform == 1)
+        {
+            AndroidManager.HapticFeedback();
+        }
     }
 }

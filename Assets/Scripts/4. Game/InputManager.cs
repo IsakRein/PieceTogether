@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
 
     private Nav nav;
 
+    public bool interactable = true;
+
     private void Start()
     {
         nav = GameObject.Find("/UI/Nav/Content").GetComponent<Nav>();
@@ -23,15 +25,18 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (HasInput)
+        if (interactable)
         {
-            DragOrPickUp();
-        }
-        else
-        {
-            if (draggingItem)
+            if (HasInput)
             {
-                DropItem();
+                DragOrPickUp();
+            }
+            else
+            {
+                if (draggingItem)
+                {
+                    DropItem();
+                }
             }
         }
     }

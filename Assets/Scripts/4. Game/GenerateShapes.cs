@@ -100,12 +100,16 @@ public class GenerateShapes : MonoBehaviour {
     {
         for (int i = 0; i < 150; i++)
         {
-            width = Random.Range(4, 7);
-            height = Random.Range(4, 7);
+            //beginner 4-7
+
+
+
+            width = Random.Range(10, 15);
+            height = Random.Range(10, 15);
 
             float shapeCountFloat = Mathf.Sqrt((float)(width * height));
 
-            shapeCount = (int)Mathf.Round(shapeCountFloat) + Random.Range(0, 2);
+            shapeCount = (int)Mathf.Round(shapeCountFloat) + Random.Range(-2, 2);
 
             if (shapeCount > 11){
                 shapeCount = 11;
@@ -132,7 +136,7 @@ public class GenerateShapes : MonoBehaviour {
                 minSize = 2;
             }
 
-            scaleValue = 0.7f;
+            scaleValue = 0.3f;
 
             amount = width * height;
 
@@ -404,7 +408,11 @@ public class GenerateShapes : MonoBehaviour {
             int yOrder = Mathf.RoundToInt((Mathf.Floor((i - 0.01f) / width)) + 1);
 
             gridParent.GetChild(i - 1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
-            sortOrder.finishedLevel.Add(new Vector2(gridParent.GetChild(i - 1).position.x, gridParent.GetChild(i - 1).position.y + 1f));
+
+            float x = (Mathf.Round((gridParent.GetChild(i - 1).position.x) * 10f) / 10f);
+            float y = (Mathf.Round((gridParent.GetChild(i - 1).position.y + 1f) * 10f) / 10f);
+
+            sortOrder.finishedLevel.Add(new Vector2(x, y));
         }
 
         gridParent.transform.localScale = new Vector2(scaleValue, scaleValue);

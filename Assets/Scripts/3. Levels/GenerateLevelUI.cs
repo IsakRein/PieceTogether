@@ -48,7 +48,6 @@ public class GenerateLevelUI : MonoBehaviour {
 
         scrollRectBack.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 0);
 
-
         GameObject backgroundScroll;
         backgroundScroll = new GameObject("Background Scroll");
         backgroundScroll.transform.SetParent(gameObject.transform);
