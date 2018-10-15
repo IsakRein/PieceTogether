@@ -139,12 +139,12 @@ public class GenerateShapes : MonoBehaviour {
             }
 
             if (width<height) {
-                minSize = Mathf.FloorToInt(width)/2 + Random.Range(-1, 1);
-                maxSize = 2 * height + Random.Range(-3, 1);
+                minSize = Mathf.FloorToInt(width)/2 + Random.Range(0, 1);
+                maxSize = 2 * height + Random.Range(-2, 1);
             }
             else {
-                minSize = Mathf.FloorToInt(height)/2 + Random.Range(-1, 1);
-                maxSize = 2 * width + Random.Range(-3, 1);
+                minSize = Mathf.FloorToInt(height)/2 + Random.Range(0, 1);
+                maxSize = 2 * width + Random.Range(-2, 1);
             }
 
 //for small games
