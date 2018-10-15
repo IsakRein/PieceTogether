@@ -8,8 +8,8 @@ public class LevelLoader : MonoBehaviour
     public List<string> easy = new List<string>();
     public List<string> normal = new List<string>();
     public List<string> hard = new List<string>();
+    public List<string> advanced = new List<string>();
     public List<string> expert1 = new List<string>();
     public List<string> expert2 = new List<string>();
     public List<string> expert3 = new List<string>();
-    public List<string> expert4 = new List<string>();
 }

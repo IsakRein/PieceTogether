@@ -14,10 +14,10 @@ public static class Utilities
     public static int easyLastDone;
     public static int normalLastDone;
     public static int hardLastDone;
+    public static int advancedLastDone;
     public static int expert1LastDone;
     public static int expert2LastDone;
     public static int expert3LastDone;
-    public static int expert4LastDone;
 
 #if UNITY_IOS && !UNITY_EDITOR
     static int platform = 0;

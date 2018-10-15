@@ -6,6 +6,25 @@ using UnityEngine.UI;
 
 public class GenerateShapes : MonoBehaviour {
 
+    public int importMinSize;
+    public int importMaxSize;
+    public float importScaleValue;
+    public int importMinCount;
+    public int importMaxCount;
+
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+    [Space]
+
+
     public List<string> levels = new List<string>();
 
     [Space]
@@ -61,32 +80,32 @@ public class GenerateShapes : MonoBehaviour {
         switch (Utilities.currentPack)
         {   
             case "Beginner":
-                game = levelLoader.beginner[Utilities.currentLevel]; 
+                game = levelLoader.beginner[Utilities.currentLevel - 1]; 
                 break;
             case "Easy":
-                game = levelLoader.easy[Utilities.currentLevel];
+                game = levelLoader.easy[Utilities.currentLevel - 1];
                 break;
             case "Normal":
-                game = levelLoader.normal[Utilities.currentLevel];
+                game = levelLoader.normal[Utilities.currentLevel - 1];
                 break;
             case "Hard":
-                game = levelLoader.hard[Utilities.currentLevel];
+                game = levelLoader.hard[Utilities.currentLevel - 1];
+                break;
+            case "Advanced":
+                game = levelLoader.advanced[Utilities.currentLevel - 1];
                 break;
             case "Expert 1":
-                game = levelLoader.expert1[Utilities.currentLevel];
+                game = levelLoader.expert1[Utilities.currentLevel - 1];
                 break;
             case "Expert 2":
-                game = levelLoader.expert2[Utilities.currentLevel];
+                game = levelLoader.expert2[Utilities.currentLevel - 1];
                 break;
             case "Expert 3":
-                game = levelLoader.expert3[Utilities.currentLevel];
-                break;
-            case "Expert 4":
-                game = levelLoader.expert4[Utilities.currentLevel];
+                game = levelLoader.expert3[Utilities.currentLevel - 1];
                 break;
             default:
                 Utilities.currentPack = "Beginner";
-                Utilities.currentLevel = 0;
+                Utilities.currentLevel = 1;
                 game = levelLoader.beginner[0];
                 break;
         }
@@ -100,45 +119,43 @@ public class GenerateShapes : MonoBehaviour {
     {
         for (int i = 0; i < 150; i++)
         {
-            //beginner 4-7
+            //beginner 4-7 0.6
+            //easy 5-8 0.55
+            //normal 5-9 0.5
+            //hard 6-10 0.4
+            //advanced 7-11 0.4
+            //expert 8-13 0.35
 
 
+            width = Random.Range(importMinSize, importMaxSize);
+            height = Random.Range(importMinSize, importMaxSize);
+            scaleValue = importScaleValue;
 
-            width = Random.Range(10, 15);
-            height = Random.Range(10, 15);
+            shapeCount = Random.Range(importMinCount, importMaxCount);
 
-            float shapeCountFloat = Mathf.Sqrt((float)(width * height));
-
-            shapeCount = (int)Mathf.Round(shapeCountFloat) + Random.Range(-2, 2);
-
-            if (shapeCount > 11){
+            if (shapeCount > 11)
+            {
                 shapeCount = 11;
             }
 
-
             if (width<height) {
                 minSize = Mathf.FloorToInt(width)/2 + Random.Range(-1, 1);
-
-
-
-                maxSize = 2 * height + Random.Range(-2, 2);
-
-
+                maxSize = 2 * height + Random.Range(-3, 1);
             }
             else {
                 minSize = Mathf.FloorToInt(height)/2 + Random.Range(-1, 1);
-                maxSize = 2 * width + Random.Range(-2, 0);
+                maxSize = 2 * width + Random.Range(-3, 1);
             }
 
 //for small games
-            if (minSize < 2)
+            if (minSize < 3)
             {
-                minSize = 2;
+                minSize = 3;
             }
 
-            scaleValue = 0.3f;
-
             amount = width * height;
+
+            //Debug.Log("Min: " + minSize + "; Max: " + maxSize + "; ShapeCount: " + shapeCount + "; Amount: " + amount);
 
             GenerateSizes();
             Generate();
@@ -205,6 +222,9 @@ public class GenerateShapes : MonoBehaviour {
             case "Hard":
                 levelLoader.hard = levels;
                 break;
+            case "Advanced":
+                levelLoader.advanced = levels;
+                break;
             case "Expert 1":
                 levelLoader.expert1 = levels;
                 break;
@@ -213,9 +233,6 @@ public class GenerateShapes : MonoBehaviour {
                 break;
             case "Expert 3":
                 levelLoader.expert3 = levels;
-                break;
-            case "Expert 4":
-                levelLoader.expert4 = levels;
                 break;
         }
     }
@@ -410,7 +427,7 @@ public class GenerateShapes : MonoBehaviour {
             gridParent.GetChild(i - 1).position = new Vector2(startValueX2 + (xOrder - 1), startValueY2 - (yOrder - 1));
 
             float x = (Mathf.Round((gridParent.GetChild(i - 1).position.x) * 10f) / 10f);
-            float y = (Mathf.Round((gridParent.GetChild(i - 1).position.y + 1f) * 10f) / 10f);
+            float y = (Mathf.Round((gridParent.GetChild(i - 1).position.y + 0.6f/scaleValue) * 10f) / 10f);
 
             sortOrder.finishedLevel.Add(new Vector2(x, y));
         }

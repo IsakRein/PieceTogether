@@ -192,16 +192,26 @@ public class ShapeScript : MonoBehaviour {
 			{
 				for (int i = 0; i < transform.childCount - 1; i++)
 				{
-					float x = (transform.GetChild(i).localPosition.x + (xPos / scaleValue));
-					float y = (transform.GetChild(i).localPosition.y + (yPos / scaleValue));
+                    float x = Mathf.Round((transform.GetChild(i).localPosition.x + (xPos / scaleValue)) * 10f) / 10f;
+					float y = Mathf.Round((transform.GetChild(i).localPosition.y + (yPos / scaleValue)) * 10f) / 10f;
+
+                    float lossyX = transform.GetChild(i).position.x;
+                    float lossyY = transform.GetChild(i).position.y;
 
                     //if (y > 7.5f || y < -5.5f)
-                    if (y > 6f || y < -4.5f)
+                    if (lossyY > 3.6f || lossyY < -2.9f)
 					{
 						objectsOverlapping = true;
 					}
 
-					else if (x > screenWidth || x < -screenWidth)
+                    /*
+                    0.6 --> -4.5
+                    x/scalevalue = -4.5 
+
+
+                    */
+
+                    else if (lossyX > screenWidth/2 || lossyX < -screenWidth/2)
 					{
 						objectsOverlapping = true;
 					}
@@ -214,11 +224,16 @@ public class ShapeScript : MonoBehaviour {
 							{
                                 foreach (Vector2 vector in sortOrder.positions.shapesPos[j].squaresPos)
 								{
-									if (vector.x == x && vector.y == y)
-									{
-										objectsOverlapping = true;
-									}
-                                }
+                                    if (vector.x.Equals(x) && y.Equals(vector.y))
+                                    {
+                                        objectsOverlapping = true;
+                                    }
+
+                                    else
+                                    {
+                                       //Debug.Log("vector.x=" + vector.x + " x=" + x + " " + (vector.x.Equals(x)) + "; " + " vector.y=" + vector.y + " y=" + y + " " + vector.y.Equals(y));
+                                    }
+                                 }
                             }
 						}
                     }

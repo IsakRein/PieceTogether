@@ -50,8 +50,6 @@ public class SortOrder : MonoBehaviour {
         }
     }
 
-
-
     public void UpdatePositions()
     {
         positionsInOne.Clear();
@@ -85,12 +83,6 @@ public class SortOrder : MonoBehaviour {
             //trigger animations etc
 
             popUp.InitPopUp("Level Won");
-
-            Debug.Log("Level won!");
-        }
-
-        else {
-            Debug.Log(amountOfSim);
         }
     }
 }
