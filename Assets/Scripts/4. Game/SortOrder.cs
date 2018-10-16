@@ -19,13 +19,12 @@ public class SortOrder : MonoBehaviour {
     public List<int> sortOrder = new List<int>();
     public List<ShapeScript> shapes = new List<ShapeScript>();
     public GenerateShapes generateShapes;
-
     public PositionsList positions = new PositionsList();
     public List<Vector2> positionsInOne = new List<Vector2>();
-
     public List<Vector2> finishedLevel = new List<Vector2>();
-    
     public PopUp popUp;
+    public AudioSource audioSource;
+    public AudioClip clip;
 
     public void CustomStart()
     {
@@ -35,6 +34,8 @@ public class SortOrder : MonoBehaviour {
         }
 
         transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
+
+        
     }
 
     public void UpdateSort(int number)
@@ -83,6 +84,18 @@ public class SortOrder : MonoBehaviour {
             //trigger animations etc
 
             popUp.InitPopUp("Level Won");
+        }
+    }
+
+    public void ObjectMoved()
+    {
+        if (Utilities.VibrationOn)
+        {
+            Utilities.Vibrate();
+        }
+        if (Utilities.SoundOn)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

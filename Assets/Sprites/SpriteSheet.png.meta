@@ -41,6 +41,7 @@ TextureImporter:
     21300072: SpriteSheet_31
     21300074: VibrationOff
     21300076: Arrow2
+    21300078: Info
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -651,13 +652,33 @@ TextureImporter:
         width: 331
         height: 328
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 7c5956ba2f43949d395a6e3d63fc59e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Info
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 115
+        width: 133
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26bec97441a274a12be84e55f6ad54f9
       vertices: []
       indices: 
       edges: []

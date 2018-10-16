@@ -244,7 +244,7 @@ public class ShapeScript : MonoBehaviour {
                     lastPointedX = xPos;
                     lastPointedY = yPos;
 
-                    Utilities.Vibrate();
+                    sortOrder.ObjectMoved();
 				}
 			}
 

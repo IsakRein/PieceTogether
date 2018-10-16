@@ -19,14 +19,51 @@ public static class Utilities
     public static int expert2LastDone;
     public static int expert3LastDone;
 
+    public static bool SoundOn;
+    public static bool VibrationOn;
+
 #if UNITY_IOS && !UNITY_EDITOR
-    static int platform = 0;
+    public static int platform = 0;
 #elif UNITY_ANDROID && !UNITY_EDITOR
-    static int platform = 1;
+    public static int platform = 1;
 #else
-    static int platform = 2;
+    public static int platform = 2;
 #endif
 
+    public static void Initialize()
+    {
+        if (PlayerPrefs.HasKey("Sound"))
+        {
+            if (PlayerPrefs.GetInt("Sound") == 1)
+            {
+                SoundOn = true;
+            }
+            else
+            {
+                SoundOn = false;
+            }
+        }
+        else
+        {
+            SoundOn = true;
+        }
+
+        if (PlayerPrefs.HasKey("Vibration"))
+        {
+            if (PlayerPrefs.GetInt("Vibration") == 1)
+            {
+                VibrationOn = true;
+            }
+            else
+            {
+                VibrationOn = false;
+            }
+        }
+        else
+        {
+            VibrationOn = true;
+        }
+    }
 
     public static void LoadScene(string scene)
     {

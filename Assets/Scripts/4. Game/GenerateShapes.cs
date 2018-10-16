@@ -57,20 +57,13 @@ public class GenerateShapes : MonoBehaviour {
     public TextMeshProUGUI levelText;
 
     public List<int> sizes = new List<int>();
-
     public List<Transform> squares = new List<Transform>();
-
 	public List<Transform> shapes = new List<Transform>();
-
     public List<int> grid = new List<int>();
-
     public SortOrder sortOrder;
-
     public Transform gridParent;
-
 	public Transform navParent;
     public Transform content;
-
     public List<Transform> navs = new List<Transform>();
 
     public List<Color32> colors = new List<Color32>();
@@ -115,7 +108,7 @@ public class GenerateShapes : MonoBehaviour {
         LoadGameString();
     }
 
-    public void GenerateMultipleLevels() 
+    public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue) 
     {
         for (int i = 0; i < 150; i++)
         {
@@ -127,11 +120,11 @@ public class GenerateShapes : MonoBehaviour {
             //expert 8-13 0.35
 
 
-            width = Random.Range(importMinSize, importMaxSize);
-            height = Random.Range(importMinSize, importMaxSize);
-            scaleValue = importScaleValue;
+            width = Random.Range(impMinSize, impMaxSize);
+            height = Random.Range(impMinSize, impMaxSize);
+            scaleValue = impScaleValue;
 
-            shapeCount = Random.Range(importMinCount, importMaxCount);
+            shapeCount = Random.Range(impMinCount, impMaxCount);
 
             if (shapeCount > 11)
             {
