@@ -24,10 +24,16 @@ public class SortOrder : MonoBehaviour {
     public List<Vector2> finishedLevel = new List<Vector2>();
     public PopUp popUp;
     public AudioSource audioSource;
-    public AudioClip clip;
+    public AudioClip click;
+    public AudioClip dropClick;
+    public AudioClip start;
+    public AudioClip levelWon;
+
 
     public void CustomStart()
     {
+        audioSource.PlayOneShot(start);
+
         for (int i = 0; i <= generateShapes.shapeCount; i++)
         {
             positions.shapesPos.Add(new Positions());
@@ -35,7 +41,6 @@ public class SortOrder : MonoBehaviour {
 
         transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
 
-        
     }
 
     public void UpdateSort(int number)
@@ -95,7 +100,7 @@ public class SortOrder : MonoBehaviour {
         }
         if (Utilities.SoundOn)
         {
-            audioSource.PlayOneShot(clip);
+            audioSource.PlayOneShot(click);
         }
     }
 }
