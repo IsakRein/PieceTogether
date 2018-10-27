@@ -29,7 +29,7 @@ public class Nav : MonoBehaviour {
         {
             navParent.GetComponent<ScrollRect>().enabled = true;
 
-            float totalOffset = -((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x)));
+            float totalOffset = -((Screen.width / 192f) + (rect.offsetMin.x - rect.offsetMax.x));
             float prevLeftOffset = container.GetComponent<RectTransform>().offsetMin.x;
             float prevRightOffset = container.GetComponent<RectTransform>().offsetMax.x;
             float prevTotalOffset = prevLeftOffset + prevRightOffset;

@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundShapeScript : MonoBehaviour {
     
-    Vector3 target;
+    public Vector3 target;
     float speed;
 
     private void Start()
     {
-        target = new Vector3(transform.position.x, transform.position.y + (5 * (Screen.height / Screen.dpi)));
+        target = new Vector3(transform.position.x, transform.position.y + (Screen.height * 15));
 
         speed = 2f + Random.Range(-0.5f, 0.5f);
     }
@@ -24,6 +24,7 @@ public class BackgroundShapeScript : MonoBehaviour {
         {
             if (gameObject.transform.position == target) 
             {
+                Debug.Log(transform.position.y);
                 Destroy(gameObject);
             }
         }

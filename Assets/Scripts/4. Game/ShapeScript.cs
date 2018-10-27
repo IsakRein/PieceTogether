@@ -107,11 +107,11 @@ public class ShapeScript : MonoBehaviour {
 
         if (AverageX.Equals(Mathf.Round(AverageX)))
         {
-            xEven= true;
+            xEven = true;
         }
         else
         {
-            xEven= false;
+            xEven = false;
         }
 
         if (AverageY.Equals(Mathf.Round(AverageY)))
@@ -197,8 +197,8 @@ public class ShapeScript : MonoBehaviour {
                 yPos = yPos + (0.6f - scaleValue);
             }
 
-			if (lastPointedX != xPos || lastPointedY != yPos)
-			{
+			if (!Mathf.Approximately(lastPointedX, xPos) || !Mathf.Approximately(lastPointedY, yPos))
+			{            
                 for (int i = 0; i < transform.childCount - 1; i++)
 				{
                     float x = Mathf.Round((transform.GetChild(i).localPosition.x + (xPos / scaleValue)) * 10f) / 10f;

@@ -108,18 +108,33 @@ public class GenerateShapes : MonoBehaviour {
         LoadGameString();
     }
 
-    public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue) 
+    public void GenerateAllLevels()
     {
+        //beginner 4-7 0.6
+        //easy 5-8 0.55
+        //normal 5-9 0.5
+        //hard 6-10 0.4
+        //advanced 7-11 0.4
+        //expert 8-13 0.35
+        
+        
+        //minsize, maxsize, mincount, maxcount, scalevalue, list
+        GenerateMultipleLevels(5, 7, 4, 7, 0.6f, levelLoader.beginner);
+        GenerateMultipleLevels(5, 8, 4, 8, 0.55f, levelLoader.easy);
+        GenerateMultipleLevels(5, 9, 5, 8, 0.5f, levelLoader.normal);
+        GenerateMultipleLevels(6, 10, 5, 9, 0.4f, levelLoader.hard);
+        GenerateMultipleLevels(7, 11, 6, 10, 0.4f, levelLoader.advanced);
+        GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert1);
+        GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert2);
+        GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert3);
+    }
+
+    public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue, List<string> list) 
+    {
+        levels.Clear();
+
         for (int i = 0; i < 150; i++)
-        {
-            //beginner 4-7 0.6
-            //easy 5-8 0.55
-            //normal 5-9 0.5
-            //hard 6-10 0.4
-            //advanced 7-11 0.4
-            //expert 8-13 0.35
-
-
+        {    
             width = Random.Range(impMinSize, impMaxSize);
             height = Random.Range(impMinSize, impMaxSize);
             scaleValue = impScaleValue;
@@ -131,16 +146,22 @@ public class GenerateShapes : MonoBehaviour {
                 shapeCount = 11;
             }
 
-            if (width<height) {
-                minSize = Mathf.FloorToInt(width)/2 + Random.Range(0, 1);
-                maxSize = 2 * height + Random.Range(-2, 1);
-            }
-            else {
-                minSize = Mathf.FloorToInt(height)/2 + Random.Range(0, 1);
-                maxSize = 2 * width + Random.Range(-2, 1);
+            if (width+height > shapeCount * 2)
+            {
+                shapeCount += 1;
             }
 
-//for small games
+            if (width<height) {
+                minSize = Mathf.FloorToInt(width / 1.75f + Random.Range(0, 2));
+                maxSize = Mathf.RoundToInt(1.75f * height + Random.Range(-1, 0));
+            }
+            else {
+                minSize = Mathf.FloorToInt(height / 1.75f + Random.Range(0, 2));
+                maxSize = Mathf.RoundToInt(1.75f * width + Random.Range(-1, 0));
+            }
+
+            
+
             if (minSize < 3)
             {
                 minSize = 3;
@@ -192,12 +213,12 @@ public class GenerateShapes : MonoBehaviour {
                 }
             }
 
-
             CreateGameString();
-            
-            levels.Add(game);
 
+            levels.Add(game);
         }
+
+        list.AddRange(levels);
     }
 
     public void SaveToLevelLoader() {
@@ -579,6 +600,7 @@ public class GenerateShapes : MonoBehaviour {
 
             else
             {
+                //Debug.Log(minSize + " " + maxSize + " " + width + " " + height + " " + shapeCount);
                 sizes.RemoveAt(i - 1);
                 CalculateSum();
                 i = i - 2;
@@ -646,7 +668,7 @@ public class GenerateShapes : MonoBehaviour {
 		{
 			navs.Add(navParent.GetChild(i));
 
-			float x = 24 * i;
+			float x = 24f * i;
 
 			navs[i].position = new Vector2(x, 0);
 		}
@@ -711,7 +733,7 @@ public class GenerateShapes : MonoBehaviour {
         backgroundScroll.transform.SetParent(navParent.GetChild(0));
         backgroundScroll.AddComponent<Image>().color = new Color(1, 1, 1, 0);
         backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount + 0.5f, 2f);
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount - 2f, 2f);
         backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
 
         RectTransform rect = backgroundScroll.GetComponent<RectTransform>();
@@ -721,7 +743,7 @@ public class GenerateShapes : MonoBehaviour {
         //position
         if (shapes.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) {
             navParent.GetComponent<ScrollRect>().enabled = true;
-            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) - (-(rect.offsetMin.x - rect.offsetMax.x))), 0);
+            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) + (rect.offsetMin.x - rect.offsetMax.x)), 0);
         }
         else {
             navParent.GetComponent<ScrollRect>().enabled = false;

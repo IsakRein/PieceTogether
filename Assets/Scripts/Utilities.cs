@@ -94,7 +94,7 @@ public static class Utilities
     {
         if (platform == 0)
         {
-            iOSHapticFeedback.Instance.Trigger(iOSHapticFeedback.iOSFeedbackType.ImpactMedium);
+            iOSHapticFeedback.Instance.Trigger(iOSHapticFeedback.iOSFeedbackType.ImpactLight);
         }
         else if (platform == 1)
         {
