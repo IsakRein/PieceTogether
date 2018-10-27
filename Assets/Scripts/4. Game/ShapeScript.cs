@@ -34,8 +34,8 @@ public class ShapeScript : MonoBehaviour {
     private GameObject pointer;
 
     bool draggingItem = false;
-    private bool xWhole;
-    private bool yWhole;
+    private bool xEven;
+    private bool yEven;
 	public List<Vector2> squarePositions = new List<Vector2>();
 	private float scaleInNav;
 	private bool dropInNav;
@@ -105,23 +105,25 @@ public class ShapeScript : MonoBehaviour {
         AverageX = (HighestX + LowestX) / 2;
         AverageY = (HighestY + LowestY) / 2;
 
-        if (AverageX == Mathf.RoundToInt(AverageX))
+        if (AverageX.Equals(Mathf.Round(AverageX)))
         {
-            xWhole = true;
+            xEven= true;
         }
         else
         {
-            xWhole = false;
+            xEven= false;
         }
 
-        if (AverageY == Mathf.RoundToInt(AverageY))
+        if (AverageY.Equals(Mathf.Round(AverageY)))
         {
-            yWhole = true;
+            yEven = true;
         }
         else
         {
-            yWhole = false;
+            yEven = false;
         }
+
+       // Debug.Log(number + ": " + "highest y: " + HighestY + ", lowest y: " + LowestY + ", yEven: " + yEven);
 
         transform.position = new Vector2(AverageX, AverageY);
 
@@ -166,7 +168,7 @@ public class ShapeScript : MonoBehaviour {
 			float xPos;
 			float yPos;
 
-			if (xWhole)
+			if (xEven)
 			{
 				xPos = scaleValue * Mathf.Round(transform.position.x / scaleValue);
 			}
@@ -175,22 +177,29 @@ public class ShapeScript : MonoBehaviour {
 				xPos = scaleValue * (Mathf.Floor(transform.position.x / scaleValue) + 0.5f);
 			}
 
-			if (yWhole)
+			if (yEven)
 			{
-				yPos = scaleValue * Mathf.Round(transform.position.y / scaleValue);
-			}
+                yPos = scaleValue * Mathf.Round((transform.position.y)/ scaleValue);
+            }
 			else
 			{
 				yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
-			}
-
-            yPos -= scaleValue - 0.6f;
+            }
 
 			bool objectsOverlapping = false;
 
+            if (transform.position.y - yPos < 0)
+            {
+                yPos = yPos - (0.6f - scaleValue);
+            }
+            else
+            {
+                yPos = yPos + (0.6f - scaleValue);
+            }
+
 			if (lastPointedX != xPos || lastPointedY != yPos)
 			{
-				for (int i = 0; i < transform.childCount - 1; i++)
+                for (int i = 0; i < transform.childCount - 1; i++)
 				{
                     float x = Mathf.Round((transform.GetChild(i).localPosition.x + (xPos / scaleValue)) * 10f) / 10f;
 					float y = Mathf.Round((transform.GetChild(i).localPosition.y + (yPos / scaleValue)) * 10f) / 10f;
