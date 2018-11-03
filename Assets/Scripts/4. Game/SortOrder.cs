@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class Positions
@@ -16,6 +17,15 @@ public class PositionsList
 
 public class SortOrder : MonoBehaviour {
 
+    public List<int> solution = new List<int>();
+    private int highestValue;
+    public int width;
+    public int height;
+
+    public GameObject squarePrefab;
+    public GameObject hintPrefab;
+    public Transform hints;
+
     public List<int> sortOrder = new List<int>();
     public List<ShapeScript> shapes = new List<ShapeScript>();
     public GenerateShapes generateShapes;
@@ -29,6 +39,16 @@ public class SortOrder : MonoBehaviour {
     public AudioClip start;
     public AudioClip levelWon;
 
+    public List<int> notHintedList = new List<int>();
+
+    public TextMeshProUGUI hintText;
+    public TextMeshProUGUI skipText;
+
+    private void Start()
+    {
+        hintText.SetText("" + Utilities.hintCount);
+        skipText.SetText("" + Utilities.skipCount);
+    }
 
     public void CustomStart()
     {
@@ -41,6 +61,83 @@ public class SortOrder : MonoBehaviour {
 
         transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
 
+        foreach (int value in solution)
+        {
+            if (!notHintedList.Contains(value) && value != -1)
+            {
+                notHintedList.Add(value);
+            }
+        }
+    }
+
+    public void GetHint()
+    {
+
+    }
+
+    public void GenerateSolution()
+    {
+        int shape = notHintedList[Random.Range(0, notHintedList.Count)];
+        notHintedList.Remove(shape);
+
+        GenerateShapeHint(shape);
+    }
+
+    void GenerateShapeHint(int num)
+    {
+        GameObject instShape = new GameObject();
+        instShape.name = "instShape";
+        instShape.transform.SetParent(hints);
+
+        for (int i = 0; i < solution.Count; i++)
+        {
+            if (solution[i] == num)
+            {
+                int xOrder;
+                if (i % width == 0)
+                {
+                    xOrder = width;
+                }
+                else
+                {
+                    xOrder = i % width;
+                }
+
+                int yOrder = Mathf.RoundToInt((Mathf.Floor((i - 0.01f) / width)) + 1);
+
+                GameObject instSquare;
+                instSquare = Instantiate(squarePrefab, instShape.transform);
+                instSquare.transform.position = new Vector2(-(0.5f * (width - 1)) + (xOrder - 1), ((0.5f * (height - 1)) - (yOrder - 1)) + (0.6f / generateShapes.scaleValue));
+
+
+
+                Color color = generateShapes.colors[num];
+                Color newColor = new Color(color.r, color.g, color.b, 0.5f);
+                instSquare.GetComponent<SpriteRenderer>().color = newColor;
+            }
+        }
+
+        instShape.transform.localScale = new Vector2(generateShapes.scaleValue, generateShapes.scaleValue);
+
+        for (int i = instShape.transform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = instShape.transform.GetChild(i);
+            child.SetParent(hints);
+        }
+
+        GameObject.Destroy(instShape);
+
+        List<SpriteRenderer> sprites = hints.GetComponent<Hint>().sprites;
+
+        foreach (Transform child in hints.transform)
+        {
+            if (child.name != "instShape")
+            {
+                sprites.Add(child.GetComponent<SpriteRenderer>());
+            }
+        }
+
+        hints.GetComponent<Hint>().hasStarted = true;
     }
 
     public void UpdateSort(int number)
@@ -54,6 +151,11 @@ public class SortOrder : MonoBehaviour {
            
             shape.SetSort(indexNumber);
         }
+    }
+
+    public void SkipLevel()
+    {
+        popUp.InitPopUp("Level Won");
     }
 
     public void UpdatePositions()
@@ -73,8 +175,6 @@ public class SortOrder : MonoBehaviour {
 
     private void CheckIfWon()
     {
-        bool notInBoth = false;
-
         int amountOfSim = 0;
 
         for (int i = 0; i < positionsInOne.Count; i++)
@@ -87,6 +187,10 @@ public class SortOrder : MonoBehaviour {
         //level won
         if (amountOfSim == finishedLevel.Count) {
             //trigger animations etc
+            foreach (ShapeScript shape in shapes)
+            {
+                shape.levelWon = true;
+            }
 
             popUp.InitPopUp("Level Won");
         }

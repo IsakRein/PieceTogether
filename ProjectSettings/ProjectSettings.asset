@@ -150,7 +150,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    iOS: com.Kickflip.PieceTogether
+    Android: com.kickflipgames.PieceTogether
+    iOS: com.kickflipgames.PieceTogether
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -240,8 +241,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: Keystores/user.keystore
+  AndroidKeyaliasName: user
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
@@ -352,6 +353,98 @@ PlayerSettings:
       m_Height: 1024
       m_Kind: 4
       m_SubKind: App Store
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Textures: []
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings: []
@@ -629,11 +722,11 @@ PlayerSettings:
   webGLCompressionFormat: 1
   webGLLinkerTarget: 0
   scriptingDefineSymbols:
-    1: USES_ADDRESS_BOOK;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW
-    4: USES_ADDRESS_BOOK;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW
-    7: USES_ADDRESS_BOOK;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW
-    14: USES_ADDRESS_BOOK;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW
-    25: USES_ADDRESS_BOOK;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW
+    1: USES_ADDRESS_BOOK;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW;USES_BILLING
+    4: USES_ADDRESS_BOOK;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW;USES_BILLING
+    7: USES_ADDRESS_BOOK;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW;USES_BILLING
+    14: USES_ADDRESS_BOOK;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW;USES_BILLING
+    25: USES_ADDRESS_BOOK;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_MEDIA_LIBRARY;USES_NETWORK_CONNECTIVITY;USES_NOTIFICATION_SERVICE;USES_SHARING;USES_TWITTER;USES_WEBVIEW;USES_BILLING
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

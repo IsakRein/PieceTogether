@@ -315,6 +315,10 @@ public class GenerateShapes : MonoBehaviour {
             grid.Add(int.Parse(gameStringList[i]));
         }
 
+        sortOrder.solution.AddRange(grid);
+        sortOrder.width = width;
+        sortOrder.height = height;
+
         List<Transform> childrenToDestroy = new List<Transform>();
 
         foreach (Transform child in objects.transform)
@@ -345,7 +349,6 @@ public class GenerateShapes : MonoBehaviour {
 
         CreateGrid();
 
-
         for (int i = 0; i < shapeCount; i++)
         {
             GameObject instShape;
@@ -355,7 +358,6 @@ public class GenerateShapes : MonoBehaviour {
 
             shapes.Add(instShape.transform);
         }
-
 
         ApplyColor();
 
@@ -733,7 +735,7 @@ public class GenerateShapes : MonoBehaviour {
         backgroundScroll.transform.SetParent(navParent.GetChild(0));
         backgroundScroll.AddComponent<Image>().color = new Color(1, 1, 1, 0);
         backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount - 2f, 2f);
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount + 1f, 2f);
         backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
 
         RectTransform rect = backgroundScroll.GetComponent<RectTransform>();

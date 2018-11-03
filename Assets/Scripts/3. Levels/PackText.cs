@@ -11,7 +11,7 @@ public class PackText : MonoBehaviour {
 	void Start () 
     {
         text = gameObject.GetComponent<TextMeshProUGUI>();  
-        text.SetText(Utilities.currentPack);
+        text.SetText(Utilities.currentPack.ToLower());
     }
 
 }

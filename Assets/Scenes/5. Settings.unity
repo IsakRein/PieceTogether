@@ -167,7 +167,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Restore progress
+  m_text: restore progress
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
   m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 106.5
+  m_fontSize: 111.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -322,7 +322,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Give a review
+  m_text: give a review
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
   m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 103.65
+  m_fontSize: 106.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -551,7 +551,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Information
+  m_text: information
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
   m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 117.9
+  m_fontSize: 119.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -663,6 +663,7 @@ GameObject:
   - component: {fileID: 502838238}
   - component: {fileID: 502838237}
   - component: {fileID: 502838236}
+  - component: {fileID: 502838239}
   - component: {fileID: 502838235}
   m_Layer: 5
   m_Name: Exit
@@ -785,6 +786,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502838233}
+--- !u!114 &502838239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502838233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &541680907
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +882,7 @@ GameObject:
   - component: {fileID: 608961470}
   - component: {fileID: 608961469}
   - component: {fileID: 608961468}
+  - component: {fileID: 608961472}
   - component: {fileID: 608961471}
   m_Layer: 5
   m_Name: Information
@@ -945,7 +958,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 8. Info
+          m_StringArgument: 7. Info
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -992,6 +1005,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f1f11dd51b2541e7afdd303419630b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &608961472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 608961466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619704179
@@ -1068,6 +1092,7 @@ GameObject:
   - component: {fileID: 663337306}
   - component: {fileID: 663337308}
   - component: {fileID: 663337305}
+  - component: {fileID: 663337309}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -1198,6 +1223,17 @@ MonoBehaviour:
   off: {fileID: 447518856}
   onColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
   offColor: {r: 0.754717, g: 0.3645283, b: 0.3645283, a: 1}
+--- !u!114 &663337309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663337303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703924230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1288,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Settings
+  m_text: settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
   m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
@@ -1407,7 +1443,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Leaderboards
+  m_text: leaderboards
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b627931dfe7d548b6af051a401165337, type: 2}
   m_sharedMaterial: {fileID: 21513588039203398, guid: b627931dfe7d548b6af051a401165337,
@@ -1435,7 +1471,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 98.85
+  m_fontSize: 104.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1571,6 +1607,7 @@ GameObject:
   - component: {fileID: 1156157934}
   - component: {fileID: 1156157933}
   - component: {fileID: 1156157932}
+  - component: {fileID: 1156157935}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -1672,6 +1709,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1156157930}
+--- !u!114 &1156157935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1156157930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1256229929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1731,7 @@ GameObject:
   - component: {fileID: 1256229933}
   - component: {fileID: 1256229932}
   - component: {fileID: 1256229931}
+  - component: {fileID: 1256229934}
   m_Layer: 5
   m_Name: Restore progress
   m_TagString: Untagged
@@ -1783,6 +1832,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1256229929}
+--- !u!114 &1256229934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1256229929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1271983424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2325,7 @@ GameObject:
   - component: {fileID: 1946290392}
   - component: {fileID: 1946290391}
   - component: {fileID: 1946290390}
+  - component: {fileID: 1946290393}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -2366,6 +2427,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1946290388}
+--- !u!114 &1946290393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946290388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034791048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,6 +2449,7 @@ GameObject:
   - component: {fileID: 2034791052}
   - component: {fileID: 2034791051}
   - component: {fileID: 2034791050}
+  - component: {fileID: 2034791054}
   - component: {fileID: 2034791053}
   m_Layer: 5
   m_Name: Vibration
@@ -2508,3 +2581,14 @@ MonoBehaviour:
   off: {fileID: 1892264480}
   onColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
   offColor: {r: 0.7529412, g: 0.3647059, b: 0.3647059, a: 1}
+--- !u!114 &2034791054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034791048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

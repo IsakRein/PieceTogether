@@ -10,34 +10,41 @@ public class PopUp : MonoBehaviour {
 
     public InputManager inputManager;
 
+    public Animator blurAnimator;
+    public Animator menuAnimator;
+    public Animator levelWonAnimator;
+
     private string startedType;
 
     public void InitPopUp(string type)
     {
-        blur.SetActive(true);
-        inputManager.interactable = false;
         startedType = type;
 
-        if (startedType == "Menu")
-        {
-            menu.SetActive(true);
+        inputManager.interactable = false;
+        blur.SetActive(true);
 
+        if (startedType == "Menu")
+        {  
+            blurAnimator.SetTrigger("Start");
+            menu.SetActive(true);
+            menuAnimator.SetTrigger("Start");
         }
 
         else if (startedType == "Level Won")
         {
+            blurAnimator.SetTrigger("StartDelay");
             levelWon.SetActive(true);
+            levelWonAnimator.SetTrigger("StartDelay");
         }
     }
 
     public void StopPopUp()
     {
-        if (startedType != "Level Won")
+        if (startedType == "Menu")
         {
+            blurAnimator.SetTrigger("Stop");
+            menuAnimator.SetTrigger("Stop");
             inputManager.interactable = true;
-            blur.SetActive(false);
-            menu.SetActive(false);
-            levelWon.SetActive(false);
         }
     }
 }

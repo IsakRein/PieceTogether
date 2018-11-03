@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 313093831}
   - component: {fileID: 313093830}
   - component: {fileID: 313093829}
+  - component: {fileID: 313093833}
   - component: {fileID: 313093832}
   m_Layer: 5
   m_Name: Store
@@ -197,7 +198,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 7. Store
+          m_StringArgument: 6. Store
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -244,6 +245,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f1f11dd51b2541e7afdd303419630b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &313093833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313093827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &391745558
@@ -295,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -325,6 +337,7 @@ GameObject:
   - component: {fileID: 562261332}
   - component: {fileID: 562261331}
   - component: {fileID: 562261330}
+  - component: {fileID: 562261334}
   - component: {fileID: 562261333}
   m_Layer: 5
   m_Name: Info
@@ -398,7 +411,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 8. Info
+          m_StringArgument: 7. Info
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -445,6 +458,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f1f11dd51b2541e7afdd303419630b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &562261334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 562261328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &768797518
@@ -596,7 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -856,7 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1047,6 +1071,21 @@ Prefab:
       propertyPath: orthographic size
       value: 8.888889
       objectReference: {fileID: 0}
+    - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c5976fe58bbb4afaa2a2f288b680abf, type: 2}
   m_IsPrefabParent: 0
@@ -1062,6 +1101,7 @@ GameObject:
   - component: {fileID: 1344980843}
   - component: {fileID: 1344980842}
   - component: {fileID: 1344980845}
+  - component: {fileID: 1344980846}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -1183,6 +1223,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1f11dd51b2541e7afdd303419630b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1344980846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344980840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1809492312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1314,7 @@ GameObject:
   - component: {fileID: 1817966673}
   - component: {fileID: 1817966672}
   - component: {fileID: 1817966675}
+  - component: {fileID: 1817966676}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -1382,6 +1434,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f1f11dd51b2541e7afdd303419630b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1817966676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1817966670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10eee7ec1ce4019be80237b514bb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2025611005

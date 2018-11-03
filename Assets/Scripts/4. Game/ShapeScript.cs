@@ -53,6 +53,11 @@ public class ShapeScript : MonoBehaviour {
 
     public Transform content;
 
+    public bool levelWon;
+
+    private float rotationSpeed;
+    private Vector2 direction;
+
     public void CustomStart()
     {
         isInNav = true;
@@ -159,11 +164,32 @@ public class ShapeScript : MonoBehaviour {
 
         targetPos = transform.position;
 
+        int rotationDirection = UnityEngine.Random.Range(0, 2);
+        rotationSpeed = UnityEngine.Random.Range(5f, 10f);
+
+        if (rotationDirection == 1)
+        {
+            rotationSpeed = -rotationSpeed;
+        }
+
+        direction = UnityEngine.Random.insideUnitCircle;
+        direction.Normalize();
     }
 
     private void Update()
     {
-		if (draggingItem)
+        if (levelWon)
+        {
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Translate(direction * 0.1f * Time.deltaTime);
+
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.sortingOrder = 19;
+            }
+        }
+
+        else if (draggingItem)
 		{
 			float xPos;
 			float yPos;

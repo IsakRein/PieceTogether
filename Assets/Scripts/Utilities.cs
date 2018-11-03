@@ -22,6 +22,11 @@ public static class Utilities
     public static bool SoundOn;
     public static bool VibrationOn;
 
+    public static bool removeAdsBought;
+    public static bool expertBundleBought;
+    public static int hintCount;
+    public static int skipCount;
+
 #if UNITY_IOS && !UNITY_EDITOR
     public static int platform = 0;
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -32,6 +37,62 @@ public static class Utilities
 
     public static void Initialize()
     {
+        //removeads
+        if (PlayerPrefs.HasKey("removeAdsBought"))
+        {
+            if (PlayerPrefs.GetInt("removeAdsBought") == 1)
+            {
+                removeAdsBought = true;
+            }
+            else
+            {
+                removeAdsBought = false;
+            }
+        }
+        else
+        {
+            removeAdsBought = false;
+        }
+
+        //expertbundle
+        if (PlayerPrefs.HasKey("expertBundleBought"))
+        {
+            if (PlayerPrefs.GetInt("expertBundleBought") == 1)
+            {
+                expertBundleBought = true;
+            }
+            else
+            {
+                expertBundleBought = false;
+            }
+        }
+        else
+        {
+            expertBundleBought = false;
+        }
+
+        //hintCount
+        if (PlayerPrefs.HasKey("hintCount"))
+        {
+            hintCount = PlayerPrefs.GetInt("hintCount");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("hintCount", 0);
+            hintCount = 0;
+        }
+
+        //hintCount
+        if (PlayerPrefs.HasKey("skipCount"))
+        {
+            skipCount = PlayerPrefs.GetInt("skipCount");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("skipCount", 0);
+            skipCount = 0;
+        }
+
         if (PlayerPrefs.HasKey("Sound"))
         {
             if (PlayerPrefs.GetInt("Sound") == 1)
@@ -89,6 +150,29 @@ public static class Utilities
 
     }
 
+    public static void BuyRemoveAds()
+    {
+        removeAdsBought = true;
+        PlayerPrefs.SetInt("removeAdsBought", 1);
+    }
+
+    public static void BuyExpertBundle()
+    {
+        expertBundleBought = true;
+        PlayerPrefs.SetInt("expertBundleBought", 1);
+    }
+
+    public static void AddHints(int count)
+    {
+        hintCount = hintCount + count;
+        PlayerPrefs.SetInt("hintCount", hintCount);
+    }
+
+    public static void AddSkips(int count)
+    {
+        skipCount = skipCount + count;
+        PlayerPrefs.SetInt("skipCount", skipCount);
+    }
 
     public static void Vibrate() 
     {

@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Custom/BLUR" {
+shader "Custom/BLUR" {
     Properties {
         _Color ("Main Color", Color) = (1,1,1,1)
         _BumpAmt  ("Distortion", Range (0,128)) = 10
@@ -53,7 +53,7 @@ Shader "Custom/BLUR" {
              
                 sampler2D _GrabTexture;
                 float4 _GrabTexture_TexelSize;
-                float _Size;
+                 float _Size;
              
                 half4 frag( v2f i ) : COLOR {
                  
