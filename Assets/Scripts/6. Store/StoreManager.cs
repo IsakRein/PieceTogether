@@ -6,18 +6,17 @@ using TMPro;
 
 public class StoreManager : MonoBehaviour {
 
-    public string lastSelectedProduct = "";
+    public string lastSelectedProduct;
 
-    public List<string> objects = new List<string>();
+    public List<Transform> objects = new List<Transform>();
+    public List<string> objectNames = new List<string>();
 
     public GameObject loadingCanvas;
     public GameObject storeCanvas;
-
     public GameObject loading;
     public GameObject couldNotLoad;
 
-    public List<TextMeshProUGUI> productNames = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> prices = new List<TextMeshProUGUI>();
+    [Space]
 
     public Animator blurAnimator;
     public Animator alertAnimator;
@@ -33,9 +32,6 @@ public class StoreManager : MonoBehaviour {
     [Space]
 
     public TextMeshProUGUI productTextPopUp;
-
-
-    public TextMeshProUGUI logoText;
 
     //start
     public void RequestBillingProducts()
@@ -74,33 +70,33 @@ public class StoreManager : MonoBehaviour {
         if (_error != null)
         {
             // Something went wrong
-            couldNotLoad.SetActive(true);
 
-            logoText.SetText("1");
+            couldNotLoad.SetActive(true);
         }
         else
         {
             // Inject code to display received products
-            loadingCanvas.SetActive(false);
-            storeCanvas.SetActive(true);
-
-            if (_regProductsList != null || _regProductsList.Length != 0)
+            if (_regProductsList != null && _regProductsList.Length != 0)
             {
-                for (int i = 0; i < prices.Count; i++)
-                {
-                    productNames[i].SetText("" + _regProductsList[i].Name);
-                    prices[i].SetText("" + _regProductsList[i].LocalizedPrice);
+                loadingCanvas.SetActive(false);
+                storeCanvas.SetActive(true);
 
+                for (int i = 0; i < objects.Count; i++)
+                {
+                    if (i == 6)
+                    {
+                        i = 7;
+                    }
+                    objects[i].GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].Name);
+                    objects[i].GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].LocalizedPrice);
                 }
             }
+
             else
             {
-                for (int i = 0; i < prices.Count; i++)
-                {
-                    productNames[i].SetText("Null");
-                    prices[i].SetText("Null");
-
-                }
+                loadingCanvas.SetActive(true);
+                storeCanvas.SetActive(false);
+                couldNotLoad.SetActive(true);
             }
         }
     }
@@ -119,7 +115,7 @@ public class StoreManager : MonoBehaviour {
 
     public void PurchaseProduct()
     {
-        BuyItem(NPSettings.Billing.Products[objects.IndexOf(lastSelectedProduct)]);
+        BuyItem(NPSettings.Billing.Products[objectNames.IndexOf(lastSelectedProduct)]);
     }
 
     public void BuyItem(BillingProduct _product)
@@ -140,10 +136,16 @@ public class StoreManager : MonoBehaviour {
         NPBinding.Billing.BuyProduct(_product);
 
         // At this point you can display an activity indicator to inform user that task is in progress
+
+        loadingCanvas.SetActive(true);
+        loading.SetActive(true);
     }
 
     private void OnDidFinishTransaction(BillingTransaction _transaction)
     {
+        loadingCanvas.SetActive(false);
+        loading.SetActive(false);
+
         if (_transaction != null)
         {
             if (_transaction.VerificationState == eBillingTransactionVerificationState.SUCCESS)
