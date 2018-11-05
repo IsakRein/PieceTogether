@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VoxelBusters.NativePlugins;
 
 public static class Utilities
 {
@@ -126,6 +127,28 @@ public static class Utilities
         }
     }
 
+    public static void CompareCloudAndLocal()
+    {
+        bool differenceExists = false;
+        
+        if ((NPBinding.CloudServices.GetBool("expertBundleBought") == true && PlayerPrefs.GetInt("expertBundleBought") == 0) || (NPBinding.CloudServices.GetBool("expertBundleBought") == false && PlayerPrefs.GetInt("expertBundleBought") == 1))
+        {
+
+        }
+            PlayerPrefs.SetInt("removeAdsBought", 1);
+        NPBinding.CloudServices.SetBool("removeAdsBought", true);
+
+        PlayerPrefs.SetInt("expertBundleBought", 1);
+        NPBinding.CloudServices.SetBool("expertBundleBought", true);
+
+        PlayerPrefs.SetInt("hintCount", hintCount);
+        NPBinding.CloudServices.SetLong("hintCount", hintCount);
+
+
+        PlayerPrefs.SetInt("skipCount", skipCount);
+        NPBinding.CloudServices.SetLong("skipCount", skipCount);
+    }
+
     public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
@@ -154,24 +177,28 @@ public static class Utilities
     {
         removeAdsBought = true;
         PlayerPrefs.SetInt("removeAdsBought", 1);
+        NPBinding.CloudServices.SetBool("removeAdsBought", true);
     }
 
     public static void BuyExpertBundle()
     {
         expertBundleBought = true;
         PlayerPrefs.SetInt("expertBundleBought", 1);
+        NPBinding.CloudServices.SetBool("expertBundleBought", true);
     }
 
     public static void AddHints(int count)
     {
         hintCount = hintCount + count;
         PlayerPrefs.SetInt("hintCount", hintCount);
+        NPBinding.CloudServices.SetLong("hintCount", hintCount);
     }
 
     public static void AddSkips(int count)
     {
         skipCount = skipCount + count;
         PlayerPrefs.SetInt("skipCount", skipCount);
+        NPBinding.CloudServices.SetLong("skipCount", skipCount);
     }
 
     public static void Vibrate() 

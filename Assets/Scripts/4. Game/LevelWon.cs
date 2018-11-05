@@ -11,6 +11,7 @@ public class LevelWon : MonoBehaviour
         if (Utilities.currentLevel == lastWonLevel + 1)
         {
             PlayerPrefs.SetInt(Utilities.currentPack, lastWonLevel + 1);
+            NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
         }
 
         Utilities.currentLevel += 1;

@@ -43,6 +43,7 @@ public class ExpertBundle : MonoBehaviour
         //transaction stuff
 
         PlayerPrefs.SetInt("ExpertBundleBought", 1);
+        NPBinding.CloudServices.SetBool("ExpertBundleBought", true);
         Bought();
     }
 }
