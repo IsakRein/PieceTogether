@@ -135,7 +135,7 @@ public static class Utilities
         {
 
         }
-            PlayerPrefs.SetInt("removeAdsBought", 1);
+        PlayerPrefs.SetInt("removeAdsBought", 1);
         NPBinding.CloudServices.SetBool("removeAdsBought", true);
 
         PlayerPrefs.SetInt("expertBundleBought", 1);
