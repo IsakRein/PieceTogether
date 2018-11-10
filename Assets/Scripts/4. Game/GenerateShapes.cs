@@ -745,7 +745,7 @@ public class GenerateShapes : MonoBehaviour {
         //position
         if (shapes.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) {
             navParent.GetComponent<ScrollRect>().enabled = true;
-            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Screen.width / 192f) + (rect.offsetMin.x - rect.offsetMax.x)), 0);
+            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + (rect.offsetMin.x - rect.offsetMax.x)), 0);
         }
         else {
             navParent.GetComponent<ScrollRect>().enabled = false;

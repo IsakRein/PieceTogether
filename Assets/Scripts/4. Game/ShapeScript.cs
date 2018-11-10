@@ -205,7 +205,7 @@ public class ShapeScript : MonoBehaviour {
 
 			if (yEven)
 			{
-                yPos = scaleValue * Mathf.Round((transform.position.y)/ scaleValue);
+                yPos = scaleValue * Mathf.Round((transform.position.y) / scaleValue);
             }
 			else
 			{
@@ -214,7 +214,7 @@ public class ShapeScript : MonoBehaviour {
 
 			bool objectsOverlapping = false;
 
-            if (transform.position.y - yPos < 0)
+            if ((transform.position.y - yPos) < 0)
             {
                 yPos = yPos - (0.6f - scaleValue);
             }
@@ -224,7 +224,10 @@ public class ShapeScript : MonoBehaviour {
             }
 
 			if (!Mathf.Approximately(lastPointedX, xPos) || !Mathf.Approximately(lastPointedY, yPos))
-			{            
+			{
+                Debug.Log(lastPointedY + "; " + yPos);
+                Debug.Log(transform.position.y - yPos < 0);
+
                 for (int i = 0; i < transform.childCount - 1; i++)
 				{
                     float x = Mathf.Round((transform.GetChild(i).localPosition.x + (xPos / scaleValue)) * 10f) / 10f;
@@ -242,8 +245,6 @@ public class ShapeScript : MonoBehaviour {
                     /*
                     0.6 --> -4.5
                     x/scalevalue = -4.5 
-
-
                     */
 
                     else if (lossyX > screenWidth/2 || lossyX < -screenWidth/2)

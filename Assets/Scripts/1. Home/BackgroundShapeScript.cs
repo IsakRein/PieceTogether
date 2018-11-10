@@ -9,7 +9,7 @@ public class BackgroundShapeScript : MonoBehaviour {
 
     private void Start()
     {
-        target = new Vector3(transform.position.x, transform.position.y + (Screen.height * 15));
+        target = new Vector3(transform.position.x, transform.position.y + (Camera.main.orthographicSize * 10 * Screen.height / Screen.width));
 
         speed = 2f + Random.Range(-0.5f, 0.5f);
     }
@@ -20,13 +20,9 @@ public class BackgroundShapeScript : MonoBehaviour {
 
         transform.position = Vector3.MoveTowards(transform.position, target, step);    
 
-        if (transform.position == target)
+        if (transform.position.y >= target.y)
         {
-            if (gameObject.transform.position == target) 
-            {
-                Debug.Log(transform.position.y);
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 
