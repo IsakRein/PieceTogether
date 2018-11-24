@@ -191,6 +191,7 @@ public class ShapeScript : MonoBehaviour {
 
         else if (draggingItem)
 		{
+
 			float xPos;
 			float yPos;
 
@@ -205,28 +206,20 @@ public class ShapeScript : MonoBehaviour {
 
 			if (yEven)
 			{
-                yPos = scaleValue * Mathf.Round((transform.position.y) / scaleValue);
+                yPos = (Mathf.Round((transform.position.y - 0.6f) / scaleValue) * scaleValue) + 0.6f;
             }
 			else
 			{
-				yPos = scaleValue * (Mathf.Floor(transform.position.y / scaleValue) + 0.5f);
+                yPos = (Mathf.Round((transform.position.y - (0.6f - (scaleValue / 2))) / scaleValue) * scaleValue) + (0.6f - (scaleValue / 2));
             }
 
-			bool objectsOverlapping = false;
-
-            if ((transform.position.y - yPos) < 0)
-            {
-                yPos = yPos - (0.6f - scaleValue);
-            }
-            else
-            {
-                yPos = yPos + (0.6f - scaleValue);
-            }
-
-			if (!Mathf.Approximately(lastPointedX, xPos) || !Mathf.Approximately(lastPointedY, yPos))
+            float tempYPos = yPos;
+            
+            bool objectsOverlapping = false;
+            if (!Mathf.Approximately(lastPointedX, xPos) || !Mathf.Approximately(lastPointedY, yPos))
 			{
-                Debug.Log(lastPointedY + "; " + yPos);
-                Debug.Log(transform.position.y - yPos < 0);
+               
+                Debug.Log("transform.position.y: " + transform.position.y + "; yPosNonRounded:" + tempYPos + "; yPos: " + yPos);
 
                 for (int i = 0; i < transform.childCount - 1; i++)
 				{
