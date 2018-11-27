@@ -28,22 +28,31 @@ public class Nav : MonoBehaviour {
         if (objectsInNav.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height))
         {
             navParent.GetComponent<ScrollRect>().enabled = true;
+            RectTransform containerRect = container.GetComponent<RectTransform>();
 
-            float totalOffset = -((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + (rect.offsetMin.x - rect.offsetMax.x));
-            float prevLeftOffset = container.GetComponent<RectTransform>().offsetMin.x;
-            float prevRightOffset = container.GetComponent<RectTransform>().offsetMax.x;
-            float prevTotalOffset = prevLeftOffset + prevRightOffset;
+            float totalOffset = -((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + rect.offsetMin.x - rect.offsetMax.x);
 
-            if (prevTotalOffset == 0)
+            /*
+            navParent.GetComponent<ScrollRect>().enabled = true;
+            RectTransform containerRect = container.GetComponent<RectTransform>();
+
+            float totalOffset = -((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + rect.offsetMin.x - rect.offsetMax.x);
+            float prevTotalOffset = Mathf.Abs(containerRect.offsetMin.x) + Mathf.Abs(containerRect.offsetMax.x);
+
+            if (totalOffset.Equals(0f))
             {
-                container.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-                container.GetComponent<RectTransform>().offsetMax = new Vector2(totalOffset, 0);
+                containerRect.offsetMin = new Vector2(0, 0);
+                containerRect.offsetMax = new Vector2(totalOffset, 0);
             }
+
             else 
             {
-                container.GetComponent<RectTransform>().offsetMin = new Vector2(-totalOffset * prevLeftOffset / prevTotalOffset, 0);
-                container.GetComponent<RectTransform>().offsetMax = new Vector2(totalOffset * prevRightOffset / prevTotalOffset, 0);
+                Debug.Log("totalOffset: " + totalOffset + ", prevLeftOffset: " + containerRect.offsetMin.x + ", prevRightOffset: " + containerRect.offsetMax.x + ", prevTotalOffset: " + prevTotalOffset);
+
+                containerRect.offsetMin = new Vector2(-totalOffset * containerRect.offsetMin.x / prevTotalOffset, 0);
+                containerRect.offsetMax = new Vector2(totalOffset * containerRect.offsetMax.x / prevTotalOffset, 0);
             }
+            */
         }
         else
         {

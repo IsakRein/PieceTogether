@@ -735,7 +735,7 @@ public class GenerateShapes : MonoBehaviour {
         backgroundScroll.transform.SetParent(navParent.GetChild(0));
         backgroundScroll.AddComponent<Image>().color = new Color(1, 1, 1, 0);
         backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount + 1f, 2f);
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount, 2f);
         backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
 
         RectTransform rect = backgroundScroll.GetComponent<RectTransform>();
@@ -745,7 +745,7 @@ public class GenerateShapes : MonoBehaviour {
         //position
         if (shapes.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) {
             navParent.GetComponent<ScrollRect>().enabled = true;
-            content.GetComponent<RectTransform>().offsetMax = new Vector2(-((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + (rect.offsetMin.x - rect.offsetMax.x)), 0);
+            content.GetComponent<RectTransform>().offsetMax = new Vector2((shapeCount)/2, 0);
         }
         else {
             navParent.GetComponent<ScrollRect>().enabled = false;
