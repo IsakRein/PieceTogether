@@ -735,29 +735,30 @@ public class GenerateShapes : MonoBehaviour {
         backgroundScroll.transform.SetParent(navParent.GetChild(0));
         backgroundScroll.AddComponent<Image>().color = new Color(1, 1, 1, 0);
         backgroundScroll.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount, 2f);
-        backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
-
+        backgroundScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(shapeCount + 0.5f, 2f);
         RectTransform rect = backgroundScroll.GetComponent<RectTransform>();
-
         content.GetComponent<Nav>().rect = rect;
-       
+
         //position
         if (shapes.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height)) {
             navParent.GetComponent<ScrollRect>().enabled = true;
-            content.GetComponent<RectTransform>().offsetMax = new Vector2((shapeCount)/2, 0);
+            content.GetComponent<RectTransform>().offsetMax = new Vector2((shapeCount + 0.5f)/2, 0);
         }
         else {
             navParent.GetComponent<ScrollRect>().enabled = false;
             content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         }
-       
+
+        backgroundScroll.GetComponent<RectTransform>().localPosition = new Vector2(0f, -4f);
+
         for (int i = 0; i < shapes.Count; i++)
         {
             float x = i - (shapeCount - 1f) / 2f;
             shapes[i].localPosition = new Vector2(x, -4f);
             content.GetComponent<Nav>().objectsInNav.Add(shapes[i]);
         }
+
+        content.GetComponent<Nav>().PosChildren();
     }
 
     bool UpAvaliable(int square)

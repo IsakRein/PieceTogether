@@ -25,34 +25,43 @@ public class Nav : MonoBehaviour {
             }
         }
 
-        if (objectsInNav.Count > Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height))
+        int filledScreenCount = Mathf.FloorToInt(Camera.main.orthographicSize * 2 * Screen.width / Screen.height);
+
+        if (objectsInNav.Count > filledScreenCount)
         {
             navParent.GetComponent<ScrollRect>().enabled = true;
             RectTransform containerRect = container.GetComponent<RectTransform>();
 
-            float totalOffset = -((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + rect.offsetMin.x - rect.offsetMax.x);
+            float totalOffset = (objectsInNav.Count - filledScreenCount - 1) + 0.8f;
 
-            /*
-            navParent.GetComponent<ScrollRect>().enabled = true;
-            RectTransform containerRect = container.GetComponent<RectTransform>();
-
-            float totalOffset = -((Camera.main.orthographicSize * 2 * Screen.width / Screen.height) + rect.offsetMin.x - rect.offsetMax.x);
-            float prevTotalOffset = Mathf.Abs(containerRect.offsetMin.x) + Mathf.Abs(containerRect.offsetMax.x);
-
-            if (totalOffset.Equals(0f))
+            if (containerRect.offsetMin.x.Equals(0f) && containerRect.offsetMax.x.Equals(0f))
             {
                 containerRect.offsetMin = new Vector2(0, 0);
                 containerRect.offsetMax = new Vector2(totalOffset, 0);
             }
-
-            else 
+            else
             {
-                Debug.Log("totalOffset: " + totalOffset + ", prevLeftOffset: " + containerRect.offsetMin.x + ", prevRightOffset: " + containerRect.offsetMax.x + ", prevTotalOffset: " + prevTotalOffset);
+                float prevOffset = containerRect.offsetMin.x + (-containerRect.offsetMax.x);
+                float leftShare = containerRect.offsetMin.x / prevOffset;
+                float rightShare = -containerRect.offsetMax.x / prevOffset;
 
-                containerRect.offsetMin = new Vector2(-totalOffset * containerRect.offsetMin.x / prevTotalOffset, 0);
-                containerRect.offsetMax = new Vector2(totalOffset * containerRect.offsetMax.x / prevTotalOffset, 0);
+                Debug.Log(leftShare + "/" + rightShare);
+
+                if (leftShare < rightShare)
+                {
+                    containerRect.offsetMax = new Vector2(totalOffset + containerRect.offsetMin.x, 0);
+                }
+
+                else
+                {
+                    containerRect.offsetMin = new Vector2(containerRect.offsetMax.x - totalOffset, 0);
+                }
+
+                /*
+                containerRect.offsetMin = new Vector2(-leftShare * totalOffset, 0);
+                containerRect.offsetMax = new Vector2(rightShare * totalOffset, 0);
+                */
             }
-            */
         }
         else
         {
@@ -60,5 +69,7 @@ public class Nav : MonoBehaviour {
             container.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
             container.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         }
+
+        rect.localPosition = new Vector2(0f, -4f);
     }
 }
