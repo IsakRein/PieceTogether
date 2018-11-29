@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class GenerateLevelUI : MonoBehaviour {
 
@@ -25,13 +26,15 @@ public class GenerateLevelUI : MonoBehaviour {
 
     public Button leftButton;
     public Button rightButton;
+    int lastFinishedLevel;
+
+    public ScrollRect scrollRect;
+    public ScrollSnap scrollSnap;
 
     public List<Image> circles = new List<Image>();
 
     void Start () {
         rectTransform = gameObject.GetComponent<RectTransform>();
-
-        int lastFinishedLevel;
 
         if (!PlayerPrefs.HasKey(Utilities.currentPack)) 
         {
@@ -87,6 +90,13 @@ public class GenerateLevelUI : MonoBehaviour {
         }
 
         scrollRectBack.GetComponent<RectTransform>().localPosition = new Vector2(width / 2, 20f);
+
+          //GetComponent<RectTransform>().localPosition = new Vector2(643f, 0);
+        GetComponent<RectTransform>().localPosition = new Vector2((2 * width) - ((Mathf.FloorToInt(lastFinishedLevel + 1) / 30) * width), 0);
+
+        scrollSnap._startingPage = Mathf.FloorToInt(lastFinishedLevel + 1) / 30;
+        scrollRect.enabled = true;
+        scrollSnap.enabled = true;
     }
 
     private void Update()

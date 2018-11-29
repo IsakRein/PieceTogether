@@ -39,7 +39,7 @@ namespace UnityEngine.UI.Extensions
 
         private int _pages;
 
-        private int _startingPage = 0;
+        public int _startingPage = 0;
 
         // anchor points to lerp to to see child on certain indexes
         private Vector3[] _pageAnchorPositions;
@@ -119,7 +119,7 @@ namespace UnityEngine.UI.Extensions
             UpdateListItemsSize();
             UpdateListItemPositions();
 
-            PageChanged(CurrentPage());
+            PageChanged(_startingPage);
 
             if (NextButton)
             {
@@ -226,6 +226,8 @@ namespace UnityEngine.UI.Extensions
                     }
                 }
 
+                activeCount -= 1;
+
                 // if anything changed since last check reinitialize anchors list
                 _itemsCount = 0;
                 Array.Resize(ref _pageAnchorPositions, activeCount);
@@ -236,6 +238,8 @@ namespace UnityEngine.UI.Extensions
 
                     if (direction == ScrollDirection.Horizontal)
                     {
+                        Debug.Log(activeCount + " " + _itemsCount);
+
                         // looking for list spanning range min/max
                         _scroll_rect.horizontalNormalizedPosition = 0;
                         _listContainerMaxPosition = _listContainerTransform.localPosition.x;
@@ -370,6 +374,7 @@ namespace UnityEngine.UI.Extensions
             {
                 _fastSwipeCounter++;
             }
+
         }
 
         private bool fastSwipe = false; //to determine if a fast swipe was performed

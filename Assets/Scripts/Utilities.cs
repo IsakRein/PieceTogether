@@ -9,16 +9,11 @@ public static class Utilities
     public static List<string> previousScenes = new List<string>();
 
     public static string currentPack;
+    public static string currentPackInt;
+
     public static int currentLevel;
 
-    public static int beginnerLastDone;
-    public static int easyLastDone;
-    public static int normalLastDone;
-    public static int hardLastDone;
-    public static int advancedLastDone;
-    public static int expert1LastDone;
-    public static int expert2LastDone;
-    public static int expert3LastDone;
+    public static List<int> lastDone = new List<int>();
 
     public static bool SoundOn;
     public static bool VibrationOn;
@@ -203,13 +198,16 @@ public static class Utilities
 
     public static void Vibrate() 
     {
-        if (platform == 0)
+        if (VibrationOn)
         {
-            iOSHapticFeedback.Instance.Trigger(iOSHapticFeedback.iOSFeedbackType.ImpactLight);
-        }
-        else if (platform == 1)
-        {
-            AndroidManager.HapticFeedback();
+            if (platform == 0)
+            {
+                iOSHapticFeedback.Instance.Trigger(iOSHapticFeedback.iOSFeedbackType.ImpactLight);
+            }
+            else if (platform == 1)
+            {
+                AndroidManager.HapticFeedback();
+            }
         }
     }
 }

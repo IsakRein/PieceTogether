@@ -349,7 +349,7 @@ public class ShapeScript : MonoBehaviour {
 
         sortOrder.UpdateSort(number);
         
-		if (dropInNav) {
+        if (isInNav) {
 			transform.localScale = new Vector2(scaleInNav, scaleInNav);
             transform.SetParent(content.transform);
 
@@ -358,7 +358,10 @@ public class ShapeScript : MonoBehaviour {
                 Transform child = content.transform.GetChild(i);
 
                 if (child.name != "Background Scroll" && child != transform) {
-                    if (child.transform.position.x > transform.position.x) {
+                    if (child.transform.position.x > transform.position.x)
+                    {
+                        Debug.Log(i);
+
                         transform.SetSiblingIndex(i);
 
                         if (!content.GetComponent<Nav>().objectsInNav.Contains(transform))
@@ -366,6 +369,14 @@ public class ShapeScript : MonoBehaviour {
                             content.GetComponent<Nav>().objectsInNav.Insert(i, transform);
                         }
                         break;
+                    }
+                }
+
+                if (i == content.childCount - 1)
+                {
+                    if (!content.GetComponent<Nav>().objectsInNav.Contains(transform))
+                    {
+                        content.GetComponent<Nav>().objectsInNav.Add(transform);
                     }
                 }
             }

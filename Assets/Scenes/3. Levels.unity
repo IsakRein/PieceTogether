@@ -156,7 +156,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 14146644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1367256648, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
-  m_DecelerationRate: 0.135
+  m_DecelerationRate: 0
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
@@ -187,11 +187,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 14146644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c598b387777d96643991be3f0b6c98c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingPage: 0
   NextButton: {fileID: 1019962879}
   PrevButton: {fileID: 203804265}
   ItemsVisibleAtOnce: 1
@@ -438,6 +439,8 @@ MonoBehaviour:
   notSelectedCircle: {fileID: 21300046, guid: 06d21319ec7a541e6ba83bffdd1736ce, type: 3}
   leftButton: {fileID: 203804265}
   rightButton: {fileID: 1019962879}
+  scrollRect: {fileID: 14146646}
+  scrollSnap: {fileID: 14146647}
   circles:
   - {fileID: 1018869210}
   - {fileID: 929274563}
@@ -1078,7 +1081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 71.200195, y: -85.700195}
+  m_AnchoredPosition: {x: 71.200195, y: -85.69922}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187730011
