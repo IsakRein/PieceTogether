@@ -7,12 +7,16 @@ public class PopUp : MonoBehaviour {
     public GameObject blur;
     public GameObject menu;
     public GameObject levelWon;
+    public GameObject hint;
+    public GameObject skip;
 
     public InputManager inputManager;
 
     public Animator blurAnimator;
     public Animator menuAnimator;
     public Animator levelWonAnimator;
+    public Animator hintAnimator;
+    public Animator skipAnimator;
 
     private string startedType;
 
@@ -24,7 +28,7 @@ public class PopUp : MonoBehaviour {
         blur.SetActive(true);
 
         if (startedType == "Menu")
-        {  
+        {
             blurAnimator.SetTrigger("Start");
             menu.SetActive(true);
             menuAnimator.SetTrigger("Start");
@@ -36,6 +40,20 @@ public class PopUp : MonoBehaviour {
             levelWon.SetActive(true);
             levelWonAnimator.SetTrigger("StartDelay");
         }
+
+        else if (startedType == "Hint")
+        {
+            blurAnimator.SetTrigger("Start");
+            hint.SetActive(true);
+            hintAnimator.SetTrigger("Start");
+        }
+
+        else if (startedType == "Skip")
+        {
+            blurAnimator.SetTrigger("Start");
+            skip.SetActive(true);
+            skipAnimator.SetTrigger("Start");
+        }
     }
 
     public void StopPopUp()
@@ -44,7 +62,21 @@ public class PopUp : MonoBehaviour {
         {
             blurAnimator.SetTrigger("Stop");
             menuAnimator.SetTrigger("Stop");
-            inputManager.interactable = true;
         }
+
+        else if (startedType == "Hint")
+        {
+            blurAnimator.SetTrigger("Stop");
+            hintAnimator.SetTrigger("Stop");
+        }
+       
+        else if (startedType == "Skip")
+        {
+            Debug.Log("stop");
+            blurAnimator.SetTrigger("Stop");
+            skipAnimator.SetTrigger("Stop");
+        }
+
+        inputManager.interactable = true;
     }
 }

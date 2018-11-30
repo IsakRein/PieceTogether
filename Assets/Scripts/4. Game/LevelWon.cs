@@ -13,17 +13,26 @@ public class LevelWon : MonoBehaviour
         if (Utilities.currentLevel == 150)
         {
             allLevelsWon.SetActive(true);
+
+            if (Utilities.currentLevel == lastWonLevel + 1)
+            {
+                PlayerPrefs.SetInt(Utilities.currentPack, lastWonLevel + 1);
+                NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
+            }
         }
 
-        else if (Utilities.currentLevel == lastWonLevel + 1)
+        else
         {
-            PlayerPrefs.SetInt(Utilities.currentPack, lastWonLevel + 1);
-            NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
+            if (Utilities.currentLevel == lastWonLevel + 1)
+            {
+                PlayerPrefs.SetInt(Utilities.currentPack, lastWonLevel + 1);
+                NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
+            }
+
+            Debug.Log(Utilities.currentLevel);
+
+            Utilities.currentLevel += 1;
+            Utilities.LoadScene("4. Game");
         }
-
-        Debug.Log(Utilities.currentLevel);
-
-        Utilities.currentLevel += 1;
-        Utilities.LoadScene("4. Game");
     }
 }

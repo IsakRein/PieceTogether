@@ -44,9 +44,7 @@ public class Nav : MonoBehaviour {
                 float prevOffset = containerRect.offsetMin.x + (-containerRect.offsetMax.x);
                 float leftShare = containerRect.offsetMin.x / prevOffset;
                 float rightShare = -containerRect.offsetMax.x / prevOffset;
-
-                Debug.Log(leftShare + "/" + rightShare);
-
+                
                 if (leftShare < rightShare)
                 {
                     containerRect.offsetMax = new Vector2(totalOffset + containerRect.offsetMin.x, 0);

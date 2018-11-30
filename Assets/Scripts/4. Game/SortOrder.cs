@@ -44,6 +44,8 @@ public class SortOrder : MonoBehaviour {
     public TextMeshProUGUI hintText;
     public TextMeshProUGUI skipText;
 
+    public LevelWon levelWonScript;
+
     private void Start()
     {
         hintText.SetText("" + Utilities.hintCount);
@@ -72,7 +74,16 @@ public class SortOrder : MonoBehaviour {
 
     public void GetHint()
     {
+        Utilities.AddHints(-1);
+        hintText.SetText("" + Utilities.hintCount);
+        GenerateSolution();
+    }
 
+    public void Skip()
+    {
+        Utilities.AddSkips(-1);
+        skipText.SetText("" + Utilities.skipCount);
+        levelWonScript.NextLevel();
     }
 
     public void GenerateSolution()
@@ -151,11 +162,6 @@ public class SortOrder : MonoBehaviour {
            
             shape.SetSort(indexNumber);
         }
-    }
-
-    public void SkipLevel()
-    {
-        popUp.InitPopUp("Level Won");
     }
 
     public void UpdatePositions()
