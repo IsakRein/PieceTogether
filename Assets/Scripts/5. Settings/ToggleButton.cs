@@ -15,8 +15,14 @@ public class ToggleButton : MonoBehaviour {
     public Color onColor;
     public Color offColor;
 
+    private AdManager adManager;
+
     private void Start()
     {
+        adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        adManager.RequestInterstitial();
+        adManager.RequestRewardBasedVideo();
+
         if (PlayerPrefs.HasKey(type))
         {
             if (PlayerPrefs.GetInt(type) == 1)
@@ -40,6 +46,8 @@ public class ToggleButton : MonoBehaviour {
 
     public void Toggle()
     {
+
+
         isOn = !isOn;
 
         if (isOn)
@@ -62,10 +70,16 @@ public class ToggleButton : MonoBehaviour {
         if (type == "Sound")
         {
             Utilities.SoundOn = true;
+
+            adManager.ShowInterstitial();
+            adManager.RequestInterstitial();
         }
         else
         {
             Utilities.VibrationOn = true;
+
+            adManager.ShowRewardBasedVideo();
+            adManager.RequestRewardBasedVideo();
         }
 
         PlayerPrefs.SetInt(type, 1);

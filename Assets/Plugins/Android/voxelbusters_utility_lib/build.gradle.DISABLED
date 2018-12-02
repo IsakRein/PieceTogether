@@ -1,18 +1,38 @@
 buildscript {
 	repositories {
-			jcenter()
-			mavenLocal()
+		if (GradleVersion.current() >= GradleVersion.version("4.2")) {
+            jcenter()
+            google()
+        } else {
+            jcenter()
+						mavenLocal()
+        }
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.3'
+		// use newer version of the plugin for newer unity/gradle versions
+      if (GradleVersion.current() < GradleVersion.version("4.0")) {
+          classpath 'com.android.tools.build:gradle:2.1.0'
+      } else if (GradleVersion.current() < GradleVersion.version("4.2")) {
+          classpath 'com.android.tools.build:gradle:2.3.3'
+      } else {
+          classpath 'com.android.tools.build:gradle:3.0.1'
+      }
 	}
 }
 
 apply plugin: 'com.android.library'
 
 dependencies {
-	compile fileTree(dir: 'bin', include: ['*.jar'])
-	compile fileTree(dir: 'libs', include: ['*.jar'])
+	if (GradleVersion.current() >= GradleVersion.version("4.2"))
+	{
+		implementation fileTree(dir: 'bin', include: ['*.jar'])
+		implementation fileTree(dir: 'libs', include: ['*.jar'])
+	}
+	else
+	{
+		compile fileTree(dir: 'bin', include: ['*.jar'])
+		compile fileTree(dir: 'libs', include: ['*.jar'])
+	}
 }
 
 android {
@@ -30,19 +50,10 @@ android {
 	buildToolsVersion '27.0.1'
 	defaultConfig {
 		targetSdkVersion 27
+		consumerProguardFiles 'proguard.txt'
 	}
 
 	lintOptions {
 		abortOnError false
 	}
-
-	buildTypes {
-        release {
-							proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.txt'
-							consumerProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.txt'
-        }
-
-
-
-    }
 }

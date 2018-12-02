@@ -9,6 +9,7 @@ public class PopUp : MonoBehaviour {
     public GameObject levelWon;
     public GameObject hint;
     public GameObject skip;
+    public GameObject cheaperHint;
 
     public InputManager inputManager;
 
@@ -17,6 +18,7 @@ public class PopUp : MonoBehaviour {
     public Animator levelWonAnimator;
     public Animator hintAnimator;
     public Animator skipAnimator;
+    public Animator cheaperHintAnimator;
 
     private string startedType;
 
@@ -54,6 +56,13 @@ public class PopUp : MonoBehaviour {
             skip.SetActive(true);
             skipAnimator.SetTrigger("Start");
         }
+
+        else if (startedType == "CheaperHint")
+        {
+            blurAnimator.SetTrigger("Start");
+            cheaperHint.SetActive(true);
+            cheaperHintAnimator.SetTrigger("Start");
+        }
     }
 
     public void StopPopUp()
@@ -75,6 +84,13 @@ public class PopUp : MonoBehaviour {
             Debug.Log("stop");
             blurAnimator.SetTrigger("Stop");
             skipAnimator.SetTrigger("Stop");
+        }
+
+        else if (startedType == "CheaperHint")
+        {
+            blurAnimator.SetTrigger("Start");
+            cheaperHint.SetActive(false);
+            cheaperHintAnimator.SetTrigger("Stop");
         }
 
         inputManager.interactable = true;

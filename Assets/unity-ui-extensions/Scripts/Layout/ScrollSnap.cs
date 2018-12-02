@@ -238,8 +238,6 @@ namespace UnityEngine.UI.Extensions
 
                     if (direction == ScrollDirection.Horizontal)
                     {
-                        Debug.Log(activeCount + " " + _itemsCount);
-
                         // looking for list spanning range min/max
                         _scroll_rect.horizontalNormalizedPosition = 0;
                         _listContainerMaxPosition = _listContainerTransform.localPosition.x;

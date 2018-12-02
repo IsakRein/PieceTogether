@@ -95,7 +95,7 @@ namespace VoxelBusters.NativePlugins
 
 			if(!string.IsNullOrEmpty(_videoID))
 			{
-				if (string.IsNullOrEmpty(NPSettings.MediaLibrary.Android.YoutubeAPIKey))
+				//if (string.IsNullOrEmpty(NPSettings.MediaLibrary.Android.YoutubeAPIKey))
 				{
 					// Get Embed String
 					string _embedHTMLString = GetYoutubeEmbedHTMLString(_videoID);
@@ -103,10 +103,10 @@ namespace VoxelBusters.NativePlugins
 					// Play video
 					PlayEmbeddedVideo(_embedHTMLString, _onCompletion);
 				}
-				else
+				/*else
 				{
 					Plugin.Call(Native.Methods.PLAY_VIDEO_FROM_YOUTUBE, _videoID);
-				}
+				}*/
 			}
 		}	
 
