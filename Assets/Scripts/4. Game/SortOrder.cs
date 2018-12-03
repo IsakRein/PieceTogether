@@ -48,6 +48,11 @@ public class SortOrder : MonoBehaviour {
 
     private void Start()
     {
+        UpdateTexts();
+    }
+
+    public void UpdateTexts()
+    {
         hintText.SetText("" + Utilities.hintCount);
         skipText.SetText("" + Utilities.skipCount);
     }

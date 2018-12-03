@@ -357,6 +357,8 @@ public class AdManager : MonoBehaviour
     public void HandleRewardBasedVideoOpened(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoOpened event received");
+
+        Debug.Log(sender.ToString());
     }
 
     public void HandleRewardBasedVideoStarted(object sender, EventArgs args)

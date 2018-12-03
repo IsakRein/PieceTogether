@@ -163,6 +163,18 @@ MonoBehaviour:
       m_developerPayload: 
       m_iosProductId: 
       m_androidProductId: 
+    - m_name: 10 Hints
+      m_description: 
+      m_isConsumable: 1
+      m_price: 0
+      m_productIdentifiers:
+      - m_platform: 0
+        m_value: piecetogether.sale10hints
+      - m_platform: 1
+        m_value: piecetogether.sale10hints
+      m_developerPayload: 
+      m_iosProductId: 
+      m_androidProductId: 
     m_iOS:
       m_supportsReceiptValidation: 1
       m_validateUsingServerURL: 

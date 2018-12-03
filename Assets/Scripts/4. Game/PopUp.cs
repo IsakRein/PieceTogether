@@ -10,6 +10,7 @@ public class PopUp : MonoBehaviour {
     public GameObject hint;
     public GameObject skip;
     public GameObject cheaperHint;
+    public GameObject watchVideo;
 
     public InputManager inputManager;
 
@@ -19,11 +20,14 @@ public class PopUp : MonoBehaviour {
     public Animator hintAnimator;
     public Animator skipAnimator;
     public Animator cheaperHintAnimator;
+    public Animator watchVideoAnimator;
 
     private string startedType;
 
     public void InitPopUp(string type)
     {
+        Debug.Log("Init");
+        
         startedType = type;
 
         inputManager.interactable = false;
@@ -63,10 +67,19 @@ public class PopUp : MonoBehaviour {
             cheaperHint.SetActive(true);
             cheaperHintAnimator.SetTrigger("Start");
         }
+
+        else if (startedType == "WatchVideo")
+        {
+            blurAnimator.SetTrigger("Start");
+            watchVideo.SetActive(true);
+            watchVideoAnimator.SetTrigger("Start");
+        }
     }
 
     public void StopPopUp()
     {
+        Debug.Log("Stop");
+
         if (startedType == "Menu")
         {
             blurAnimator.SetTrigger("Stop");
@@ -81,16 +94,20 @@ public class PopUp : MonoBehaviour {
        
         else if (startedType == "Skip")
         {
-            Debug.Log("stop");
             blurAnimator.SetTrigger("Stop");
             skipAnimator.SetTrigger("Stop");
         }
 
         else if (startedType == "CheaperHint")
         {
-            blurAnimator.SetTrigger("Start");
-            cheaperHint.SetActive(false);
+            blurAnimator.SetTrigger("Stop");
             cheaperHintAnimator.SetTrigger("Stop");
+        }
+
+        else if (startedType == "WatchVideo")
+        {
+            blurAnimator.SetTrigger("Stop");
+            watchVideoAnimator.SetTrigger("Stop");
         }
 
         inputManager.interactable = true;
