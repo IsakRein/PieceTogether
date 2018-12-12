@@ -304,6 +304,16 @@ public class GenerateShapes : MonoBehaviour {
         amount = width * height;
 
         scaleValue = float.Parse(gameStringList[2]);
+
+        if (width > height)
+        {
+
+        }
+        else
+        {
+
+        }
+
         shapeCount = int.Parse(gameStringList[3]);
         
         grid.Clear();
