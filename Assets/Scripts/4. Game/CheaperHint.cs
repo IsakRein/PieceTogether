@@ -14,6 +14,7 @@ public class CheaperHint : MonoBehaviour {
 
     public SortOrder sortOrder;
     public AdManager adManager;
+    public InputManager inputManager;
     public int adType;
 
     private void Start()
@@ -25,7 +26,7 @@ public class CheaperHint : MonoBehaviour {
     {
         maxTime += Random.Range(-20f, 20f);
 
-        if (Random.Range(0f, 1f) > 0.33f)
+        if (Random.Range(0f, 1f) > 0.4f)//if (Random.Range(0f, 1f) > 0.33f)
         {
             if (Random.Range(0f, 1f) > 0.5f)
             {
@@ -58,6 +59,11 @@ public class CheaperHint : MonoBehaviour {
             {
                 if (!popUpCalled)
                 {
+                    foreach (ShapeScript shape in sortOrder.shapes)
+                    {
+                        shape.DropItem();
+                    }
+
                     if (adType == 0)
                     {
                         popUp.InitPopUp("CheaperHint");
@@ -66,6 +72,7 @@ public class CheaperHint : MonoBehaviour {
                     {
                         popUp.InitPopUp("WatchVideo");
                     }
+
                     popUpCalled = true;
                 }
             }
@@ -74,6 +81,9 @@ public class CheaperHint : MonoBehaviour {
 
     public void WatchVideoForHint()
     {
+        adManager.ShowRewardBasedVideo();
+
+        popUp.StopPopUp();
     }
 
     public void RequestBillingProducts()

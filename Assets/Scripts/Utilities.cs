@@ -10,7 +10,7 @@ public static class Utilities
 
     public static string currentPack;
     public static string currentPackInt;
-
+    
     public static int currentLevel;
 
     public static List<int> lastDone = new List<int>();
@@ -22,6 +22,8 @@ public static class Utilities
     public static bool expertBundleBought;
     public static int hintCount;
     public static int skipCount;
+
+    public static int totalLevelsWon;
 
 #if UNITY_IOS && !UNITY_EDITOR
     public static int platform = 0;
@@ -124,6 +126,7 @@ public static class Utilities
 
     public static void CompareCloudAndLocal()
     {
+        /*
         bool differenceExists = false;
         
         if ((NPBinding.CloudServices.GetBool("expertBundleBought") == true && PlayerPrefs.GetInt("expertBundleBought") == 0) || (NPBinding.CloudServices.GetBool("expertBundleBought") == false && PlayerPrefs.GetInt("expertBundleBought") == 1))
@@ -142,6 +145,8 @@ public static class Utilities
 
         PlayerPrefs.SetInt("skipCount", skipCount);
         NPBinding.CloudServices.SetLong("skipCount", skipCount);
+
+        */
     }
 
     public static void LoadScene(string scene)

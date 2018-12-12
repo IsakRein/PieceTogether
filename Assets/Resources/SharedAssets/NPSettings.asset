@@ -205,14 +205,131 @@ MonoBehaviour:
       m_consumerKey: 
       m_consumerSecret: 
   m_gameServicesSettings:
-    m_leaderboardMetadataCollection: []
-    m_achievementMetadataCollection: []
+    m_leaderboardMetadataCollection:
+    - m_globalID: Completed Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQDw
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQDw
+    - m_globalID: Completed Packs
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQEA
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQEA
+    m_achievementMetadataCollection:
+    - m_globalID: Beginner
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQAA
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQAA
+      m_noOfSteps: 150
+    - m_globalID: Easy
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQAQ
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQAQ
+      m_noOfSteps: 150
+    - m_globalID: Normal
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQAg
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQAg
+      m_noOfSteps: 150
+    - m_globalID: Hard
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQAw
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQAw
+      m_noOfSteps: 150
+    - m_globalID: Advanced
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQBA
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQBA
+      m_noOfSteps: 150
+    - m_globalID: Expert 1
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQBQ
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQBQ
+      m_noOfSteps: 150
+    - m_globalID: Expert 2
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQBg
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQBg
+      m_noOfSteps: 150
+    - m_globalID: Expert 3
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQBw
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQBw
+      m_noOfSteps: 150
+    - m_globalID: 25 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQCA
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQCA
+      m_noOfSteps: 25
+    - m_globalID: 50 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQCQ
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQCQ
+      m_noOfSteps: 50
+    - m_globalID: 100 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQCg
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQCg
+      m_noOfSteps: 100
+    - m_globalID: 250 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQCw
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQCw
+      m_noOfSteps: 250
+    - m_globalID: 500 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQDA
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQDA
+      m_noOfSteps: 500
+    - m_globalID: 1000 Levels
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQDQ
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQDQ
+      m_noOfSteps: 1000
+    - m_globalID: Every Level
+      m_platformIDs:
+      - m_platform: 1
+        m_value: CgkI76O3ja0CEAIQDg
+      - m_platform: 0
+        m_value: CgkI76O3ja0CEAIQDg
+      m_noOfSteps: 1200
     m_iOS:
       m_showDefaultAchievementCompletionBanner: 1
     m_android:
-      m_playServicesApplicationID: 
-      m_serverClientID: 
-      m_showDefaultErrorDialogs: 1
+      m_playServicesApplicationID: 80827240943
+      m_serverClientID: '80827240943-8r7685ktadkooc9nq2c17shjlljuhdth.apps.googleusercontent.com '
+      m_showDefaultErrorDialogs: 0
       m_allowAutoLogin: 1
     m_achievementIDCollection: []
     m_leaderboardIDCollection: []

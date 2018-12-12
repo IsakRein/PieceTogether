@@ -70,105 +70,6 @@ public class AdManager : MonoBehaviour
         this.deltaTime += (Time.deltaTime - this.deltaTime) * 0.1f;
     }
 
-    /*
-    public void OnGUI()
-    {
-        GUIStyle style = new GUIStyle();
-
-        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
-        style.alignment = TextAnchor.LowerRight;
-        style.fontSize = (int)(Screen.height * 0.06);
-        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
-        float fps = 1.0f / this.deltaTime;
-        string text = string.Format("{0:0.} fps", fps);
-        GUI.Label(rect, text, style);
-
-        // Puts some basic buttons onto the screen.
-        GUI.skin.button.fontSize = (int)(0.035f * Screen.width);
-        float buttonWidth = 0.35f * Screen.width;
-        float buttonHeight = 0.15f * Screen.height;
-        float columnOnePosition = 0.1f * Screen.width;
-        float columnTwoPosition = 0.55f * Screen.width;
-
-        Rect requestBannerRect = new Rect(
-            columnOnePosition,
-            0.05f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(requestBannerRect, "Request\nBanner"))
-        {
-            this.RequestBanner();
-        }
-
-        Rect destroyBannerRect = new Rect(
-            columnOnePosition,
-            0.225f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(destroyBannerRect, "Destroy\nBanner"))
-        {
-            this.bannerView.Destroy();
-        }
-
-        Rect requestInterstitialRect = new Rect(
-            columnOnePosition,
-            0.4f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(requestInterstitialRect, "Request\nInterstitial"))
-        {
-            this.RequestInterstitial();
-        }
-
-        Rect showInterstitialRect = new Rect(
-            columnOnePosition,
-            0.575f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(showInterstitialRect, "Show\nInterstitial"))
-        {
-            this.ShowInterstitial();
-        }
-
-        Rect destroyInterstitialRect = new Rect(
-            columnOnePosition,
-            0.75f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(destroyInterstitialRect, "Destroy\nInterstitial"))
-        {
-            this.interstitial.Destroy();
-        }
-
-        Rect requestRewardedRect = new Rect(
-            columnTwoPosition,
-            0.05f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(requestRewardedRect, "Request\nRewarded Video"))
-        {
-            this.RequestRewardBasedVideo();
-        }
-
-        Rect showRewardedRect = new Rect(
-            columnTwoPosition,
-            0.225f * Screen.height,
-            buttonWidth,
-            buttonHeight);
-        if (GUI.Button(showRewardedRect, "Show\nRewarded Video"))
-        {
-            this.ShowRewardBasedVideo();
-        }
-
-        Rect textOutputRect = new Rect(
-            columnTwoPosition,
-            0.925f * Screen.height,
-            buttonWidth,
-            0.05f * Screen.height);
-        GUI.Label(textOutputRect, outputMessage);
-    }
-*/
-
     // Returns an ad request with custom ad targeting.
     private AdRequest CreateAdRequest()
     {
@@ -258,6 +159,21 @@ public class AdManager : MonoBehaviour
         this.rewardBasedVideo.LoadAd(this.CreateAdRequest(), adUnitId);
     }
 
+        public void RequestRewardBasedVideo2()
+    {
+#if UNITY_EDITOR
+        string adUnitId = "unused";
+#elif UNITY_ANDROID
+        string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+#elif UNITY_IPHONE
+        string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+#else
+        string adUnitId = "unexpected_platform";
+#endif
+
+        this.rewardBasedVideo.LoadAd(this.CreateAdRequest(), adUnitId);
+    }
+
     public void ShowInterstitial()
     {
         if (this.interstitial.IsLoaded())
@@ -270,6 +186,8 @@ public class AdManager : MonoBehaviour
         }
     }
 
+
+
     public void ShowRewardBasedVideo()
     {
         if (this.rewardBasedVideo.IsLoaded())
@@ -281,35 +199,6 @@ public class AdManager : MonoBehaviour
             MonoBehaviour.print("Reward based video ad is not ready yet");
         }
     }
-
-    #region Banner callback handlers
-
-    public void HandleAdLoaded(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdLoaded event received");
-    }
-
-    public void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
-    {
-        MonoBehaviour.print("HandleFailedToReceiveAd event received with message: " + args.Message);
-    }
-
-    public void HandleAdOpened(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdOpened event received");
-    }
-
-    public void HandleAdClosed(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdClosed event received");
-    }
-
-    public void HandleAdLeftApplication(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdLeftApplication event received");
-    }
-
-    #endregion
 
     #region Interstitial callback handlers
 
@@ -375,6 +264,10 @@ public class AdManager : MonoBehaviour
     {
         string type = args.Type;
         double amount = args.Amount;
+
+        Utilities.AddHints(1);
+        GameObject.Find("Objects").GetComponent<SortOrder>().UpdateTexts();
+
         MonoBehaviour.print(
             "HandleRewardBasedVideoRewarded event received for " + amount.ToString() + " " + type);
     }

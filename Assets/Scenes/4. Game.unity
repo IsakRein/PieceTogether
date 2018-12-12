@@ -3944,7 +3944,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1558644874}
         m_MethodName: WatchVideoForHint
         m_Mode: 1
         m_Arguments:
@@ -9010,11 +9010,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f510d6328d640dd89b0d190a9a8f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 40
+  maxTime: 60
   time: 0
   popUp: {fileID: 1682672998}
   sortOrder: {fileID: 853281468}
   adManager: {fileID: 0}
+  inputManager: {fileID: 0}
   adType: 0
 --- !u!1 &1565620510
 GameObject:
