@@ -139,6 +139,11 @@ public class InputManager : MonoBehaviour
 
     void DropItem()
     {
+        if ((Mathf.Abs(CurrentTouchPosition.x - firstPosition.x) < 0.1f) && (Mathf.Abs(CurrentTouchPosition.y - firstPosition.y) < 0.1f))
+        {
+            draggedObject.GetComponent<ShapeScript>().Rotate();
+        }
+
         draggingItem = false;
         firstSwipeHasBeenDone = false;
 

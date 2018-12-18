@@ -2,27 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VoxelBusters.NativePlugins;
+
 public class GameServices : MonoBehaviour {
 
-    bool _isAvailable = NPBinding.GameServices.IsAvailable();
-    bool _isAuthenticated = NPBinding.GameServices.LocalUser.IsAuthenticated;
+    public PopUp popUp;
 
-    private void Awake()
+    private void Start()
     {
+        bool _isAvailable = NPBinding.GameServices.IsAvailable();
+        bool _isAuthenticated = NPBinding.GameServices.LocalUser.IsAuthenticated;
+
         if (_isAvailable)
         {
-            NPBinding.GameServices.LocalUser.Authenticate((bool _success, string _error) =>
+            if (!_isAuthenticated)
             {
-                if (_success)
+                NPBinding.GameServices.LocalUser.Authenticate((bool _success, string _error) =>
                 {
-                    Debug.Log("Sign-In Successfully");
-                    Debug.Log("Local User Details : " + NPBinding.GameServices.LocalUser.ToString());
-                }
-                else
-                {
-                    Debug.Log("Sign-In Failed with error " + _error);
-                }
-            });
+                    if (_success)
+                    {
+                        Debug.Log("Sign-In Successfully");
+                        Debug.Log("Local User Details : " + NPBinding.GameServices.LocalUser.ToString());
+                    }
+                    else
+                    {
+                        Debug.Log("Sign-In Failed with error " + _error);
+                    }
+                });
+            }
 
             NPBinding.GameServices.LoadAchievements((Achievement[] _achievements, string _error) => 
             {
@@ -58,7 +64,28 @@ public class GameServices : MonoBehaviour {
                 }
             });
         }
+
+        Utilities.Initialize();
+
+        if (!PlayerPrefs.HasKey("AskedAboutCloud")) {
+            if (Utilities.DifferenceExistsCloudLocal())
+            {
+                popUp.InitPopUp("Hint");
+            }
+        }  
     }
 
+    public void LoadLocal()
+    {
+        Utilities.UseLocalSave();
+        popUp.StopPopUp();
+        PlayerPrefs.SetInt("AskedAboutCloud", 1);
+    }
 
+    public void LoadCloud()
+    {
+        Utilities.UseCloudSave();
+        popUp.StopPopUp();
+        PlayerPrefs.SetInt("AskedAboutCloud", 1);
+    }
 }

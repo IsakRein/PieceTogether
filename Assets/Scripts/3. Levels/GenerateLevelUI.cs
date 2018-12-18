@@ -94,7 +94,7 @@ public class GenerateLevelUI : MonoBehaviour {
           //GetComponent<RectTransform>().localPosition = new Vector2(643f, 0);
         GetComponent<RectTransform>().localPosition = new Vector2((2 * width) - ((Mathf.FloorToInt(lastFinishedLevel + 1) / 30) * width), 0);
 
-        scrollSnap._startingPage = Mathf.FloorToInt(lastFinishedLevel + 1) / 30;
+        scrollSnap._startingPage = Mathf.FloorToInt(lastFinishedLevel) / 30;
         scrollRect.enabled = true;
         scrollSnap.enabled = true;
     }

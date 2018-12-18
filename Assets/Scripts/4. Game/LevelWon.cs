@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VoxelBusters.NativePlugins;
 
 public class LevelWon : MonoBehaviour
 {
@@ -23,10 +24,6 @@ public class LevelWon : MonoBehaviour
     {
         if (!Utilities.removeAdsBought)
         {
-            int ad = adManager.adTypes[0];
-
-            adManager.ShowInBetweenAd();
-
             int lastWonLevel = PlayerPrefs.GetInt(Utilities.currentPack);
             if (Utilities.currentLevel == lastWonLevel + 1)
             {
@@ -34,18 +31,13 @@ public class LevelWon : MonoBehaviour
                 NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
             }
 
-            TotalLevelsWon();
+            Utilities.UpdateAchivements();
+            Utilities.currentLevel += 1;
 
-            if (Utilities.currentLevel != 150)
-            {
-                Utilities.currentLevel += 1;
-            }
+            int ad = adManager.adTypes[0];
+            adManager.ShowInBetweenAd();
 
-            if (ad != 2)
-            {
-                Debug.Log(adManager.adTypes[0]);
-                LoadNextScene();
-            }
+            if (ad != 2) { LoadNextScene(); }
         }
 
         else
@@ -57,12 +49,8 @@ public class LevelWon : MonoBehaviour
                 NPBinding.CloudServices.SetLong(Utilities.currentPack, lastWonLevel + 1);
             }
 
-            TotalLevelsWon();
-
-            if (Utilities.currentLevel != 150)
-            {
-                Utilities.currentLevel += 1;
-            }
+            Utilities.UpdateAchivements();
+            Utilities.currentLevel += 1;
 
             LoadNextScene();
         }
@@ -70,7 +58,7 @@ public class LevelWon : MonoBehaviour
 
     public void LoadNextScene()
     {
-        if (Utilities.currentLevel == 150)
+        if (Utilities.currentLevel == 151)
         {
             allLevelsWon.SetActive(true);
         }
@@ -78,40 +66,6 @@ public class LevelWon : MonoBehaviour
         else
         {
             Utilities.LoadScene("4. Game");
-        }
-    }
-
-    public void TotalLevelsWon()
-    {
-        int totalLevelsWon = PlayerPrefs.GetInt("Beginner") + PlayerPrefs.GetInt("Easy") + PlayerPrefs.GetInt("Normal") + PlayerPrefs.GetInt("Hard") + PlayerPrefs.GetInt("Advanced") + PlayerPrefs.GetInt("Expert 1") + PlayerPrefs.GetInt("Expert 2") + PlayerPrefs.GetInt("Expert 3");
-
-        if (totalLevelsWon >= 1200)
-        {
-
-        }
-        else if (totalLevelsWon >= 1000)
-        {
-
-        }
-        else if (totalLevelsWon >= 500)
-        {
-
-        }
-        else if (totalLevelsWon >= 250)
-        {
-
-        }
-        else if (totalLevelsWon >= 100)
-        {
-
-        }
-        else if (totalLevelsWon >= 50)
-        {
-
-        }
-        else if (totalLevelsWon >= 25)
-        {
-
         }
     }
 }

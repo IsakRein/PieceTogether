@@ -26,11 +26,12 @@ public class PopUp : MonoBehaviour {
 
     public void InitPopUp(string type)
     {
-        Debug.Log("Init");
-        
         startedType = type;
 
-        inputManager.interactable = false;
+        if (inputManager != null)
+        {
+            inputManager.interactable = false;
+        }
         blur.SetActive(true);
 
         if (startedType == "Menu")
@@ -78,8 +79,6 @@ public class PopUp : MonoBehaviour {
 
     public void StopPopUp()
     {
-        Debug.Log("Stop");
-
         if (startedType == "Menu")
         {
             blurAnimator.SetTrigger("Stop");
@@ -110,6 +109,9 @@ public class PopUp : MonoBehaviour {
             watchVideoAnimator.SetTrigger("Stop");
         }
 
-        inputManager.interactable = true;
+        if (inputManager != null)
+        {
+            inputManager.interactable = true;
+        }
     }
 }

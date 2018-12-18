@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using VoxelBusters.NativePlugins;
 using TMPro;
+using UnityEngine.UI;
 
-public class StoreManager : MonoBehaviour {
-
+public class StoreManager2 : MonoBehaviour
+{
     public string lastSelectedProduct;
 
-    public List<Transform> objects = new List<Transform>();
-    public List<string> objectNames = new List<string>();
+    public ExpertBundle expertBundle;
+    public Button expertBundleButton;
 
-    public GameObject storeCanvas;
-    public GameObject loading;
-    public GameObject couldNotLoad;
+    public TextMeshProUGUI price;
+    public bool storeAccessable;
 
     [Space]
+
+    public GameObject loading;
 
     public Animator blurAnimator;
     public Animator alertAnimator;
@@ -33,14 +35,7 @@ public class StoreManager : MonoBehaviour {
     public TextMeshProUGUI productTextPopUp;
 
     //start
-    public void RequestBillingProducts()
-    {
-        NPBinding.Billing.RequestForBillingProducts(NPSettings.Billing.Products);
-
-        // At this point you can display an activity indicator to inform user that task is in progress
-    }
-
-    private void OnEnable()
+    public void CustomStart()
     {
         // Register for callbacks
         Billing.DidFinishRequestForBillingProductsEvent += OnDidFinishProductsRequest;
@@ -50,6 +45,13 @@ public class StoreManager : MonoBehaviour {
         Billing.DidFinishRestoringPurchasesEvent += OnDidFinishRestoringPurchases;
 
         RequestBillingProducts();
+    }
+
+    public void RequestBillingProducts()
+    {
+        NPBinding.Billing.RequestForBillingProducts(NPSettings.Billing.Products);
+
+        // At this point you can display an activity indicator to inform user that task is in progress
     }
 
     private void OnDisable()
@@ -62,41 +64,30 @@ public class StoreManager : MonoBehaviour {
 
     private void OnDidFinishProductsRequest(BillingProduct[] _regProductsList, string _error)
     {
-        // Hide activity indicator
-        loading.SetActive(false);
-
         // Handle response
         if (_error != null)
         {
             // Something went wrong
-
-            couldNotLoad.SetActive(true);
+            storeAccessable = false;
         }
         else
         {
             // Inject code to display received products
             if (_regProductsList != null && _regProductsList.Length != 0)
             {
-                loading.SetActive(false);
-                storeCanvas.SetActive(true);
-
-                for (int i = 0; i < objects.Count; i++)
-                {
-                    if (i == 6)
-                    {
-                        i = 7;
-                    }
-                    objects[i].GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].Name);
-                    objects[i].GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].LocalizedPrice);
-                }
+                storeAccessable = true;
+                price.SetText("" + _regProductsList[6].LocalizedPrice);
             }
-
             else
             {
-                loading.SetActive(true);
-                storeCanvas.SetActive(false);
-                couldNotLoad.SetActive(true);
+                storeAccessable = false;
             }
+        }
+
+        if (!storeAccessable)
+        {
+            price.transform.parent.gameObject.SetActive(false);
+            expertBundleButton.interactable = false;
         }
     }
 
@@ -110,11 +101,11 @@ public class StoreManager : MonoBehaviour {
         blurAnimator.SetTrigger("Start");
         alertAnimator.gameObject.SetActive(true);
         alertAnimator.SetTrigger("Start");
-      }
+    }
 
     public void PurchaseProduct()
     {
-        BuyItem(NPSettings.Billing.Products[objectNames.IndexOf(lastSelectedProduct)]);
+        BuyItem(NPSettings.Billing.Products[6]);
     }
 
     public void BuyItem(BillingProduct _product)
@@ -127,6 +118,8 @@ public class StoreManager : MonoBehaviour {
 
             alreadyPurchased.SetActive(true);
             alreadyPurchased.transform.localScale = new Vector2(45f, 45f);
+
+            expertBundle.PurchaseSuccessful();
 
             return;
         }
@@ -149,6 +142,8 @@ public class StoreManager : MonoBehaviour {
             {
                 if (_transaction.TransactionState == eBillingTransactionState.PURCHASED)
                 {
+
+
                     // Your code to handle purchased products
                     alertAnimator.transform.localScale = new Vector2(0, 0);
                     alertAnimator.gameObject.SetActive(false);
@@ -156,30 +151,7 @@ public class StoreManager : MonoBehaviour {
                     itemBought.SetActive(true);
                     itemBought.transform.localScale = new Vector2(45f, 45f);
 
-                    switch (lastSelectedProduct)
-                    {
-                        case "Remove Ads":
-                            Utilities.BuyRemoveAds();
-                            break;
-                        case "5 Skips":
-                            Utilities.AddSkips(5);
-                            break;
-                        case "5 Hints":
-                            Utilities.AddHints(5);
-                            break;
-                        case "30 Hints":
-                            Utilities.AddHints(30);
-                            break;
-                        case "70 Hints":
-                            Utilities.AddHints(70);
-                            break;
-                        case "150 Hints":
-                            Utilities.AddHints(150);
-                            break;
-                        case "450 Hints":
-                            Utilities.AddHints(450);
-                            break;
-                    }
+                    expertBundle.PurchaseSuccessful();
                 }
             }
         }

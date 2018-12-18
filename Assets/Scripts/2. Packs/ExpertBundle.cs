@@ -12,6 +12,8 @@ public class ExpertBundle : MonoBehaviour
     public GameObject price;
     public GameObject buyButton;
 
+    public StoreManager2 storeManager2;
+
     void Start()
     {
         if (PlayerPrefs.HasKey("ExpertBundleBought"))
@@ -20,6 +22,16 @@ public class ExpertBundle : MonoBehaviour
             {
                 Bought();
             }
+
+            else
+            {
+                storeManager2.CustomStart();
+            }
+        }
+
+        else
+        {
+            storeManager2.CustomStart();
         }
     }
 
@@ -40,8 +52,12 @@ public class ExpertBundle : MonoBehaviour
 
     public void Buy()
     {
-        //transaction stuff
+        storeManager2.SelectProduct("Expert Bundle");
+    }
 
+
+    public void PurchaseSuccessful()
+    {
         PlayerPrefs.SetInt("ExpertBundleBought", 1);
         NPBinding.CloudServices.SetBool("ExpertBundleBought", true);
         Bought();
