@@ -177,7 +177,7 @@ public class ShapeScript : MonoBehaviour {
         direction = UnityEngine.Random.insideUnitCircle;
         direction.Normalize();
     }
-
+    
     private void Update()
     {
         if (levelWon)
@@ -326,25 +326,9 @@ public class ShapeScript : MonoBehaviour {
         }
     }
 
-    IEnumerator Rotate(Vector3 axis, float angle, float duration = 1.0f)
-    {
-        Quaternion from = transform.rotation;
-        Quaternion to = transform.rotation;
-        to *= Quaternion.Euler(axis * angle);
-
-        float elapsed = 0.0f;
-        while (elapsed < duration)
-        {
-            transform.rotation = Quaternion.Slerp(from, to, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = to;
-    }
-
     public void Rotate()
     {
-        StartCoroutine(Rotate(Vector3.forward, -90, 0.1f));
+        rotating = true;
     }
 
     public void SetSort(int sort)

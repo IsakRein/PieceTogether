@@ -5,7 +5,9 @@ using VoxelBusters.NativePlugins;
 
 public class LoadNativeUI : MonoBehaviour {
 
-    public PopUp popUp;
+    public PopUp2 popUp;
+
+    public bool errorTriggered = false;
 
     public void LoadAchivementsUI()
     {
@@ -23,7 +25,11 @@ public class LoadNativeUI : MonoBehaviour {
                 }
                 else
                 {
-                    popUp.InitPopUp("Hint");
+                    if (!errorTriggered)
+                    {
+                        popUp.InitPopUp("FailedToLogIn");
+                        errorTriggered = true;
+                    }
                 }
             });
         }
@@ -33,16 +39,24 @@ public class LoadNativeUI : MonoBehaviour {
             LoadUI();
         }
 
+        errorTriggered = false;
     }
 
     private void LoadUI()
     {
-        NPBinding.GameServices.ShowAchievementsUI((string _error2) =>
+        if (!errorTriggered)
         {
-            if (_error2 != null)
+            NPBinding.GameServices.ShowAchievementsUI((string _error2) =>
             {
-                popUp.InitPopUp("Hint");
-            }
-        });
+                if (_error2 != null)
+                {
+                    if (!errorTriggered)
+                    {
+                        popUp.InitPopUp("FailedToLogIn");
+                        errorTriggered = true;
+                    }
+                }
+            });
+        }
     }
 }
