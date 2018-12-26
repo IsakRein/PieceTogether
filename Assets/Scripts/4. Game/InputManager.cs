@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        nav = GameObject.Find("/UI/Nav/Content").GetComponent<Nav>();
+        nav = GameObject.Find("/UI/SafeArea/Nav/Content").GetComponent<Nav>();
     }
 
     void Update()

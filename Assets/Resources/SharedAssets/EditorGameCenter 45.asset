@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: EditorGameCenter 45
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass:VoxelBusters.NativePlugins.Internal:EditorGameCenter
+  m_registeredUsers: []
+  m_leaderboardList:
+  - m_identifier: CgkI76O3ja0CEAIQDw
+    m_title: Completed Levels
+    m_scores: []
+  - m_identifier: CgkI76O3ja0CEAIQEA
+    m_title: Completed Packs
+    m_scores: []
+  m_achievementsList: []
+  m_achievementDescriptionList:
+  - m_identifier: CgkI76O3ja0CEAIQAA
+    m_title: Beginner
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQAQ
+    m_title: Easy
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQAg
+    m_title: Normal
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQAw
+    m_title: Hard
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQBA
+    m_title: Advanced
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQBQ
+    m_title: Expert 1
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQBg
+    m_title: Expert 2
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQBw
+    m_title: Expert 3
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQCA
+    m_title: 25 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQCQ
+    m_title: 50 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQCg
+    m_title: 100 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQCw
+    m_title: 250 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQDA
+    m_title: 500 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQDQ
+    m_title: 1000 Levels
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0
+  - m_identifier: CgkI76O3ja0CEAIQDg
+    m_title: Every Level
+    m_achievedDescription: Achieved description
+    m_unachievedDescription: Unachieved description
+    m_image: {fileID: 0}
+    m_maximumPoints: 1
+    m_isHidden: 0

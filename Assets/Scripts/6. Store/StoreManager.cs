@@ -236,7 +236,7 @@ public class StoreManager : MonoBehaviour {
     //animation
     public void DeSelectProduct()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(0))
         {
             child.GetComponent<Animator>().SetTrigger("Stop");
         }

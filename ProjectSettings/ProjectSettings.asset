@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -243,7 +243,7 @@ PlayerSettings:
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: Keystores/user.keystore
   AndroidKeyaliasName: user
-  AndroidTVCompatibility: 1
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
@@ -731,14 +731,16 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_NOTIFICATION_SERVICE;USES_BILLING
     4: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_NOTIFICATION_SERVICE;USES_BILLING
-    7: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_NOTIFICATION_SERVICE;USES_BILLING
+    7: VICES;USES_NOTIFICATION_SERVICE;USES_BILLINGNOTIFICATION_SERVICE;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
     14: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_NOTIFICATION_SERVICE;USES_BILLING
     25: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_NOTIFICATION_SERVICE;USES_BILLING
   platformArchitecture: {}
-  scriptingBackend: {}
-  il2cppCompilerConfiguration: {}
+  scriptingBackend:
+    Android: 1
+  il2cppCompilerConfiguration:
+    Android: 0
   incrementalIl2cppBuild: {}
-  allowUnsafeCode: 0
+  allowUnsafeCode: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}

@@ -5,12 +5,15 @@ using TMPro;
 
 public class PackText : MonoBehaviour {
 
-    private TextMeshProUGUI text;
+    public TextMeshProUGUI text;
 
 	// Use this for initialization
 	void Start () 
     {
         text = gameObject.GetComponent<TextMeshProUGUI>();  
-        text.SetText(Utilities.currentPack.ToLower());
+        if (Utilities.currentPack != null)
+        {
+            text.SetText(Utilities.currentPack.ToLower());
+        }
     }
 }

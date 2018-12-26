@@ -64,7 +64,7 @@ public class ShapeScript : MonoBehaviour {
     {
         isInNav = true;
 
-        content = GameObject.Find("/UI/Nav/Content").transform;
+        content = GameObject.Find("/UI/SafeArea/Nav/Content").transform;
 
         generateShapes = GameObject.Find("/Generator").GetComponent<GenerateShapes>();
         scaleValue = generateShapes.scaleValue;
@@ -193,6 +193,10 @@ public class ShapeScript : MonoBehaviour {
 
         else if (draggingItem)
 		{
+            if (transform.parent != null)
+            {
+                transform.parent = null;
+            }
 
 			float xPos;
 			float yPos;
@@ -367,8 +371,6 @@ public class ShapeScript : MonoBehaviour {
                 if (child.name != "Background Scroll" && child != transform) {
                     if (child.transform.position.x > transform.position.x)
                     {
-                        Debug.Log(i);
-
                         transform.SetSiblingIndex(i);
 
                         if (!content.GetComponent<Nav>().objectsInNav.Contains(transform))

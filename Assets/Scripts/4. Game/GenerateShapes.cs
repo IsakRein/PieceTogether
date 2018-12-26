@@ -116,9 +116,11 @@ public class GenerateShapes : MonoBehaviour {
         //hard 6-10 0.4
         //advanced 7-11 0.4
         //expert 8-13 0.35
-        
-        
+
+
         //minsize, maxsize, mincount, maxcount, scalevalue, list
+
+        /*
         GenerateMultipleLevels(5, 7, 4, 7, 0.6f, levelLoader.beginner);
         GenerateMultipleLevels(5, 8, 4, 8, 0.55f, levelLoader.easy);
         GenerateMultipleLevels(5, 9, 5, 8, 0.5f, levelLoader.normal);
@@ -127,6 +129,13 @@ public class GenerateShapes : MonoBehaviour {
         GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert1);
         GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert2);
         GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert3);
+        */
+
+        //GenerateMultipleLevels(7, 11, 7, 10, 0.4f, levelLoader.hard);
+        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.advanced);
+        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert1);
+        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert2);
+        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert3);
     }
 
     public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue, List<string> list) 
@@ -141,31 +150,22 @@ public class GenerateShapes : MonoBehaviour {
 
             shapeCount = Random.Range(impMinCount, impMaxCount);
 
-            if (shapeCount > 11)
-            {
-                shapeCount = 11;
-            }
-
             if (width+height > shapeCount * 2)
             {
                 shapeCount += 1;
             }
 
+            /*
             if (width<height) {
-                minSize = Mathf.FloorToInt(width / 1.75f + Random.Range(0, 2));
                 maxSize = Mathf.RoundToInt(1.75f * height + Random.Range(-1, 0));
             }
             else {
-                minSize = Mathf.FloorToInt(height / 1.75f + Random.Range(0, 2));
                 maxSize = Mathf.RoundToInt(1.75f * width + Random.Range(-1, 0));
             }
-
-            
-
-            if (minSize < 3)
-            {
-                minSize = 3;
-            }
+            */
+           
+            minSize = 4;
+            maxSize = 12;
 
             amount = width * height;
 
@@ -217,7 +217,7 @@ public class GenerateShapes : MonoBehaviour {
 
             levels.Add(game);
         }
-
+        list.Clear();
         list.AddRange(levels);
     }
 

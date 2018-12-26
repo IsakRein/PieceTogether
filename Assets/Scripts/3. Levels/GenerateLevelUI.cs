@@ -89,7 +89,7 @@ public class GenerateLevelUI : MonoBehaviour {
             }
         }
 
-        scrollRectBack.GetComponent<RectTransform>().localPosition = new Vector2(width / 2, 20f);
+        scrollRectBack.GetComponent<RectTransform>().localPosition = new Vector2((width / 2) * scrollRectBack.transform.localScale.x, 20f);
 
           //GetComponent<RectTransform>().localPosition = new Vector2(643f, 0);
         GetComponent<RectTransform>().localPosition = new Vector2((2 * width) - ((Mathf.FloorToInt(lastFinishedLevel + 1) / 30) * width), 0);
