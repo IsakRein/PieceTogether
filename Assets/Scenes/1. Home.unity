@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 129.75
+  m_fontSize: 130.4
   m_fontSizeBase: 87.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2027,7 +2027,7 @@ PrefabInstance:
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}
       propertyPath: orthographic size
-      value: 8.956693
+      value: 8.888889
       objectReference: {fileID: 0}
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}
@@ -2629,7 +2629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.010009766, y: -143.5}
+  m_AnchoredPosition: {x: -0.010009766, y: -143.49994}
   m_SizeDelta: {x: 0.1, y: -287.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817966672
@@ -2914,7 +2914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -272}
+  m_AnchoredPosition: {x: 0, y: -271.99994}
   m_SizeDelta: {x: 0, y: 167.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025611007

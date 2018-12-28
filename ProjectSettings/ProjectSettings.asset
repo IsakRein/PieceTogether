@@ -139,7 +139,7 @@ PlayerSettings:
       sharedDepthBuffer: 0
       dashSupport: 0
     enable360StereoCapture: 0
-  protectGraphicsMemory: 1
+  protectGraphicsMemory: 0
   enableFrameTimingStats: 0
   useHDRDisplay: 0
   m_ColorGamuts: 00000000
@@ -590,22 +590,23 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_BILLING
-    4: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_BILLING
+    1: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
+    4: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
     7: VICES;USES_BILLINGNOTIFICATION_SERVICE;USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
-    14: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_BILLING
-    25: USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_BILLING
+    14: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
+    25: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
   platformArchitecture: {}
   scriptingBackend:
+    Android: 1
+  il2cppCompilerConfiguration:
     Android: 0
-  il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
-  allowUnsafeCode: 1
+  allowUnsafeCode: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform:
-    Android: 3
+    Android: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Piece Together
