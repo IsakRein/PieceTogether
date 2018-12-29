@@ -26,7 +26,7 @@ MonoBehaviour:
       m_usesNetworkConnectivity: 0
       m_notificationService:
         value: 0
-        usesLocalNotification: 1
+        usesLocalNotification: 0
         usesRemoteNotification: 0
       m_usesSharing: 0
       m_usesTwitter: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
         photo library
     m_android:
       m_storeIdentifier: 80827240943
-      m_enableProguardSetup: 0
+      m_enableProguardSetup: 1
   m_networkConnectivitySettings:
     m_hostAddressIPV4: 8.8.8.8
     m_hostAddressIPV6: 0:0:0:0:0:FFFF:0808:0808

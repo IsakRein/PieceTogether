@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--AUTO GENERATED MANIFEST FILE FROM AndroidManifestGenerator. DONT MODIFY HERE.-->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.voxelbusters.androidnativeplugin" android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.voxelbusters.androidnativeplugin" android:versionCode="2" android:versionName="1.1">
   <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="26" />
   <application>
     <!--Billing : Activity used for purchase view-->

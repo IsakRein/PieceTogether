@@ -13,7 +13,7 @@ namespace VoxelBusters.Utility
 
 		public void SaveManifest (string _packageName, string _path, string _minSDKVersion, string _targetSDKVersion)
 		{
-			SaveManifest(_packageName, _path, "1", "1.0", _minSDKVersion, _targetSDKVersion);
+			SaveManifest(_packageName, _path, "2", "1.1", _minSDKVersion, _targetSDKVersion);
 		}
 
 		public void SaveManifest (string _packageName, string _path, string _versionCode, string _versionName, string _minSDKVersion, string _targetSDKVersion)
