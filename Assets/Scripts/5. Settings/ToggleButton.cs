@@ -38,8 +38,6 @@ public class ToggleButton : MonoBehaviour {
 
     public void Toggle()
     {
-
-
         isOn = !isOn;
 
         if (isOn)
@@ -55,10 +53,6 @@ public class ToggleButton : MonoBehaviour {
 
     private void On()
     {
-        background.color = onColor;
-        on.SetActive(true);
-        off.SetActive(false);
-
         if (type == "Sound")
         {
             Utilities.SoundOn = true;
@@ -69,14 +63,14 @@ public class ToggleButton : MonoBehaviour {
         }
 
         PlayerPrefs.SetInt(type, 1);
+
+        background.color = onColor;
+        on.SetActive(true);
+        off.SetActive(false);
     }
 
     private void Off()
     {
-        background.color = offColor;
-        on.SetActive(false);
-        off.SetActive(true);
-
         if (type == "Sound")
         {
             Utilities.SoundOn = false;
@@ -87,5 +81,9 @@ public class ToggleButton : MonoBehaviour {
         }
 
         PlayerPrefs.SetInt(type, 0);
+
+        background.color = offColor;
+        on.SetActive(false);
+        off.SetActive(true);
     }
 }

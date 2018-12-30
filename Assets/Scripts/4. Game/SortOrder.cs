@@ -46,8 +46,12 @@ public class SortOrder : MonoBehaviour {
 
     public LevelWon levelWonScript;
 
+    private int clickId;
+
     private void Start()
     {
+        clickId = AudioCenter.loadSound("Resources/Click.wav");
+
         UpdateTexts();
     }
 
@@ -59,8 +63,6 @@ public class SortOrder : MonoBehaviour {
 
     public void CustomStart()
     {
-        audioSource.PlayOneShot(start);
-
         for (int i = 0; i <= generateShapes.shapeCount; i++)
         {
             positions.shapesPos.Add(new Positions());
@@ -215,7 +217,8 @@ public class SortOrder : MonoBehaviour {
         }
         if (Utilities.SoundOn)
         {
-            audioSource.PlayOneShot(click);
+            AudioCenter.playSound(clickId);
+            //audioSource.PlayOneShot(click);
         }
     }
 }

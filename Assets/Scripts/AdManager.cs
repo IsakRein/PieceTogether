@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
+//using GoogleMobileAds.Api;
 
 public class AdManager : MonoBehaviour
 {
     public List<int> adTypes = new List<int>();
 
     public static AdManager instance { set; get; }
-    private BannerView bannerView;
-    private InterstitialAd interstitial;
-    private RewardBasedVideoAd rewardBasedVideo;
+    //private BannerView bannerView;
+    //private InterstitialAd interstitial;
+    //private RewardBasedVideoAd rewardBasedVideo;
     private float deltaTime = 0.0f;
     private static string outputMessage = string.Empty;
 
@@ -32,7 +32,7 @@ public class AdManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    /*
     //copied from google 
     public void Start()
     {
@@ -69,7 +69,7 @@ public class AdManager : MonoBehaviour
         // value.
         this.deltaTime += (Time.deltaTime - this.deltaTime) * 0.1f;
     }
-
+ 
     // Returns an ad request with custom ad targeting.
     private AdRequest CreateAdRequest()
     {
@@ -83,7 +83,21 @@ public class AdManager : MonoBehaviour
             .AddExtra("color_bg", "9B30FF")
             .Build();
     }
+       */
+    public void RequestInBetweenAds()
+    {
 
+    }
+    public void ShowInBetweenAd()
+    {
+
+    }
+
+    public void ShowRewardBasedVideo()
+    {
+
+    }
+    /*
     public void RequestInBetweenAds()
     {
         RequestRewardBasedVideo();
@@ -111,6 +125,8 @@ public class AdManager : MonoBehaviour
         adTypes.RemoveAt(0);
     }
 
+
+    
     public void RequestInterstitial()
     {
         // These ad units are configured to always serve test ads.
@@ -159,7 +175,7 @@ public class AdManager : MonoBehaviour
         this.rewardBasedVideo.LoadAd(this.CreateAdRequest(), adUnitId);
     }
 
-        public void RequestRewardBasedVideo2()
+    public void RequestRewardBasedVideo2()
     {
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -186,8 +202,6 @@ public class AdManager : MonoBehaviour
         }
     }
 
-
-
     public void ShowRewardBasedVideo()
     {
         if (this.rewardBasedVideo.IsLoaded())
@@ -199,6 +213,7 @@ public class AdManager : MonoBehaviour
             MonoBehaviour.print("Reward based video ad is not ready yet");
         }
     }
+
 
     #region Interstitial callback handlers
 
@@ -278,5 +293,7 @@ public class AdManager : MonoBehaviour
     }
 
     #endregion
+
+    */
 }
 

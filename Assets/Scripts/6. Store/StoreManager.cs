@@ -69,7 +69,7 @@ public class StoreManager : MonoBehaviour {
         if (_error != null)
         {
             // Something went wrong
-
+            loading.SetActive(false);
             couldNotLoad.SetActive(true);
         }
         else
@@ -86,7 +86,7 @@ public class StoreManager : MonoBehaviour {
                     {
                         i = 7;
                     }
-                    objects[i].GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].Name);
+                    //objects[i].GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].Name);
                     objects[i].GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().SetText("" + _regProductsList[i].LocalizedPrice);
                 }
             }

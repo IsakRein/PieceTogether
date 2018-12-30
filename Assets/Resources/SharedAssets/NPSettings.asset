@@ -42,7 +42,7 @@ MonoBehaviour:
       m_photoAlbumModifyUsagePermissionDescription: $(PRODUCT_NAME) saves images to
         photo library
     m_android:
-      m_storeIdentifier: 80827240943
+      m_storeIdentifier: com.kickflipgames.PieceTogether
       m_enableProguardSetup: 1
   m_networkConnectivitySettings:
     m_hostAddressIPV4: 8.8.8.8
@@ -55,12 +55,12 @@ MonoBehaviour:
   m_utilitySettings:
     m_rateMyApp:
       m_isEnabled: 0
-      m_title: Rate My App
-      m_message: If you enjoy using Native Plugin would you mind taking a moment to
-        rate it? It wont take more than a minute. Thanks for your support
-      m_showFirstPromptAfterHours: 2
-      m_successivePromptAfterHours: 6
-      m_successivePromptAfterLaunches: 5
+      m_title: Give a review!
+      m_message: If you enjoy playing Piece Together would you mind taking a moment
+        to rate it? It wont take more than a minute. Thanks for your support!
+      m_showFirstPromptAfterHours: 0
+      m_successivePromptAfterHours: 0
+      m_successivePromptAfterLaunches: 0
       m_rateItButtonText: Rate It Now
       m_remindMeLaterButtonText: Remind Me Later
       m_dontAskButtonText: No, Thanks
