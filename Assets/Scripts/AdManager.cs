@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using GoogleMobileAds.Api;
+using GoogleMobileAds.Api;
 
 public class AdManager : MonoBehaviour
 {
     public List<int> adTypes = new List<int>();
 
     public static AdManager instance { set; get; }
-    //private BannerView bannerView;
-    //private InterstitialAd interstitial;
-    //private RewardBasedVideoAd rewardBasedVideo;
+    private BannerView bannerView;
+    private InterstitialAd interstitial;
+    private RewardBasedVideoAd rewardBasedVideo;
     private float deltaTime = 0.0f;
     private static string outputMessage = string.Empty;
 
@@ -32,15 +32,15 @@ public class AdManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    /*
+    
     //copied from google 
     public void Start()
     {
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713";
+        string appId = "ca-app-pub-1953850030492719~2620385211";
 #elif UNITY_IPHONE
-        string appId = "ca-app-pub-3940256099942544~1458002511";
+        string appId = "ca-app-pub-1953850030492719~7343186710";
 #else
         string appId = "unexpected_platform";
 #endif
@@ -83,21 +83,7 @@ public class AdManager : MonoBehaviour
             .AddExtra("color_bg", "9B30FF")
             .Build();
     }
-       */
-    public void RequestInBetweenAds()
-    {
 
-    }
-    public void ShowInBetweenAd()
-    {
-
-    }
-
-    public void ShowRewardBasedVideo()
-    {
-
-    }
-    /*
     public void RequestInBetweenAds()
     {
         RequestRewardBasedVideo();
@@ -133,9 +119,9 @@ public class AdManager : MonoBehaviour
 #if UNITY_EDITOR
         string adUnitId = "unused";
 #elif UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        string adUnitId = "ca-app-pub-1953850030492719/9039411767";
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+        string adUnitId = "ca-app-pub-1953850030492719/2536624735";
 #else
         string adUnitId = "unexpected_platform";
 #endif
@@ -165,9 +151,9 @@ public class AdManager : MonoBehaviour
 #if UNITY_EDITOR
         string adUnitId = "unused";
 #elif UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        string adUnitId = "ca-app-pub-1953850030492719/7654177906";
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+        string adUnitId = "ca-app-pub-1953850030492719/3754213924";
 #else
         string adUnitId = "unexpected_platform";
 #endif
@@ -214,6 +200,10 @@ public class AdManager : MonoBehaviour
         }
     }
 
+    public void Slask()
+    {
+        GameObject.Find("Objects").GetComponent<SortOrder>().UpdateTexts();
+    }
 
     #region Interstitial callback handlers
 
@@ -293,7 +283,5 @@ public class AdManager : MonoBehaviour
     }
 
     #endregion
-
-    */
 }
 

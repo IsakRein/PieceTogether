@@ -132,10 +132,10 @@ public class GenerateShapes : MonoBehaviour {
         */
 
         //GenerateMultipleLevels(7, 11, 7, 10, 0.4f, levelLoader.hard);
-        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.advanced);
-        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert1);
-        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert2);
-        GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert3);
+        //GenerateMultipleLevels(7, 12, 9, 12, 0.35f, levelLoader.advanced);
+        //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert1);
+        //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert2);
+        //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert3);
     }
 
     public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue, List<string> list) 

@@ -66,6 +66,11 @@ public class SortOrder : MonoBehaviour {
         UpdateTexts();
     }
 
+    private void Update()
+    {
+        UpdateTexts();
+    }
+
     public void UpdateTexts()
     {
         hintText.SetText("" + Utilities.hintCount);

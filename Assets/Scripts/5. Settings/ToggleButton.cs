@@ -60,6 +60,7 @@ public class ToggleButton : MonoBehaviour {
         else
         {
             Utilities.VibrationOn = true;
+            Utilities.Vibrate();
         }
 
         PlayerPrefs.SetInt(type, 1);
