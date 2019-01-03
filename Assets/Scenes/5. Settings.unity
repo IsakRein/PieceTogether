@@ -2528,7 +2528,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 162.5
+  m_fontSize: 110.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4035,7 +4035,7 @@ PrefabInstance:
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}
       propertyPath: orthographic size
-      value: 8.956693
+      value: 10.833333
       objectReference: {fileID: 0}
     - target: {fileID: 4176436813387796, guid: 5c5976fe58bbb4afaa2a2f288b680abf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c92c7a7a19c451ba0628b0c430847e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleType: 2
+  scaleType: 3
   canvasScaler: {fileID: 0}
 --- !u!1 &1564726923
 GameObject:

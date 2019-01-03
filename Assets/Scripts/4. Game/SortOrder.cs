@@ -47,11 +47,22 @@ public class SortOrder : MonoBehaviour {
     public LevelWon levelWonScript;
 
     private int clickId;
+    private int fileID;
+
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+    private bool isAndroid = true;
+#else
+    private bool isAndroid = false;
+#endif
 
     private void Start()
     {
-        clickId = AudioCenter.loadSound("Resources/Click.wav");
-
+        if (isAndroid)
+        {
+            AndroidNativeAudio.makePool(1);
+            fileID = AndroidNativeAudio.load("Android Native Audio/Click.wav");
+        }
         UpdateTexts();
     }
 
@@ -217,8 +228,14 @@ public class SortOrder : MonoBehaviour {
         }
         if (Utilities.SoundOn)
         {
-            AudioCenter.playSound(clickId);
-            //audioSource.PlayOneShot(click);
+            if (isAndroid)
+            {
+                int streamID = AndroidNativeAudio.play(fileID);
+            }
+            else
+            {
+                audioSource.PlayOneShot(click);
+            }
         }
     }
 }

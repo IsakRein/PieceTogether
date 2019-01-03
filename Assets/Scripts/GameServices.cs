@@ -7,6 +7,8 @@ public class GameServices : MonoBehaviour {
 
     public PopUp popUp;
 
+    public List<string> scenes = Utilities.previousScenes;
+
     private void Start()
     {
         bool _isAvailable = NPBinding.GameServices.IsAvailable();

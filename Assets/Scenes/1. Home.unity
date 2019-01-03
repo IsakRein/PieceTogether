@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 130.4
+  m_fontSize: 125.05
   m_fontSizeBase: 87.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1704,6 +1704,7 @@ GameObject:
   - component: {fileID: 1042231806}
   - component: {fileID: 1042231805}
   - component: {fileID: 1042231807}
+  - component: {fileID: 1042231808}
   m_Layer: 0
   m_Name: AdManager
   m_TagString: Untagged
@@ -1751,6 +1752,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUp: {fileID: 997384634}
+  scenes: []
+--- !u!114 &1042231808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042231804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6087d652c028642b52fa9eec923977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1134578233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,7 +2041,7 @@ PrefabInstance:
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}
       propertyPath: orthographic size
-      value: 8.888889
+      value: 9.459459
       objectReference: {fileID: 0}
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}

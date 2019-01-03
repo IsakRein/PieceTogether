@@ -180,6 +180,7 @@ public static class Utilities
         SceneManager.LoadScene(previousScenes[previousScenes.Count - 1], LoadSceneMode.Single);
         previousScenes.Remove(previousScenes[previousScenes.Count - 1]);
     }
+
     public static void BuyRemoveAds()
     {
         removeAdsBought = true;
