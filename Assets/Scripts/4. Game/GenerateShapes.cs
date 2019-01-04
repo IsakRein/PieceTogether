@@ -120,9 +120,11 @@ public class GenerateShapes : MonoBehaviour {
 
         //minsize, maxsize, mincount, maxcount, scalevalue, list
 
-        /*
+
         GenerateMultipleLevels(5, 7, 4, 7, 0.6f, levelLoader.beginner);
-        GenerateMultipleLevels(5, 8, 4, 8, 0.55f, levelLoader.easy);
+
+        /* 
+         * GenerateMultipleLevels(5, 8, 4, 8, 0.55f, levelLoader.easy);
         GenerateMultipleLevels(5, 9, 5, 8, 0.5f, levelLoader.normal);
         GenerateMultipleLevels(6, 10, 5, 9, 0.4f, levelLoader.hard);
         GenerateMultipleLevels(7, 11, 6, 10, 0.4f, levelLoader.advanced);
