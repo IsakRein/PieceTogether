@@ -54,13 +54,13 @@ MonoBehaviour:
       m_port: 53
   m_utilitySettings:
     m_rateMyApp:
-      m_isEnabled: 0
+      m_isEnabled: 1
       m_title: Give a review!
       m_message: If you enjoy playing Piece Together would you mind taking a moment
         to rate it? It wont take more than a minute. Thanks for your support!
-      m_showFirstPromptAfterHours: 0
-      m_successivePromptAfterHours: 0
-      m_successivePromptAfterLaunches: 0
+      m_showFirstPromptAfterHours: 1
+      m_successivePromptAfterHours: 1
+      m_successivePromptAfterLaunches: 15
       m_rateItButtonText: Rate It Now
       m_remindMeLaterButtonText: Remind Me Later
       m_dontAskButtonText: No, Thanks

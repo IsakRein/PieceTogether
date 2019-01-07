@@ -117,7 +117,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.1
+  bundleVersion: 1.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,7 +155,7 @@ PlayerSettings:
     Android: com.kickflipgames.PieceTogether
     iOS: com.kickflipgames.PieceTogether
   buildNumber: {}
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -597,11 +597,11 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
-    4: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
-    7: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
-    14: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
-    25: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES
+    1: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_RATE_MY_APP
+    4: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_RATE_MY_APP
+    7: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_RATE_MY_APP
+    14: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_RATE_MY_APP
+    25: USES_BILLING;USES_CLOUD_SERVICES;USES_GAME_SERVICES;USES_RATE_MY_APP
   platformArchitecture: {}
   scriptingBackend:
     Android: 0
