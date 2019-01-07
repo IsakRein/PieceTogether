@@ -2528,7 +2528,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 110.8
+  m_fontSize: 162.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2862,7 +2862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4802641517252996, guid: 0813f8cd49d5042e897463f7f2df72bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.12345
       objectReference: {fileID: 0}
     - target: {fileID: 4802641517252996, guid: 0813f8cd49d5042e897463f7f2df72bd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2948,6 +2948,11 @@ PrefabInstance:
     - target: {fileID: 1330647617140396, guid: 0813f8cd49d5042e897463f7f2df72bd, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224005953838055242, guid: 0813f8cd49d5042e897463f7f2df72bd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.12345
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0813f8cd49d5042e897463f7f2df72bd, type: 3}
@@ -4035,7 +4040,7 @@ PrefabInstance:
     - target: {fileID: 20482498651297788, guid: 5c5976fe58bbb4afaa2a2f288b680abf,
         type: 3}
       propertyPath: orthographic size
-      value: 10.833333
+      value: 8.888889
       objectReference: {fileID: 0}
     - target: {fileID: 4176436813387796, guid: 5c5976fe58bbb4afaa2a2f288b680abf, type: 3}
       propertyPath: m_LocalPosition.x

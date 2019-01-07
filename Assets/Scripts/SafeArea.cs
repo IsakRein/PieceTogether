@@ -55,8 +55,6 @@ public class SafeArea : MonoBehaviour
             float frac2 = (16f / 9f) - (4f / 3f);
             float percent = frac1 / frac2;
 
-            Debug.Log(frac1 + " " + frac2 + " " + percent);
-
             float val = min + (percent * (mid - min));
 
             if (val < min)

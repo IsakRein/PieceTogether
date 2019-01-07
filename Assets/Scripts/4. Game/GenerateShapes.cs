@@ -121,7 +121,7 @@ public class GenerateShapes : MonoBehaviour {
         //minsize, maxsize, mincount, maxcount, scalevalue, list
 
 
-        GenerateMultipleLevels(5, 7, 4, 7, 0.6f, levelLoader.beginner);
+        //GenerateMultipleLevels(5, 7, 4, 7, 0.6f, levelLoader.beginner);
 
         /* 
          * GenerateMultipleLevels(5, 8, 4, 8, 0.55f, levelLoader.easy);
@@ -133,11 +133,34 @@ public class GenerateShapes : MonoBehaviour {
         GenerateMultipleLevels(8, 13, 7, 11, 0.35f, levelLoader.expert3);
         */
 
-        //GenerateMultipleLevels(7, 11, 7, 10, 0.4f, levelLoader.hard);
-        //GenerateMultipleLevels(7, 12, 9, 12, 0.35f, levelLoader.advanced);
+        //GenerateMultipleLevels(7, 11, 7, 10, 0.45f, levelLoader.hard);
+        //GenerateMultipleLevels(7, 12, 9, 12, 0.4f, levelLoader.advanced);
         //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert1);
         //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert2);
         //GenerateMultipleLevels(9, 13, 13, 16, 0.35f, levelLoader.expert3);
+    }
+
+    public void ChangeScaleVal(float scaleVal)
+    {
+        for (int i = 0; i < levelLoader.hard.Count; i++)
+        {
+            string[] gameStringList = levelLoader.hard[i].Split(',');
+            gameStringList[2] = scaleVal + "";
+
+            levelLoader.hard[i] = "";
+           
+            for (int j = 0; j < gameStringList.Length; j++)
+            {
+                if (j == gameStringList.Length - 1)
+                {
+                    levelLoader.hard[i] = levelLoader.hard[i] + gameStringList[j];
+                }
+                else
+                {
+                    levelLoader.hard[i] = levelLoader.hard[i] + gameStringList[j] + ",";
+                }
+            }
+        }
     }
 
     public void GenerateMultipleLevels(int impMinSize, int impMaxSize, int impMinCount, int impMaxCount, float impScaleValue, List<string> list) 
