@@ -6,6 +6,10 @@ using GoogleMobileAds.Api;
 
 public class AdManager : MonoBehaviour
 {
+
+    public float time;
+    public float startTime;
+
     public List<int> adTypes = new List<int>();
 
     public static AdManager instance { set; get; }
@@ -32,10 +36,11 @@ public class AdManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     //copied from google 
     public void Start()
     {
+        time = 0;
 
 #if UNITY_ANDROID
         string appId = "ca-app-pub-1953850030492719~2620385211";
@@ -68,6 +73,10 @@ public class AdManager : MonoBehaviour
         // Calculate simple moving average for time to render screen. 0.1 factor used as smoothing
         // value.
         this.deltaTime += (Time.deltaTime - this.deltaTime) * 0.1f;
+
+        time -= Time.deltaTime;
+
+
     }
  
     // Returns an ad request with custom ad targeting.
@@ -92,23 +101,31 @@ public class AdManager : MonoBehaviour
 
     public void ShowInBetweenAd()
     {
-        if (adTypes[0] == 0)
+        if (time <= 0)
         {
-            ShowRewardBasedVideo();
-        }
+            time = startTime;
 
-        else if (adTypes[0] == 1)
-        {
-            ShowInterstitial();
-        }
 
-        else
-        {
-            GameObject.Find("RemoveAds").GetComponentInChildren<Canvas>(true).gameObject.SetActive(true);
-        }
+            if (adTypes[0] == 0)
+            {
+                ShowRewardBasedVideo();
+            }
 
-        adTypes.Add(adTypes[0]);
-        adTypes.RemoveAt(0);
+            else if (adTypes[0] == 1)
+            {
+                ShowInterstitial();
+            }
+
+            else
+            {
+                GameObject.Find("RemoveAds").GetComponentInChildren<Canvas>(true).gameObject.SetActive(true);
+            }
+
+            adTypes.Add(adTypes[0]);
+            adTypes.RemoveAt(0);
+
+            time = startTime;
+        }
     }
 
 

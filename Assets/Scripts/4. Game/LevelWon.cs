@@ -22,7 +22,7 @@ public class LevelWon : MonoBehaviour
 
     public void NextLevel()
     {
-        if (!Utilities.removeAdsBought)
+        if (Utilities.removeAdsBought)
         {
             int lastWonLevel = PlayerPrefs.GetInt(Utilities.currentPack);
             if (Utilities.currentLevel == lastWonLevel + 1)
