@@ -22,7 +22,7 @@ public class LevelWon : MonoBehaviour
 
     public void NextLevel()
     {
-        if (!Utilities.removeAdsBought)
+        if (!Utilities.removeAdsBought && adManager.time <= 0)
         {
             int lastWonLevel = PlayerPrefs.GetInt(Utilities.currentPack);
             if (Utilities.currentLevel == lastWonLevel + 1)
@@ -37,7 +37,7 @@ public class LevelWon : MonoBehaviour
             int ad = adManager.adTypes[0];
             adManager.ShowInBetweenAd();
 
-            if (ad != 2 || adManager.time > 0) { LoadNextScene(); }
+            if (ad != 2) { LoadNextScene(); }
         }
 
         else

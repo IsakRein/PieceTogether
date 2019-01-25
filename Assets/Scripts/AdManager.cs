@@ -101,31 +101,25 @@ public class AdManager : MonoBehaviour
 
     public void ShowInBetweenAd()
     {
-        if (time <= 0)
+        time = startTime;
+
+        if (adTypes[0] == 0)
         {
-            time = startTime;
-
-
-            if (adTypes[0] == 0)
-            {
-                ShowRewardBasedVideo();
-            }
-
-            else if (adTypes[0] == 1)
-            {
-                ShowInterstitial();
-            }
-
-            else
-            {
-                GameObject.Find("RemoveAds").GetComponentInChildren<Canvas>(true).gameObject.SetActive(true);
-            }
-
-            adTypes.Add(adTypes[0]);
-            adTypes.RemoveAt(0);
-
-            time = startTime;
+            ShowRewardBasedVideo();
         }
+
+        else if (adTypes[0] == 1)
+        {
+            ShowInterstitial();
+        }
+
+        else
+        {
+            GameObject.Find("RemoveAds").GetComponentInChildren<Canvas>(true).gameObject.SetActive(true);
+        }
+
+        adTypes.Add(adTypes[0]);
+        adTypes.RemoveAt(0);
     }
 
 
